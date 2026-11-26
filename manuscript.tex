@@ -209,7 +209,7 @@ The determinant is the appropriate integer for a family of independent vectors. 
               \sum_p e_p\log p\ \le\ \log|\det A|
                    \ \le\ \sum_{i=1}^j\log\|v_i\| .
 \]
-The first inequality follows from prime factorization, and the second is Hadamard's inequality for the Euclidean norm.
+The first inequality follows from prime factorization, and the second is Hadamard's inequality for the Euclidean norm. For an earlier application to primes, Pritsker integrates a squared, weighted Vandermonde determinant with integer coefficients over a cube. Bounding its integral and clearing denominators gives a lower bound for the integral of Chebyshev's function \(\psi(t)=\sum_{n\le t}\Lambda(n)\) \cite[Thm.~1.1 and its proof in \S3]{pritsker}.
 
 \begin{example}[The area of an integral parallelogram]\label{ex:integral-parallelogram}
 Take the matrix \(A\) with columns \((1,1)^{\mathsf T}\) and \((1,7)^{\mathsf T}\). They coincide modulo \(2\) and modulo \(3\), so \(6\) divides their determinant. Their lengths have product \(\sqrt{2}\sqrt{50}=10\). The area \(|\det A|\) is a positive multiple of \(6\) at most \(10\), so it equals \(6\). The Gram determinant \(\det(A^{\mathsf T}A)\) is the squared area, namely \(36\). Its logarithm is \(2\log6\).
@@ -239,9 +239,9 @@ With \(Q,d\) fixed, construct the field, levels and weights for each large \(x\)
 \section{Volume estimates and established inputs (optional roadmap)}\label{map:forward}
 The readable edition's \rootlink{grh/INDEX.md}{index of results} distinguishes previously known mathematics formalized for this project from the constructions and estimates particular to the GRH argument. Theorem B supplies independent vectors. Theorems A and C bound the volume of their lifts from above and below.
 \begin{description}
-\item[{\hyperref[thm:short]{Theorem A} (short vectors).}] Divisibility estimates for derivatives on a single elliptic curve with complex multiplication were known. Chapters~\ref{ch:upper}--\ref{ch:upperlift} calculate the divisibility of theta derivatives along products of matrix minors. At the marked primes they use scaled Hecke operators to recover divisibility on a sublattice and bound its index.
-\item[{\hyperref[thm:spanning]{Theorem B} (spanning by translates).}] Schur orthogonality normalizes a matrix coefficient. Chapters~\ref{ch:span}--\ref{ch:trace} estimate the second moment of the translates of the Poincar\'e map and show that few translates span nearly all of the target. A comparison of traces across signatures transfers the dimension count from a definite unitary group.
-\item[{\hyperref[thm:volume]{Theorem C} (the determinant).}] The Rallis inner product formula gives norms for individual theta lifts. Chapters~\ref{ch:lower}--\ref{ch:chain} compare determinants for a whole chain with and without a twist. To bound the heights of twisted Hecke values they use \S\ref{sec:frame-attainment}, where the local divisibility bound is attained in prescribed degrees up to one factor of controlled size. For each coefficient prime \(\ell\) and isomorphism \(\mathbb C\simeq\overline{\mathbb Q}_\ell\), Chapters~\ref{ch:selmer}--\ref{ch:deform} choose one twist whose first \(m\) powers control the projection denominators for the \(m\) lifts. Chapter~\ref{ch:local} bounds the loss at \(\ell\). Chapters~\ref{ch:galois}--\ref{ch:cohom} supply the Galois representations with the properties stated in \S\ref{sec:galois}.
+\item[{\hyperref[thm:short]{Theorem A} (short vectors).}] For one elliptic curve with complex multiplication, Katz proved congruences for the Laurent coefficients of its Weierstrass \(\wp\)-function at supersingular primes \cite{katz-cartier}. Bannai and Kobayashi give the statement and a proof in \cite[\S5, Thms.~5.1 and 5.8]{bannai-integral}. Chapters~\ref{ch:upper}--\ref{ch:upperlift} calculate the divisibility of theta derivatives along products of matrix minors. At the marked primes they use scaled Hecke operators to recover divisibility on a sublattice and bound its index.
+\item[{\hyperref[thm:spanning]{Theorem B} (spanning by translates).}] Schur orthogonality gives the squared norm of a discrete-series matrix coefficient in terms of the formal degree \cite[Thm.~B, (1)]{upper-moore-wolf}. Chapters~\ref{ch:span}--\ref{ch:trace} estimate the second moment of the translates of the Poincar\'e map and show that few translates span nearly all of the target. A comparison of traces across signatures transfers the dimension count from a definite unitary group.
+\item[{\hyperref[thm:volume]{Theorem C} (the determinant).}] The Rallis inner product formula relates the squared norm of an individual theta lift to a doubling integral \cite[\S\S11.3--11.5]{gan-qiu-takeda-rallis}. Chapters~\ref{ch:lower}--\ref{ch:chain} compare determinants for a whole chain with and without a twist. To bound the heights of twisted Hecke values they use \S\ref{sec:frame-attainment}, where the local divisibility bound is attained in prescribed degrees up to one factor of controlled size. For each coefficient prime \(\ell\) and isomorphism \(\mathbb C\simeq\overline{\mathbb Q}_\ell\), Chapters~\ref{ch:selmer}--\ref{ch:deform} choose one twist whose first \(m\) powers control the projection denominators for the \(m\) lifts. Chapter~\ref{ch:local} bounds the loss at \(\ell\). Chapters~\ref{ch:galois}--\ref{ch:cohom} supply the Galois representations with the properties stated in \S\ref{sec:galois}.
 \end{description}
 \noindent Chapter~\ref{ch:volume} combines A, B and C. Chapter~\ref{ch:analytic} turns the resulting bound at \(x\) into a zero-free half-plane by choosing a quadratic twist and applying Landau's theorem.
 
@@ -309,7 +309,7 @@ We require \(\Phi_b\) in the fiber \(-1\bmod q\). For every prime \(p\le kt\) an
 \]
 modulo the largest divisor of \(q_1\) coprime to \(p\). The signs are independent. For \(n\equiv1\bmod q\), the difference between the two positive parts for \(n\) occurs \(|\Phi_b|\) times. Recovering the prime sum in this class requires division by \(|\Phi_b|\). The lower bound \(|\Phi_b|\ge|\Phi_a|/\log b\) controls the resulting error.
 
-Behrend used lattice points on one sphere to construct a set containing no three distinct terms in arithmetic progression \cite[pp.~331--332]{behrend}. We adapt his construction to exclude a family of weighted congruences simultaneously. Suppose \((LH)^h\le o\) for positive integers \(L,H,h,o\) with \(L\ge2\). Encode \(v\in\{0,\ldots,H-1\}^h\) by its digits in base \(LH\). Pick one value of \(\|v\|^2\) attained by at least \(H^h/(hH^2)\) vectors, using that there are at most \(hH^2\) possible values. Let \(A\) be their encodings. If \(e_1,e_2,e_3\in A\) encode \(u,v,w\), and \(\alpha,\beta\) are positive integers with \(\alpha+\beta\le L\), then
+Behrend used lattice points on one sphere to construct a set containing no three distinct terms in arithmetic progression \cite[pp.~331--332]{behrend}. Shapira records the weighted three-variable equation \cite[Thm.~1 of the preprint]{shapira-behrend}. Alon and Shapira construct one set of integers on which \(a u+b w=(a+b)v\) forces \(u=v=w\) simultaneously for all positive \(a,b\) up to a given bound \cite[Lemma~4.1 of the preprint]{alon-shapira}. We need the congruence modulo a specified integer, with an explicit count for a fixed number of digits. Suppose \((LH)^h\le o\) for positive integers \(L,H,h,o\) with \(L\ge2\). Encode \(v\in\{0,\ldots,H-1\}^h\) by its digits in base \(LH\). Pick one value of \(\|v\|^2\) attained by at least \(H^h/(hH^2)\) vectors, using that there are at most \(hH^2\) possible values. Let \(A\) be their encodings. If \(e_1,e_2,e_3\in A\) encode \(u,v,w\), and \(\alpha,\beta\) are positive integers with \(\alpha+\beta\le L\), then
 \[
  (\alpha+\beta)e_2\equiv\alpha e_1+\beta e_3\pmod o
      \ \Longrightarrow\  (\alpha+\beta)v=\alpha u+\beta w .
@@ -344,7 +344,7 @@ This proves both the required cardinality and sparseness.\formalnote{2.2}{2}
 
 \subsection{Two norm primes and a level for the whole chain}
 For each fixed \(A>0\), suppose that \(Q_{\rm lev}\le W^A\) and \(W\le U\le W^A\). For sufficiently large \(W\), there is a prime \(p\equiv1\bmod Q_{\rm lev}\) with \(U\le\log p\le U+W\). Indeed put \(z=e^U\). Apply Siegel--Walfisz \cite[Cor.~11.21]{montgomery-vaughan} to \(\vartheta(2z;Q_{\rm lev},1)-\vartheta(z;Q_{\rm lev},1)\), where \(\vartheta\) sums \(\log p\) over primes. Here \(Q_{\rm lev}\le(\log z)^A\), so the difference is \(z/\varphi(Q_{\rm lev})+O_A(z/(\log z)^{A+1})\). The main term is at least \(z/(\log z)^A\). The resulting prime has \(U<\log p\le U+\log 2\le U+W\).
-\phantomsection\label{route:1}\leanroute{The formal result treats powers of a fixed modulus divisible by four. It descends the real characters to a fixed modulus and uses a zero-free region and Newman's contour argument. Siegel--Walfisz applies uniformly to the particular varying moduli \(Q_{\rm lev}=q_2^2\) used here because \(Q_{\rm lev}\) has polynomial size in \(W\). Its ineffective threshold suffices for existence at every sufficiently large \(x\).\formalnote{2.3}{3}}
+\phantomsection\label{route:1}\leanroute{The formal result treats powers of a fixed modulus divisible by four. It descends the real characters to a fixed modulus and uses a zero-free region and Newman's contour argument for convergence of Dirichlet series \cite[pp.~693--695]{newman}. Siegel--Walfisz applies uniformly to the particular varying moduli \(Q_{\rm lev}=q_2^2\) used here because \(Q_{\rm lev}\) has polynomial size in \(W\). Its ineffective threshold suffices for existence at every sufficiently large \(x\).\formalnote{2.3}{3}}
 
 Take \(Q_{\rm lev}=q_2^2\) and \(L_b=\log b\). Both \(Q_{\rm lev}\) and \(24mL_b\) are bounded by fixed powers of \(W\), because \(s=O(\log x)\), \(q,d,\eta\) are fixed, and \(W=x^{\eta/6}\). Write \(h_K\) for the class number of \(K\). The \(h_K+1\) disjoint logarithmic intervals of length \(W\) starting at \(10L_b+2iW\), \(0\le i\le h_K\), lie in \([10L_b,11L_b]\) for large \(x\). Each contains the logarithm of a different prime \(p_i\equiv1\bmod Q_{\rm lev}\). Since \(3l\le243s\le3^{s+5}\) and \(6\mid q\), we have \(3l\,2^s\mid(qd)^{s+5}\) and hence \(q_1d\mid q_2\). Thus primes congruent to \(1\bmod Q_{\rm lev}\) split completely in \(\mathbb Q(\zeta_{q_1d})\) and in its subfield \(E\). Factor \((p_i)=I_iJ_i\) into its two prime ideals in \(\mathcal O_K\). There are only \(h_K\) ideal classes, so \([I_i]=[I_j]\) for some \(i\ne j\). Since \([J_j]=[I_j]^{-1}\), \(I_iJ_j=(\alpha)\) is principal and its norm is \(p_ip_j=\alpha\bar\alpha\). Call this product \(M\), and relabel the selected primes \(p_0,p_1\). In particular \(b^{20}\le M\le b^{22}\).
 
@@ -821,6 +821,7 @@ The lower bound is uniform in the character with the height box fixed.\formalnot
 \end{proof}
 
 \subsection{A prime giving simultaneous nonvanishing}
+Jutila obtains a zero-density estimate for real characters by bounding mean squares of Dirichlet polynomials \cite[Thms.~1--2]{jutila}. Here the twists of each fixed character modulo \(Q\) must be handled, including when that character is complex. The large sieve used below allows its values to be put into the coefficients.
 \begin{proposition}[Simultaneous nonvanishing]\label{prop:an-good-prime}
 For a positive multiple \(Q\) of \(18480\), a real number \(1/2<\beta<1\) and a height \(H_0\ge0\), there exists a prime \(d\equiv Q/2-1\bmod Q\) such that \(L(s,\psi\chi_d)\ne0\) throughout \(\mathcal B(\beta,H_0)\) for every character \(\psi\bmod Q\), where \(\chi_d(n)=(n/d)\).
 \end{proposition}
@@ -895,6 +896,7 @@ If \(\sigma_c>\beta\), \eqref{eq:an-landau-transform} makes the singularity a si
 Fix \(N\ge1\) and put \(Q=18480N\). Suppose that for every prime \(d\equiv Q/2-1\bmod Q\) and every \(\varepsilon>0\) the centered sum \(R_{Q,d}(y)\) in \eqref{eq:an-centered-error} is at most \(y^{-1/2+\varepsilon}\) for all sufficiently large \(y\). For every Dirichlet character \(\chi\bmod N\), \(L(s,\chi)\) has no zero in \(\Re s>1/2\), with the principal pole excepted.
 \end{proposition}
 \end{samepage}
+Suzuki proves a related criterion for logarithmically weighted sums over \(n\equiv1\bmod q\). For \(1/2\le\beta<1\), he assumes that the \(L\)-functions of all characters modulo \(q\) have no real zero above \(\beta\). Eventual constancy of sign then gives nonvanishing throughout \(\Re s>\beta\) \cite[Thm.~6(1)]{suzuki}. Here the choice of the quadratic twist after the proposed zero is fixed gives the required residue sign at a real pole.
 \begin{proof}
 
 Let \(\chi\) be a character modulo \(N\).
@@ -1533,7 +1535,7 @@ The two pullback statements extend to limits \((\delta,s)\) of the pairs \((\alp
 \]
 This gives the integrality needed to project onto the exponent in (F2).\formalnote{4.20}{20}
 
-We now prove that the Frobenius coefficient used there is a unit. For \(\alpha\in\mathcal O_K\setminus\{0\}\) let \(o(\alpha)\) be the order in \(y\) of the reduction of \(y(\alpha z)\) modulo \(\mathfrak m\). Apply the even expansion (CM2) to \(\sigma(\alpha z)^2\), of degree \(2n\), \(n=\alpha\bar\alpha\). This gives \(\theta^{2n}R(x)\) with \(R\) integral, \(\deg R\le n\). At \(z=t/\alpha\) the left side has normalized torsion value \(\sigma[t]^2\), a unit. The right side is a sum of the integral monomial sections \(\theta^{2n-2i}\sigma^{2i}\) multiplied by \(R_i\). Thus some \(R_i\) with \(i\le n\) is a unit. Using the first pullback and \(x\theta^2=\sigma^2\) gives \(x(\alpha z) R_1^2=R(x)\). After reduction, the left side has order \(2o(\alpha)\), since \(x=y^2+\cdots\) in \(O[[y]]\) and \(R_1\) is a unit. The right side has order \(2\operatorname{ord}\bar R\le2n\). Consequently \(o(\pi)\le q\) for nonsplit \(p\). If \(p\) splits, take a power of the prime over \(p\) which is principal, generated by \(\alpha\) with \(\alpha\bar\alpha=p^h\) and \(|\bar\alpha|_p=1\) at the chosen embedding. Composition multiplies orders, and \(o(\bar\alpha)=1\) by its linear coefficient. Hence \(o(p)^h=o(\alpha)\le p^h\), giving \(o(\pi)\le q=p\) here as well.\formalnote{4.21}{21}
+At a place of good reduction, Deuring's criterion says that a CM elliptic curve has ordinary reduction when \(p\) splits in the CM field and supersingular reduction when \(p\) is inert or ramified \cite[Thm.~1.1]{blake-deuring}. We now prove that the Frobenius coefficient used there is a unit. For \(\alpha\in\mathcal O_K\setminus\{0\}\) let \(o(\alpha)\) be the order in \(y\) of the reduction of \(y(\alpha z)\) modulo \(\mathfrak m\). Apply the even expansion (CM2) to \(\sigma(\alpha z)^2\), of degree \(2n\), \(n=\alpha\bar\alpha\). This gives \(\theta^{2n}R(x)\) with \(R\) integral, \(\deg R\le n\). At \(z=t/\alpha\) the left side has normalized torsion value \(\sigma[t]^2\), a unit. The right side is a sum of the integral monomial sections \(\theta^{2n-2i}\sigma^{2i}\) multiplied by \(R_i\). Thus some \(R_i\) with \(i\le n\) is a unit. Using the first pullback and \(x\theta^2=\sigma^2\) gives \(x(\alpha z) R_1^2=R(x)\). After reduction, the left side has order \(2o(\alpha)\), since \(x=y^2+\cdots\) in \(O[[y]]\) and \(R_1\) is a unit. The right side has order \(2\operatorname{ord}\bar R\le2n\). Consequently \(o(\pi)\le q\) for nonsplit \(p\). If \(p\) splits, take a power of the prime over \(p\) which is principal, generated by \(\alpha\) with \(\alpha\bar\alpha=p^h\) and \(|\bar\alpha|_p=1\) at the chosen embedding. Composition multiplies orders, and \(o(\bar\alpha)=1\) by its linear coefficient. Hence \(o(p)^h=o(\alpha)\le p^h\), giving \(o(\pi)\le q=p\) here as well.\formalnote{4.21}{21}
 
 Take \(T=(q-1)^{-1}\sum_{\zeta^{q-1}=1}\zeta^{-1}y(\zeta z)\). This is integral in \(y\), tangent to \(y\), and therefore another generator. Its equivariance and the integral pullback give
 \[
@@ -1663,7 +1665,7 @@ Its distinct pole orders before multiplication also give linear independence. Fo
 
 \section{Transporting a CM period and its theta sections}
 \label{sec:cm-conjugation}
-In \S\ref{sec:cm-integral} the periods of a conjugate cubic are compared with ideal multiples of a reference lattice. For an arbitrary \(\alpha\in\operatorname{Aut}(\mathbb C/K)\), this comparison must be made through equations: such an automorphism need not preserve analytic limits. Write \(K=\mathbb Q(\sqrt{-d})\), \(d\equiv7\bmod8\) prime, and \(\omega=(1+\sqrt{-d})/2\).
+In \S\ref{sec:cm-integral} the periods of a conjugate cubic are compared with ideal multiples of a reference lattice. For an arbitrary \(\alpha\in\operatorname{Aut}(\mathbb C/K)\), this comparison must be made through equations: such an automorphism need not preserve analytic limits. The classical CM theorem describes the period lattice and torsion of the conjugate curve by the action of a finite idele \cite[Theorem~9.17]{upper-milne-cm}. Here we also need the scalar by which the normalized theta section changes. Write \(K=\mathbb Q(\sqrt{-d})\), \(d\equiv7\bmod8\) prime, and \(\omega=(1+\sqrt{-d})/2\).
 
 \subsection{The ideal classes and the common scale}
 The class group of \(K\) has no element of order two. To prove it, let \(I\) be a nonzero integral ideal with \(I^2=(u)\) and put \(n=NI\). Then \(u\bar u=n^2\). Choose the sign of \(u\) so that \(\bar u+n\ne0\), and set \(J=(\bar u+n)I\). Since
@@ -1858,7 +1860,7 @@ The combination of area and discriminant is unchanged on scaling \(\Lambda\) by 
 
 \subsection{The mean over ideal classes}
 
-In the application \(d\) is prime, \(d\equiv7\pmod8\), \(K=\mathbb Q(\sqrt{-d})\), and \(k=2/\sqrt d\). Thus \(-d\) is the field discriminant. A fractional ideal \(\mathfrak a\) has covolume \(\sqrt d\,N(\mathfrak a)/2\) in \(\mathbb C\), by computing the area of the integral basis \(1,(1+\sqrt{-d})/2\) and scaling by the fractional ideal norm. For \(\Lambda=c\mathfrak a\), a nonzero vector \(l=c\alpha\) thus contributes the inverse \(s\)-th power of \(N((\alpha)\mathfrak a^{-1})\). The latter ideals are precisely the integral ideals in the inverse class, each represented once per unit. The Euler product of their sum over classes is \(\zeta(s)L(s,\chi_d)\) times the number of units: the local factors of \(\zeta_K\) are \((1-p^{-s})^{-2}\), \((1-p^{-2s})^{-1}\), and \((1-p^{-s})^{-1}\) at split, inert and ramified primes. All products here converge absolutely. After multiplication by \(s-1\), the logarithmic derivative on the right is \(\gamma+\Re(L'/L)(1,\chi_d)\). The values on the left are all \(k\pi\), so their logarithmic derivatives are averaged with equal weight. This is the precise step by which the derivative of a single quadratic \(L\)-function sets a common archimedean scale for all the conjugate curves.\formalnote{4.50}{50}
+In the application \(d\) is prime, \(d\equiv7\pmod8\), \(K=\mathbb Q(\sqrt{-d})\), and \(k=2/\sqrt d\). Thus \(-d\) is the field discriminant. A fractional ideal \(\mathfrak a\) has covolume \(\sqrt d\,N(\mathfrak a)/2\) in \(\mathbb C\), by computing the area of the integral basis \(1,(1+\sqrt{-d})/2\) and scaling by the fractional ideal norm. For \(\Lambda=c\mathfrak a\), a nonzero vector \(l=c\alpha\) thus contributes the inverse \(s\)-th power of \(N((\alpha)\mathfrak a^{-1})\). The latter ideals are precisely the integral ideals in the inverse class, each represented once per unit. The Euler product of their sum over classes is \(\zeta(s)L(s,\chi_d)\) times the number of units: the local factors of \(\zeta_K\) are \((1-p^{-s})^{-2}\), \((1-p^{-2s})^{-1}\), and \((1-p^{-s})^{-1}\) at split, inert and ramified primes. All products here converge absolutely. After multiplication by \(s-1\), the logarithmic derivative on the right is \(\gamma+\Re(L'/L)(1,\chi_d)\). The values on the left are all \(k\pi\), so their logarithmic derivatives are averaged with equal weight. This is the logarithmic form of the Chowla--Selberg class product. Gross \cite[\S3]{upper-gross-periods} gives the discriminant product by taking the logarithmic derivative of \(\zeta_K\) at \(s=0\). The calculation here compares the same ideal classes at \(s=1\), giving the common archimedean scale in terms of \((L'/L)(1,\chi_d)\).\formalnote{4.50}{50}
 
 
 \section{Local exponents for translated theta functions}\label{sec:cm-detail}
@@ -1981,7 +1983,7 @@ In (F3) the coefficient of \(z^{p+1}\) in \(Y^{p+1}\) is \(1\) modulo
 \(\pi\). This proves that \(\lambda\), hence every leading odd coupling
 coefficient in the one-curve expansion, is a unit.
 
-For one curve at an inert prime \(p\), the slope \(p/(p^2-1)\) in the derivative divisibility bound is known to be sharp in infinitely many degrees. The \rootlink{grh/src/New/Derivatives/Sharpness/BoundAttained.lean\#L34-L42}{source note on one-curve sharpness} records the earlier work. Here the degrees are prescribed by the weights. We first need the following one-variable bound in each degree.
+The \rootlink{grh/src/New/Derivatives/Sharpness/BoundAttained.lean\#L34-L42}{source note on one-curve sharpness} records that for one curve the inert-prime slope is attained in infinitely many degrees. The following Lubin--Tate calculation exhibits the slope explicitly. For the unramified quadratic extension of \(\mathbb Q_p\), let \(\lambda(T)\) be the formal logarithm. There is a character \(\exp(\omega_p\lambda(T))\) with coefficients in the valuation ring of \(\mathbb C_p\) with \(v_p(\omega_p)=1/(p-1)-1/(p^2-1)=p/(p^2-1)\) \cite[Appendix, theorem~(a), (c)]{upper-fourier}. In the logarithm coordinate its \(n\)-th derivative at zero is \(\omega_p^n\). We now need a bound in each prescribed degree for the ring \(\mathcal I\) of the chosen elliptic coordinate.
 Let \(C_n=\max_{F\in\mathcal I}|n![z^n]F|_p\) and put
 \(\gamma_p=1/(p-1)-\rho\). The maximum exists: only the finitely many
 monomials \(1,y,\dots,y^n\) can affect the coefficient and no integral
@@ -2845,7 +2847,7 @@ In fact every surviving monomial occurs in the trace exactly
 \(\binom d\alpha\) times. In particular
 \(\operatorname{tr}_U A_\psi=C\psi(1)\).
 
-We need the integral span of the operators \(\iota(g)^{\otimes d}\).
+For a single block over the residue field, the operators \(g^{\otimes d}\), with \(g\in{\rm GL}_k(\mathbb F_q)\), span the endomorphisms commuting with permutations of the \(d\) tensor factors whenever \(q>d\) \cite[Theorem~4.3]{upper-benson-doty}. We need the integral span of the operators \(\iota(g)^{\otimes d}\) for the prescribed blocks.
 It consists of all matrices supported on matching block words whose
 entries on that support depend only on \(\alpha(j,i)\). To see this,
 list all degree-\(d\) monomials in the allowed block entries. Their
@@ -3486,6 +3488,7 @@ this pair. Put \(d=\operatorname{diag}(pI_r,I_{k-r})\) and let
 parabolic modulo \(p\).
 
 \subsection{An edge and its reverse coordinates}
+For a unimodular lattice at a split place of odd residue characteristic, the right cosets in the Hecke double coset of \(d=\operatorname{diag}(pI_r,I_{k-r})\) parametrize lattice neighbours of type \(r\) \cite[Thm.~5.11]{upper-greenberg-voight}. The coordinates below also record the map on the coefficient representation.
 
 The stabilizer \(\Gamma\cap xKx^{-1}\) of each class representative
 is trivial. Indeed a stabilizing rational \(\gamma\) is integral in
@@ -3899,7 +3902,7 @@ the permissible degree and precision.\formalnote{5.39}{39}
 The covolume argument takes place on the target chain \(Y_j\).
 The integrality and divisibility estimates apply to theta kernels on
 the definite chain \(X_j\), where the lifts are finite class sums.
-The period identity relates these two calculations. It rewrites the
+Kudla's seesaw identity compares two pairings by interchanging the two integrations of a common theta kernel \cite[\S1, pp.~247--249]{upper-kudla}. The period identity needed here relates the two chains at their prescribed levels. It rewrites the
 lift of a Poincar\'e image on the \(Y_j\) as a finite linear
 combination of definite lifts, followed by restriction to \(Y_m\).
 The coefficients in this combination determine whether the
@@ -4501,7 +4504,7 @@ the same as in a Fourier coefficient on \(\mathbb R/\mathbb Z\):
 \(\int_0^1e^{2\pi i(a-b)t}\,dt\) vanishes for distinct integers
 \(a,b\). Here the phases depend on the Gram matrices of the
 rational maps. The main step is to show that agreement of the
-tested entries singles out the required orbit.
+tested entries singles out the required orbit. For an orthogonal--symplectic pair, Wang unfolds a period of a theta lift along a nilpotent orbit into periods of the original form \cite[Proposition~3.2 and Theorem~4.5]{upper-wang}. For unitary groups, Furusawa and Morimoto obtain a Whittaker period from Bessel periods in the equal-dimensional case \cite[Proposition~3.1]{upper-furusawa-morimoto}. Here we follow the orbit at each step between the prescribed unitary spaces.
 
 Consider two consecutive spaces in \S\ref{sec:seesaw-levels}. Write \(G'=U(V')\) for the target. The source grading presents \(V\) as a definite space \(X\) of weight zero and a string \(e_0,\ldots,e_{s-1}\) of weights \(g(a)=s-1-2a\). The target has its own definite part and a string of length \(s-1\), with weights \(g'\). Its form pairs opposite weights. In these bases the rational map \(T:V\to V'\) takes each string vector except the last to a specified nonzero multiple of the same-index target vector, and kills the last vector and \(X\). Its degree is \(-1\). The operator \(T^\dagger T\) is the source shift, sending a string vector to a nonzero multiple of its successor wherever a successor exists. The dagger is the adjoint for the two forms. Write \(B,B'\) for the Bessel groups associated with the two gradings and \([B]=B(F)\backslash B(\mathbb A_F)\).
 
@@ -5211,7 +5214,7 @@ If \(1-\alpha>16\epsilon\), this gain is at least \(\tfrac25(1-\alpha)s_0\), sin
 The chosen translates are distinct while the dimension gain is positive. All previously used maps have image contained in the current \(F\). If the construction stops early, the same bound on the number of translates applies.\formalnote{6.2}{2}
 
 \subsection{The two automorphic estimates}
-Let \(d_\infty\) be the product of the local Bessel formal degrees and let \(\mu_r=\sum_{[L]}|\operatorname{Aut}L|^{-1}\) be the mass of the standard rank \(r\) lattice genus. Comparing the traces on the good subspaces for unitary groups differing in signature gives equality of their dimensions. On the definite inner form at free principal level, the automorphic functions are tuples of weight vectors indexed by classes. The class count is \(|\Gamma|\mu_r\), since passing from the standard level multiplies the mass by its index \(|\Gamma|\), and at the smaller level all stabilizers are trivial. The dimension of the weight is \(d_\infty\) by the Weyl degree formula. Since the good forms are a subspace,
+Let \(d_\infty\) be the product of the local Bessel formal degrees and let \(\mu_r=\sum_{[L]}|\operatorname{Aut}L|^{-1}\) be the mass of the standard rank \(r\) lattice genus. Comparing the traces on the good subspaces for unitary groups differing in signature gives equality of their dimensions. On a definite group, evaluation at class representatives identifies the space of algebraic modular forms with the direct sum of the weight spaces fixed by the respective stabilizers \cite[Proposition~2.3 and Lemma~2.4]{upper-greenberg-voight}. At our free principal level these are copies of the whole weight space. The class count is \(|\Gamma|\mu_r\), since passing from the standard level multiplies the mass by its index \(|\Gamma|\), and at the smaller level all stabilizers are trivial. The dimension of the weight is \(d_\infty\) by the Weyl degree formula. Since the good forms are a subspace,
 \[
                         D\le |\Gamma|\mu_r d_\infty .
 \]
@@ -5337,7 +5340,7 @@ entries are inner products of tensor products. Continuity of the top
 form at nonzero entries and Fatou's lemma on the successive integrals
 give lower semicontinuity at each \(x_i(t)\).
 
-We record the one-sided Poisson step. If \(F\ge0\) is integrable and
+The classical adelic Poisson formula identifies the sum over \(E\) with the dual sum for Schwartz--Bruhat functions \cite[Lemma~4.2.4]{tate1950}. The following one-sided form uses lower semicontinuity only at the finitely many entries being counted. If \(F\ge0\) is integrable and
 lower semicontinuous at these finitely many points, then
 \[
  \sum_{t\in A} F(x_i(t))
@@ -6070,13 +6073,13 @@ Take \(V\) of corank \(\ell\). We first construct vectors \(x_1,\ldots,x_\ell\) 
       \le (8f\ell\,\mathrm{rd}_E)^{f\ell}\,d(V).
       \tag{G1}
 \]
-The length is the Euclidean norm over all complex places together. At \(\ell=0\) the span is the full space and the empty choice gives the assertion with constant one.
+The length is the Euclidean norm over all complex places together. By the number-field form of Siegel's lemma due to Bombieri and Vaaler, an \(E\)-subspace of \(E^k\) has an \(E\)-basis of vectors with integral coordinates whose product of heights is bounded in terms of the subspace height \cite{upper-bombieri-vaaler}. In (G1) the vectors must lie in the specified lattice \(\Lambda\), and we compute the covolume to obtain the bound in terms of \(d(V)\). If \(\ell=0\), then \(V=E^k\) and the empty choice gives the assertion with constant one.
 
 For \(\ell>0\), the determinant identity used here is \(d(V^\perp)=d(V)\). Locally use \(u^{-1}\) to put \(\Lambda\) in standard position. Complete a primitive integral basis of \(S_V\) to an integral invertible matrix \(B\). The last \(\ell\) columns of \((B^*)^{-1}\) form an integral basis of the orthogonal annihilator. Their Gram matrix is the last principal block of \((B^*B)^{-1}\). The complementary-minor formula gives its determinant as that of the first block of \(B^*B\) divided by \(\det(B^*B)\). The latter determinant has index one. At conjugate split places this same calculation uses mutually adjoint bases at the two places. Multiplication of the finite factors proves the identity.
 
 To see the covolume constant, take a rational basis \(Y\) of \(V^\perp\), written as columns, and an adelic change of basis \(A\) for which \(YA\) spans \(S_{V^\perp}\) over \(O\). In complex Euclidean coordinates the volume factor for \(Y\) is \(\prod_v\det(Y_v^*Y_v)=|\mathrm{Norm}_{E/\mathbb Q}\det(Y^*Y)|^{1/2}\). The finite volume factor for the lattice of coordinates is \([\det A]\). This follows by comparing with \(\mathcal O_E^\ell\) through their intersection of finite index and taking local indices on both sides. The product of these factors is \(d(V^\perp)=d(V)\). Since \(\mathcal O_E\) has real covolume \(2^{-f}|\Delta_E|^{1/2}\), the lattice of rational points of \(S_{V^\perp}\) in its Euclidean span has covolume \(2^{-f\ell}|\Delta_E|^{\ell/2}d(V)\).
 
-Write \(D=2f\ell\) and \(\lambda_1\le\cdots\le\lambda_D\) for the real successive minima of the unit ball. One can choose the \(j\)-th \(E\)-independent vector with length \(\le\lambda_{2f(j-1)+1}\): the \(E\)-span of the first \(j-1\) vectors has rational dimension \(2f(j-1)\). Among \(2f(j-1)+1\) real-linearly independent lattice vectors at least one lies outside that span. Hence the left side of (G1) is at most \(\prod_{i=1}^D\lambda_i\). By Minkowski's second theorem this product is at most \(2^D\,\mathrm{covol}/\mathrm{vol}(B_D)\), where \(B_D\) is the Euclidean unit ball. The inscribed cube gives \(\mathrm{vol}(B_D)\ge(2/\sqrt D)^D\). Substitution proves (G1), even with a smaller constant. The selected vectors span \(V^\perp\), so they determine \(V\).\formalnote{6.50}{50}
+Write \(D=2f\ell\) and \(\lambda_1\le\cdots\le\lambda_D\) for the real successive minima of the unit ball. One can choose the \(j\)-th \(E\)-independent vector with length \(\le\lambda_{2f(j-1)+1}\): the \(E\)-span of the first \(j-1\) vectors has rational dimension \(2f(j-1)\). Among \(2f(j-1)+1\) real-linearly independent lattice vectors at least one lies outside that span. Hence the left side of (G1) is at most \(\prod_{i=1}^D\lambda_i\). By Minkowski's second theorem \cite[Theorem~1.3]{legacy-henk} this product is at most \(2^D\,\mathrm{covol}/\mathrm{vol}(B_D)\), where \(B_D\) is the Euclidean unit ball. The inscribed cube gives \(\mathrm{vol}(B_D)\ge(2/\sqrt D)^D\). Substitution proves (G1), even with a smaller constant. The selected vectors span \(V^\perp\), so they determine \(V\).\formalnote{6.50}{50}
 
 Nonzero points of \(\Lambda\cap E^k\) have length at least one. Indeed \(x^*x\) is integral at every finite place, totally positive and a nonzero algebraic integer. The product of its values across the CM type is at least one. At least one archimedean length is therefore at least one. Taking differences gives separation by one. In real dimension \(D'=2fk\), packing disjoint half-unit balls bounds the number of such points of norm at most \(R\ge1\) by \((1+2R)^{D'}\). With \(a_0=2f(k+1)\), layer integration gives
 \[
@@ -6242,7 +6245,7 @@ subfield. The group \(G\) preserves a Hermitian form with \(\rho\)
 hyperbolic planes, \(k\) positive middle directions and one additional
 negative vector. Write \(n=\rho+1\), \(r=k+2\rho+1\), and let \(U\) be
 the Bessel unipotent subgroup. The second moment in
-\S\ref{sec:orbital-sieve} requires two integrations. At fixed \(g\) one first pairs a Bessel function \(W(y)\) with its translate \(W(yg)\) and integrates in \(y\) over \(U\backslash G\). The resulting correlation is a function of \(g\). Its squared absolute value is then integrated over \(G\). For a Bessel function of unit \(L^2\)-norm, the scale \(1/d\) comes from discrete-series orthogonality. For a unit vector \(v\) in the discrete series \(\pi\), one has \(\int_G|\langle v,\pi(g)v\rangle|^2\,dg=1/d\), where \(d\) is the formal degree for the measure \(dg\). We also need decay
+\S\ref{sec:orbital-sieve} requires two integrations. At fixed \(g\) one first pairs a Bessel function \(W(y)\) with its translate \(W(yg)\) and integrates in \(y\) over \(U\backslash G\). The resulting correlation is a function of \(g\). Its squared absolute value is then integrated over \(G\). For a Bessel function of unit \(L^2\)-norm, the scale \(1/d\) comes from discrete-series orthogonality. For a unit vector \(v\) in the discrete series \(\pi\), one has \(\int_G|\langle v,\pi(g)v\rangle|^2\,dg=1/d\), where \(d\) is the formal degree for the measure \(dg\). This is the discrete-series orthogonality relation \cite[Theorem~B, (1)]{upper-moore-wolf}, with probability Haar measure on the compact centre and the corresponding quotient measure. We also need decay
 after taking Fourier transforms in the frame coordinates. The
 quantitative bounds are \((1+b^{-10})/d\) for the normalized squared correlation integral and an
 exponent \(k-n^7\) for the Fourier estimate.
@@ -7005,7 +7008,7 @@ When the target weight \(d\) is identically zero the allowed parabolic is the wh
 
 Theorem B needs an upper bound for the dimension of its target space. On a definite unitary group one can bound the corresponding dimension by counting lattice classes. To transfer the count, we compare traces in the two signatures with the same finite-level projector.
 
-The background result compares traces of test functions that are cuspidal at a split place. Each summand of the projector onto the good forms gives such a test at some split place, which may depend on the summand. Applying the trace comparison with spherical Hecke operators then gives the same multiplicity for each eigensystem on the two spaces of good forms. See the \rootlink{grh/src/Lib/Adelic/TraceFormula/CuspidalComparison.lean}{trace comparison} and its \rootlink{grh/src/New/Spanning/Multiplicities/EqualMultiplicities.lean}{application to good forms}.
+The background result compares traces of test functions that are cuspidal at a split place. Labesse's transfer theorem preserves the finite component on changing the unitary group under its hypotheses on cuspidal base change and the local components \cite[Theorem~5.5]{upper-labesse}. Here we compare the specified projected spaces directly. Each summand of the projector onto the good forms gives a test cuspidal at some split place, which may depend on the summand. Applying the trace comparison with spherical Hecke operators then gives the same multiplicity for each eigensystem on the two spaces of good forms. See the \rootlink{grh/src/Lib/Adelic/TraceFormula/CuspidalComparison.lean}{trace comparison} and its \rootlink{grh/src/New/Spanning/Multiplicities/EqualMultiplicities.lean}{application to good forms}.
 
 \section{The signature comparison in the dimension formula}\label{sec:sieve-transfer}
 \subsection{Equality of target dimensions across signatures}
@@ -7737,7 +7740,7 @@ In the trace comparison, \(I=I_R\) has the required invariance by right translat
 
 \editionchapter{Volumes of single lifts and of the full chain}\label{ch:lower}
 
-Theorem C is a lower bound for the volume of the same family to which Theorem A gives an upper bound. The product formula supplies the lower bound if one controls the determinant at the finite places. At each of these places one can choose a twist of the lifts, provided the resulting change in determinant is also bounded. This chapter makes that comparison.
+Theorem C is a lower bound for the volume of the same family to which Theorem A gives an upper bound. An earlier comparison for a single eigenform is Prasanna's integrality theorem for the quotient of the Petersson norms of a newform and its transfer to a Shimura curve, away from an explicit set of primes \cite[Theorem~2.4(1)]{prasanna-norms}. Here the quantity to be bounded is a determinant on the entire space of lifted forms. The product formula supplies the lower bound if one controls the determinant at the finite places. At each of these places one can choose a twist of the lifts, provided the resulting change in determinant is also bounded. This chapter makes that comparison.
 
 \section{Proof of Theorem C}\label{sec:lower-C}
 
@@ -7760,6 +7763,7 @@ For independent \(y_1,\ldots,y_n\in V\) with \(n\ge(1-4/b^2)d_T\), let \(\delta\
 The proof compares the Gram determinant at the trivial twist with its determinant at a different twist for each finite embedding. To do this, first bound the ratio of the Gram determinants of \(\Theta_1\) and \(\Theta_{\xi_\iota}\). Then complete the \(y_i\) to one basis that can be used at all the chosen twists and apply the product formula.\formalnote{9.1}{1}
 
 \subsection{A height that permits a different twist at each prime}
+For a fixed nonzero linear map between adelically normed vector spaces, Gaudron defines its height as a weighted sum of the logarithms of its local operator norms. The product formula makes this height invariant under multiplication by a nonzero scalar from the base field \cite[Def.~6.1 of the preprint]{gaudron}. For an injection into a filtered target, Bost bounds the normalized Arakelov degree of the source using the heights of the induced maps and the maximal slopes of the successive quotients of the target \cite[Prop.~4.6]{bost}. Here the maps at two different primes may be different theta lifts.
 
 The product formula compares the absolute values of a single number.
 When the twist varies with the prime, the determinant ratios vary too.
@@ -8114,7 +8118,7 @@ This gives Theorem C,
 
 \editionchapter{Theta exchange, local factors and the norm formula}\label{ch:exchange}
 
-For the theta lift of a character from \(U(1)\) to a definite \(U(2k)\), \(k\ge2\), the squared norm at the prescribed level is an explicit multiple of a partial Hecke \(L\)-value. The source treats this as an established result. It computes the \rootlink{grh/src/Lib/SiegelWeil/RallisInner/SharpData.lean}{local sum and Euler product} in \texttt{Lib} and states the \rootlink{grh/src/New/OneLift/HeckeValues/CharacterLiftNorm.lean}{norm formula with the chosen levels and measures} in \texttt{New}. Chapter~\ref{ch:lower} needs the change in the determinant when the twisting character is changed. For this we choose matched test functions for three successive exchanges of theta integrals and keep track of all three scalar factors.
+For the theta lift of a character from \(U(1)\) to a definite \(U(2k)\), \(k\ge2\), the squared norm at the prescribed level is an explicit multiple of a partial Hecke \(L\)-value. The Rallis formula relates the inner product of two theta lifts to a doubling integral \cite[\S\S11.3--11.5]{gan-qiu-takeda-rallis}. For the pair \(U(1)\times U(1)\), Yang evaluates a central Hecke value as a squared norm, with the local data and root number specified in his formula \cite[Theorem~0.3]{yang-hecke}. For the definite target \(U(2k)\) used here the source computes the \rootlink{grh/src/Lib/SiegelWeil/RallisInner/SharpData.lean}{local sum and Euler product} in \texttt{Lib} and states the \rootlink{grh/src/New/OneLift/HeckeValues/CharacterLiftNorm.lean}{norm formula with the chosen levels and measures} in \texttt{New}. Chapter~\ref{ch:lower} needs the change in the determinant when the twisting character is changed. For this we choose matched test functions for three successive exchanges of theta integrals and keep track of all three scalar factors.
 
 \section{The three theta exchanges}
 \label{sec:three-exchanges}
@@ -8179,7 +8183,7 @@ whenever both twists are evaluated with their respective sets \(S\) and the nonz
 \section{The matched theta exchange and its normalization}
 \label{sec:one-exchange}
 
-The single exchange used in Section~\ref{sec:three-exchanges} compares
+In an orthogonal case, Snitz matches the two lifts of prescribed characters by an explicit map between the Schwartz spaces of quadratic spaces of dimensions three and one \cite[Theorem~2]{snitz-matching}. The unitary exchange used in Section~\ref{sec:three-exchanges} compares
 two integrals on the same adelic group \(U(W)\). One integrates over a
 positive definite space \(I_a\) of rank \(a\), the other over a space
 \(V'\) of rank \(b\). Write the signature of \(W\) as \((m,l)\) and that
@@ -8455,7 +8459,7 @@ For the character lift \(U(1)\to U(2k)\), \(k\ge2\), each chosen place contribut
 
 \section{Doubling the theta kernel in the convergent range}
 \label{sec:doubling-integral}
-To compute the squared Petersson norm of a theta lift from \(S\), one pairs its theta kernel with the complex conjugate kernel from a second copy of \(S\). Their product is a single theta kernel for \(S\oplus S^-\), where \(S^-\) has the negative Hermitian form. This is the doubling construction. Unfolding its integral gives the operator on the smaller group used for nonvanishing in \S\ref{sec:odd-lifts}. We give its derivation and the strict inequality at a split prime that enters the underlying Siegel--Weil argument.
+To compute the squared Petersson norm of a theta lift from \(S\), one pairs its theta kernel with the complex conjugate kernel from a second copy of \(S\). Their product is a single theta kernel for \(S\oplus S^-\), where \(S^-\) has the negative Hermitian form. This is the doubling construction \cite[\S11.3]{gan-qiu-takeda-rallis}. Unfolding its integral gives the operator on the smaller group used for nonvanishing in \S\ref{sec:odd-lifts}. The Siegel--Weil formula identifies the convergent theta integral with an Eisenstein series \cite[no.~52, Theorem~5]{weil-siegel-formula}. We give the derivation in the normalization of this paper, including the strict inequality at a split prime.
 
 \subsection{The mean and the sum over Lagrangians}
 Let \(V\) be a split hermitian space consisting of \(r\) hyperbolic planes over the CM field \(E\), and let \(T\) be a hermitian space of rank \(m>2r\), with the unimodular adelic data of the construction. Put \(F=E^+\), \(H=U(T)\), and \([H]=H(F)\backslash H(\mathbb A_F)\). For a rational Lagrangian \(L\subset V\) let \(Z_L f\) be the zero term of the datum \(f\), namely its value at zero in the Schr\"odinger model for a complete splitting along \(L\). In the common model it is a normalized mean of Heisenberg translates over adelic vectors modulo rational ones. The desired formula is
@@ -8724,7 +8728,7 @@ Section~\ref{sec:real-pairing} describes the real pairing in the oscillator repr
 \section{Removing a plane by Poisson summation on one line}
 \label{sec:plane-period}
 
-Let \(W'=H\perp W,\ V'=H\perp V\) be the two adapted splittings used in a single exchange, over a CM extension \(E/F\). Put \(n=\dim_E W\), \(r=\dim_E V\), and \(e=r-n/2\), with \(n\) even. The constant term on \(U(W')\) is taken along the added line. The large theta integral integrates over \([U(V')]\), where brackets mean quotient by rational points. We follow both integrations. They reduce to the theta integral on \((W,V)\) times one incomplete Hecke value. The exponent at which that value must be evaluated is \(e+1\) for \(e\ge0\) and \(-e\) for \(e<0\).
+Let \(W'=H\perp W,\ V'=H\perp V\) be the two adapted splittings used in a single exchange, over a CM extension \(E/F\). Put \(n=\dim_E W\), \(r=\dim_E V\), and \(e=r-n/2\), with \(n\) even. The constant term on \(U(W')\) is taken along the added line. In the unitary tower property for a cuspidal input, taking a constant term on the target and restricting to the smaller group gives its theta lift with the added Schwartz variable set to zero \cite[Proposition~3.1, (3.2)]{wu-unitary-tower}. Here the source of the lift also contains an added plane. The large theta integral integrates over \([U(V')]\), where brackets mean quotient by rational points. We follow both integrations. They reduce to the theta integral on \((W,V)\) times one incomplete Hecke value. The exponent at which that value must be evaluated is \(e+1\) for \(e\ge0\) and \(-e\) for \(e<0\).
 
 Fix the row labels for the standard determinant datum: a common block of size \(b\) together with the \(r\) variable rows labels the \(n\) small columns; with the \(r+2\) large rows it labels the \(n+2\) large columns. Thus \(n=b+r\). The split tame character has a nonempty set \(S\) of marked places disjoint from \(\bar S\), and its residue character is nontrivial at each of them. These conditions will eliminate the zero terms.\formalnote{10.38}{38}
 
@@ -9204,8 +9208,7 @@ For an automorphism acting nontrivially on the imaginary quadratic field, compos
 
 \section{The Gram determinant of the theta chain}
 \label{sec:chain-squares}
-The norm formula for a single theta lift expresses its inner products
-in terms of Hecke \(L\)-values. For a composite \(BA\) the Gram
+For a single cuspidal lift, the Rallis formula expresses an inner product in terms of a standard \(L\)-function and local zeta integrals. Gan, Qiu and Takeda give the formula in the second-term range under their first-occurrence hypothesis \cite[Theorem~1.3]{gan-qiu-takeda-rallis}. In the calculation here, exchanging adjacent lifts will reduce the chain to pairings in the convergent range. For a composite \(BA\) the Gram
 operator is \(A^*B^*BA\). Thus the quadratic form of \(B^*B\) must
 be known on the image of \(A\).
 
@@ -9401,7 +9404,7 @@ Fix a coefficient prime \(\ell\) and a field isomorphism \(\iota_\ell:\mathbb C\
 
 \section{The group-ring elements for the critical Hecke values}
 \label{sec:critical-values}
-The interpolation of twisted Hecke \(L\)-values by integral group-ring elements, together with their norm relations, appears among the \rootlink{grh/INDEX.md\#known-results}{known results in the source index}. We specify the interpolation formula and the norm relation needed to choose \(\xi\).
+The interpolation of twisted Hecke \(L\)-values by integral group-ring elements, together with their norm relations, appears among the \rootlink{grh/INDEX.md\#known-results}{known results in the source index}. For an ordinary CM type, Katz constructs a measure on a ray class group and gives a formula for its moments in terms of Hecke values and periods \cite[\S5.5, Theorem~5.5.8, and (5.8.10)]{katz-cm-lfunctions}. Chida and Hsieh construct group-ring elements for the anticyclotomic twists of a modular form over \(\mathbb Q\) after base change to an imaginary quadratic field \cite[Definition~4.1 and Theorem~4.6]{chida-hsieh-theta}. The present construction varies the tame modulus away from \(\ell\). We specify how adding a prime changes the Euler factors, including the two factors at the critical integer \(1\).
 
 We need a lower bound for certain twisted critical values in
 \(\ell\)-adic absolute value. An analytic Euler product gives no such
@@ -9594,7 +9597,7 @@ The inverse of \(\sigma-1\) commutes with \(g\). Thus \(w\) is the coboundary of
 
 \section{Choosing the tied primes by Selmer descent}\label{sec:tied-primes}
 
-At a new split prime we evaluate a cocycle on a tame inertia generator and on a Frobenius lift. We require the inertia value to equal a chosen scalar times the Frobenius value, and impose the corresponding equation at the conjugate prime. We call these the tied conditions. A suitable prime and scalar can shorten the finite module of global cocycles satisfying all the local conditions. We iterate this step and use reciprocity to bound the module when the descent stops. For the specialization in \S\ref{sec:specialization}, the number of primes used must stay bounded as the orders of the twisting characters increase.
+At a new split prime we evaluate a cocycle on a tame inertia generator and on a Frobenius lift. We require the inertia value to equal a chosen scalar times the Frobenius value, and impose the corresponding equation at the conjugate prime. We call these the tied conditions. Mazur and Rubin use auxiliary ramification to decrease the lengths of a pair of dual residual Selmer groups for an abelian variety \cite[Proposition~9.17]{mazur-rubin-stability}. Here the lengths to be bounded come from several lattices and several powers of one character. A suitable prime and scalar can shorten the finite module of global cocycles satisfying all the local conditions. We iterate this step and use reciprocity to bound the module when the descent stops. For the specialization in \S\ref{sec:specialization}, the number of primes used must stay bounded as the orders of the twisting characters increase.
 
 \begin{example}[An equation on tame local classes]\label{ex:tame-tie}
 Take trivial coefficients \(\mathbb F_5\) at the local field
@@ -10034,7 +10037,7 @@ Section~\ref{sec:derivative-cocycles}.
 \section{The derivative cocycles and the number of odd Tate classes}
 \label{sec:derivative-cocycles}
 
-One input to the determinant in Section~\ref{sec:trace-ideal} is an upper bound for the length of the odd Tate cocycles. We prove the assertion used in Section~\ref{sec:congruence-detail} to bound their number of generators. Let \(O\) be the integers of a finite extension of \(\mathbb Q_\ell\), let \(\psi\) be an \(O\)-valued Dirichlet character of conductor dividing \(N\), and put \(\alpha=\epsilon^e\psi\), \(\Upsilon=\epsilon\alpha\), where \(\epsilon\) is the cyclotomic character. Assume \(e>0\) and \(\alpha(c_\infty)=-1\) at complex conjugation. The component \(Z_\nu\) consists of continuous cocycles for \(\alpha^{-1}\) in \(O/\ell^\nu\) that vanish at \(c_\infty\), are unramified away from \(\ell\) over \(\mathbb Q(\mu_N)\), and vanish at the indicated local cyclotomic kernels above \(\ell\). Let \(X\) be the positive integer with the finite Stickelberger congruence in Section~\ref{sec:congruence-detail}. We will prove that, for \(\ell>N+e+3\), there exist \(1+v_\ell(X)\) elements of \(G_{\mathbb Q}\) whose evaluations detect every member of \(Z_\nu\).
+One input to the determinant in Section~\ref{sec:trace-ideal} is an upper bound for the length of the odd Tate cocycles. In the classical ideal class group setting, Rubin bounds the order of an odd character component by a generalized Bernoulli number under the local hypotheses of \cite[Chapter~III, Theorem~4.6]{rubin-euler-systems}. We need a bound on the number of generators for the Tate-twisted cocycles of Section~\ref{sec:congruence-detail}. Let \(O\) be the integers of a finite extension of \(\mathbb Q_\ell\), let \(\psi\) be an \(O\)-valued Dirichlet character of conductor dividing \(N\), and put \(\alpha=\epsilon^e\psi\), \(\Upsilon=\epsilon\alpha\), where \(\epsilon\) is the cyclotomic character. Assume \(e>0\) and \(\alpha(c_\infty)=-1\) at complex conjugation. The component \(Z_\nu\) consists of continuous cocycles for \(\alpha^{-1}\) in \(O/\ell^\nu\) that vanish at \(c_\infty\), are unramified away from \(\ell\) over \(\mathbb Q(\mu_N)\), and vanish at the indicated local cyclotomic kernels above \(\ell\). Let \(X\) be the positive integer with the finite Stickelberger congruence in Section~\ref{sec:congruence-detail}. We will prove that, for \(\ell>N+e+3\), there exist \(1+v_\ell(X)\) elements of \(G_{\mathbb Q}\) whose evaluations detect every member of \(Z_\nu\).
 
 The word \emph{derivative} here refers to weighted translates of Jacobi sums. In the trace argument the variables \(X_j\) occur in relations on an abstract group algebra and in operators on an integral lattice. The finite quotient measuring odd Tate cocycles enters that argument through an upper bound for the colength of a row space. The construction below applies to the cyclotomic and Dirichlet characters themselves.
 
@@ -10415,8 +10418,7 @@ If \(T\) is diagonalizable and has exactly two eigenvalues \(u\) and \(v\), the 
 The eigenvalues are \(\ell^s\) and \(0\). The projection onto the \(\ell^s\)-eigenspace is \(T/\ell^s\), which takes the second basis vector to \(\ell^{-s}\) times the first. Thus clearing the projection costs exactly \(s\) powers of \(\ell\).
 \end{example}
 
-For the full family of eigenvalues, the Galois cocycles measure
-the congruences. Bounds for their lengths control the valuation of
+In Ribet's method a congruence between characteristic polynomials gives a Galois cohomology class. In dimension two, Dasgupta, Kakde, Silliman and Wang construct a class whose coefficient module has zeroth Fitting ideal contained in the congruence ideal, even when the two characters agree in the residue field \cite[Theorem~1.1]{dksw-ribet}. For the higher-rank family of eigenvalues here, the Galois cocycles measure the congruences. Bounds for their lengths control the valuation of
 a polynomial coefficient. After a change of level this coefficient
 clears the denominator of the projection.
 
@@ -11818,7 +11820,7 @@ For the application to jumps, (DC3) gives \(P^{-1}N(g)=\operatorname{diag}(\chi(
 \section{From a crystalline period basis to the integral Kisin frame}
 \label{sec:period-matrix}
 
-Fix one local representation and one chart as in Section~\ref{sec:kisin-height}. Let \(T\) denote its underlying free \(\mathbb Z_p\)-lattice, \(d\) its rank, and \(\Gamma'\) the group after restriction to the chart. Crystallinity over this group gives a basis of invariant columns in \(B_{\max}\otimes_{\mathbb Z_p}T\). We will construct a free lattice over \(S=W(\mathbb F_{p^f})[[z]]\) inside \(W(\mathbb C_p^\flat)\otimes_{\mathbb Z_p}T\). If \(H\) bounds the absolute Hodge--Tate jumps of \(T\), multiplying by \(\tau^H\) in either direction compares its \(A_{\inf}\)-span with \(A_{\inf}\otimes T\). This is the starting exponent used in the height calculation.
+Fix one local representation and one chart as in Section~\ref{sec:kisin-height}. Let \(T\) denote its underlying free \(\mathbb Z_p\)-lattice, \(d\) its rank, and \(\Gamma'\) the group after restriction to the chart. Crystallinity over this group gives a basis of invariant columns in \(B_{\max}\otimes_{\mathbb Z_p}T\). We will construct a free lattice over \(S=W(\mathbb F_{p^f})[[z]]\) inside \(W(\mathbb C_p^\flat)\otimes_{\mathbb Z_p}T\). If \(H\) bounds the absolute Hodge--Tate jumps of \(T\), multiplying by \(\tau^H\) in either direction compares its \(A_{\inf}\)-span with \(A_{\inf}\otimes T\). This is the starting exponent used in the height calculation. Kisin's theorem associates a finite free Breuil--Kisin module to a Galois-stable \(\mathbb Z_p\)-lattice in a crystalline representation \cite[Theorem~4.4]{legacy-bms}. Here we need the explicit comparison of the two \(A_{\inf}\)-lattices by \(\tau^H\), which we prove below.
 
 \subsection{The chart and the invariant matrix}
 
@@ -12299,7 +12301,7 @@ Start with a Hecke eigenform on a definite unitary group. To apply the Galois co
 
 \section{The Galois representation for the congruence estimate}
 \label{sec:galois}
-Fix a coefficient prime \(\ell\) and an isomorphism \(\iota:\mathbb C\simeq\overline{\mathbb Q}_\ell\). Let \(G_E\) be the absolute Galois group of the CM field. Use the standard definite unitary group of positive rank \(n\) over the totally real subfield, with the Weil data of the construction. For an eigenform let \(P_w(X)\) be its spherical Hecke polynomial at a finite place \(w\) where this is defined. In the applications to denominators there are two tasks. One must recover a global continuous trace from the \(P_w\), and one must control the action on local decomposition groups.
+Fix a coefficient prime \(\ell\) and an isomorphism \(\iota:\mathbb C\simeq\overline{\mathbb Q}_\ell\). Let \(G_E\) be the absolute Galois group of the CM field. Use the standard definite unitary group of positive rank \(n\) over the totally real subfield, with the Weil data of the construction. For an eigenform let \(P_w(X)\) be its spherical Hecke polynomial at a finite place \(w\) where this is defined. In the applications to denominators there are two tasks. One must recover a global continuous trace from the \(P_w\), and one must control the action on local decomposition groups. For a cohomological conjugate self-dual cuspidal representation of \(\mathrm{GL}_n\) over a CM field, Chenevier and Harris construct a continuous semisimple Galois representation. At a place above \(\ell\) where the automorphic representation is unramified, it is crystalline and its linear crystalline Frobenius has the predicted characteristic polynomial \cite[Theorem~3.2.3 and the theorem in the introduction]{lit-chenevier-harris}. Our starting data are Hecke eigenvalues on a definite unitary group. We specify below the weaker Frobenius approximation and annihilation properties used for those data.
 
 \subsection{The sense in which Hecke data determine a trace}
 A Frobenius datum consists of a place \(w\) of prime norm, a prolongation to the algebraic closure, and a geometric Frobenius element \(s\) there. Call a statement true for most such data if, inside every nonempty open subset of \(G_E\), there is a nonempty open subset \(O\) such that, away from finitely many \(w\), it holds for every datum with \(s\in O\). This condition is stable under finite intersections by choosing the open subsets successively. Chebotarev gives data with \(s\) in the smaller open set outside any specified finite set of places.
@@ -13069,6 +13071,8 @@ The approximation gives the displayed inequalities for \(t=R(y)\).
 Thus \(\ker(B\to T'_a)\) maps into \(\ell^aT\). This argument works
 for arbitrary sizes of the coefficients \(c_{\eta i}\).
 
+Liu's bounded-weight criterion gives the classical lattice statement behind this step. For a finite free \(\mathbb Z_\ell\)-representation \(T_0\) of the absolute Galois group of a finite extension of \(\mathbb Q_\ell\), suppose that for every \(a\ge1\) the reduction \(T_0/\ell^aT_0\) is a quotient of two stable lattices in a crystalline representation with weights in a fixed interval \([0,r]\), \(r>0\). Then \(T_0[1/\ell]\) is crystalline with weights in that interval \cite[Conjecture~1.0.1, crystalline case proved in \S7.3]{lit-liu-torsion}. Here the group-ring images relate convergence of traces to such integral reductions. The period calculation also keeps track of individual jumps and Frobenius annihilators.
+
 The twisted left action of \(\Delta\) on each \(T'_a\) is crystalline
 with weights in \([0,2d]\). Over \(\mathbb Q_\ell\), evaluation on all the columns embeds the joint image into the direct sum of its row representations viewed by restriction of scalars from a common finite coefficient field \(L_a\). After extension to \(\overline{\mathbb Q}_\ell\) this target includes every coefficient conjugate, since \(L_a\otimes_{\mathbb Q_\ell}\overline{\mathbb Q}_\ell=\prod_{\sigma:L_a\hookrightarrow\overline{\mathbb Q}_\ell}\overline{\mathbb Q}_\ell\). Their crystallinity is invariant under conjugation of coefficients, and the jump bound holds at every coefficient embedding. Subrepresentations inherit both properties. The uniform
 period bound supplies one \(\delta\in A_{\max}\), invertible in
@@ -13356,7 +13360,7 @@ attached representation, as required in \S\ref{sec:galois}.\formalnote{15.83}{83
 To relate Hecke eigenvalues to Frobenius, we realize the Hecke operators as correspondences on families of abelian varieties with level structure. We count the fixed points of these correspondences after reduction. Example~\ref{ex:torsion-sections-coalesce} shows why distinct characteristic-zero torsion sections can contribute multiplicity at a single point after reduction.
 
 \section{The integral tower and reduction of its Hecke neighbours}\label{sec:pel-covers}
-Each term of the Hecke polynomial in \S\ref{sec:seed-proof} is represented by a correspondence on a moduli space of abelian varieties. To compare all its terms at a point, we give the correspondences a common domain by imposing enough level structure to specify all the relevant torsion subgroups. Their isogenies then have kernels that can be compared after reduction modulo \(p\). The comparison uses the multiplicity with which the characteristic-zero torsion sections meet at a point of a special fibre.
+At a prime \(p\) of good reduction where the group is split over \(\mathbb Q_p\), Wedhorn proves for PEL Shimura varieties that the Hecke polynomial annihilates the Frobenius correspondence \cite[main theorem in the introduction, part~(1)]{lit-wedhorn}. We need a pointwise cancellation on the particular covers constructed below. Each term of the Hecke polynomial in \S\ref{sec:seed-proof} is represented by a correspondence on the base of a family of abelian varieties. To compare all its terms at a point, we give the correspondences a common domain by imposing enough level structure to specify all the relevant torsion subgroups. Their isogenies then have kernels that can be compared after reduction modulo \(p\). The comparison uses the multiplicity with which the characteristic-zero torsion sections meet at a point of a special fibre.
 
 \subsection{Theta coordinates, the base and the covers}
 Use the polarized abelian varieties with endomorphisms and level structure of \S\ref{sec:seed-proof}. Write \(\mathcal O=\mathcal O_E\), \(n\) for the rank, \(g=n[E:\mathbb Q]/2\) for the abelian dimension, \(R\) for the localization at the safe places and \(\mathfrak N\) for the neat level. At the distinguished complex place the varying negative or positive line in the form of signature \((1,n-1)\) gives a ball of complex dimension \(n-1\) (interchanging the sign convention interchanges the designated line). At a parameter \(b\), evaluate all the projective theta coordinates of the torus at each of its finitely many level-torsion labels \(\omega\). Let \(S\) be the reduced closure over \(R\) of these tuples in the product of projective spaces. The tensor product of the hyperplane bundles embeds \(S\) by the Segre map. In particular it is projective. Two results about these coordinates used below are the integral theta equations at a good prime, with their prescribed ranks, and the construction of an abelian family by gluing their affine charts. We explain where both enter.
@@ -14029,6 +14033,8 @@ In particular \([a c']v=0\) for \(c'\in\mathfrak w\), and
 \([p]v=0\) by linearization of multiplication by \(p\).\formalnote{16.41}{41}
 
 \subsection{A deformation measured on torsion}
+
+The Serre--Tate theorem identifies deformations of an abelian scheme across a nilpotent thickening, over a ring in which \(p\) is nilpotent, with deformations of its \(p\)-divisible group. In Drinfeld's proof, a multiple of a homomorphism on the closed fibre lifts uniquely. Its vanishing on the corresponding torsion subgroup determines whether the original homomorphism lifts \cite[Lemma~1.1.3 and Theorem~1.2.1]{lit-katz-serre-tate}. Below we carry out this lifting and division over a square-zero extension using the finite \(\mathfrak w\)-torsion. The signature then gives the bound on the dimension of the tangent space.
 
 Let \(G=A_0[\mathfrak w]\) be the group scheme cut out by all
 endomorphisms in \(\mathfrak w\). For a local \(k\)-algebra \(C\) put
@@ -15048,6 +15054,8 @@ of the marked count and the construction of its coefficient weight
 enter separately.\formalnote{16.93}{93}
 
 \subsection{Detection of a Hodge weight by the marked sum}\label{sec:woods-hole}
+
+For smooth proper schemes over an algebraically closed field, the holomorphic Lefschetz formula for a correspondence \((g,f)\) with transverse coincidences and with \(g\) \'etale there expresses a cohomological trace as a sum of local terms. Each term is the trace on the coefficient fibre divided by \(\det(1-df\,(dg)^{-1})\) \cite[Theorem~1.6]{lit-kondyrev-prikhodko}. For the test-ring cohomology used here we prove the vanishing implication below.
 The marked count vanishes if the relevant linear combination of pullbacks annihilates the weight-\(h\) images of the Hodge classes. Work over characteristic-zero fields \(E\subset k\subset\overline{\mathbb Q}_p\), with \(k\) algebraically closed. Let \(Y\) be proper, \(W\) projective over the specified coefficient ring, and suppose their indicated generic fibres have atlases of the same dimension \(d\). Let \(u_i:W\to Y\) be finitely many maps with coefficients \(b_i\in k\), and fix \(h\ge0\). Write \(\lambda_h\) for the weight-\(h\) map from Hodge classes of \S\ref{sec:hodge-vector}. Assume that \(h>d\), or that for each such class \(x\) on \(Y\) of degree at most \(d\),
 \[
                             \sum_i b_i\lambda_h(u_i^*x)=0.
@@ -15075,7 +15083,7 @@ For the Hecke correspondence, apply (WH) on a common sufficiently deep level for
 
 \editionchapter{Comparison on test rings and cohomological Frobenius}\label{ch:cohom}
 
-The geometric calculation in Chapter~\ref{ch:shimura} gives an identity among points. For each point of a common cover in characteristic \(p\), the images under certain Hecke correspondences, followed by powers of Frobenius, cancel with specified integer coefficients. Chapter~\ref{ch:galois} uses the Galois action on the characteristic-zero cohomology to construct its initial odd-rank representations, starting with a Hecke eigensystem quotient of a direct sum of cohomology groups. We transport the identity to a relation among linear operators on the cohomology groups after extending scalars to the crystalline period ring. The test rings below allow both fibres to be evaluated from the same integral family.
+The geometric calculation in Chapter~\ref{ch:shimura} gives an identity among points. For each point of a common cover in characteristic \(p\), the images under certain Hecke correspondences, followed by powers of Frobenius, cancel with specified integer coefficients. Chapter~\ref{ch:galois} uses the Galois action on the characteristic-zero cohomology to construct its initial odd-rank representations, starting with a Hecke eigensystem quotient of a direct sum of cohomology groups. We transport the identity to a relation among linear operators on the cohomology groups after extending scalars to the crystalline period ring. The test rings below allow both fibres to be evaluated from the same integral family. In ordinary \(p\)-adic Hodge theory, the crystalline comparison theorem for a smooth proper formal scheme over the integers of a \(p\)-adic field identifies, after extension to \(B_{\mathrm{cris}}\), the \(p\)-adic \'etale cohomology of the geometric generic fibre with the crystalline cohomology of the special fibre \cite[Theorem~1.1(i)]{legacy-bms}. In this chapter the cohomology is defined on test rings. Its crystallinity and the action of Frobenius are proved directly on those rings.
 
 \section{Valuation cells, test envelopes, and continuity}\label{sec:test-foundations}
 To study a point above a special-fibre prime, we extend its coefficient ring to a valuation ring. For a homomorphism \(B\to W\) into a valuation ring, its centre is the inverse image in \(B\) of the maximal ideal of \(W\). Prescribing that centre keeps the point over the chosen prime. We first construct such an extension in mixed characteristic. We then construct compatible covers for diagrams of ordinary test rings. These covers identify cohomology at the limiting vertex with the filtered colimit of the cohomologies at the individual stages in the proof of proper base change.
@@ -15143,6 +15151,8 @@ For the applications, decreasing intersections of relatively affine conditions a
 
 
 \section{Proper base change and field detection on test rings}\label{sec:test-proper-base}
+
+For a proper morphism of schemes, the higher direct images of a torsion abelian \'etale sheaf commute with arbitrary base change \cite[Expos\'e~XII, Theorem~5.1(iii)]{lit-artin-proper}. Here we establish the corresponding fibre statements for constant \(\mathbb F_\ell\) coefficients in the category of test rings.
 
 The line formula in \S\ref{sec:projective-test} needs two facts about a cohomology class in a family. Its zero set on the residue fields of a test is open, and if this set is the whole spectrum the class vanishes. The principal-open argument needs the same facts with coefficients restricted to the zero locus of a multihomogeneous equation. Both arguments also need invariance under extension of algebraically closed fields. We prove them in the category in which the classes were constructed. Section~\ref{sec:test-foundations} gives the continuity theorem for the relatively affine diagrams used in the proof.
 
@@ -16109,7 +16119,7 @@ from the authors' compact edition.
 
 \noindent\textsf{[Lib]} marks the library of background results that the authors classify as known and that were missing from their version of Mathlib. It can be read independently of the GRH argument. \textsf{[New]} marks the setup and steps of the argument, including known theorems specialized to its data. \textsf{[src]} marks a file at the top level. Both folders use the Lean namespace \texttt{New}. The authors describe the folder names as a working classification and make no claim of historical priority on the basis of a name. See the \rootlink{grh/GUIDE.md\#4-conventions}{guide to the readable edition}.
 
-For an individual theorem, the \rootlink{grh/INDEX.md}{index of results} gives a finer distinction. Under \emph{Known results} it includes the prime number theorem at the auxiliary cutoff, equation~\eqref{eq:an-fixed-modulus-pnt}, although its statement for the weighted prime sum is in \texttt{New}. Under \emph{Steps of the argument} it includes the \texttt{Lib} bound for the number of Galois cocycles with specified local trivializations. Section~\ref{sec:split-duality} gives the corresponding Selmer count using Greenberg--Wiles. In using the index to trace a result to the literature, consult the file's introductory note, which distinguishes sources from related work.
+For an individual theorem, the \rootlink{grh/INDEX.md}{index of results} gives a finer distinction. Under \emph{Known results} it includes the prime number theorem at the auxiliary cutoff, equation~\eqref{eq:an-fixed-modulus-pnt}, although its statement for the weighted prime sum is in \texttt{New}. Under \emph{Steps of the argument} it includes the \texttt{Lib} bound for the number of Galois cocycles with specified local trivializations. Section~\ref{sec:split-duality} gives the corresponding Selmer count using Greenberg--Wiles. The introductory note in each file distinguishes sources from related work. The \href{https://github.com/leanprover-community/riemann-hypothesis/blob/120962b4fc014406f9c76adc53b5cf64475143d3/REFERENCES.md}{community edition's reference index} lists papers by Lean file and records which theorem or page references its editors checked.
 \begingroup\small\setlength{\parskip}{1.8pt}
 \section*{Chapter 1. Introduction}
 \noteline{1.1}{1}{\src{Statements.lean}{Dirichlet and zeta zero statements}. \src{Main.lean}{The final deductions in the readable edition}.}
@@ -17071,18 +17081,42 @@ For an individual theorem, the \rootlink{grh/INDEX.md}{index of results} gives a
 
 \bibitem{montgomery-vaughan} H.~L. Montgomery and R.~C. Vaughan, \href{https://doi.org/10.1017/CBO9780511618314}{\emph{Multiplicative Number Theory I. Classical Theory}}, Cambridge Studies in Advanced Mathematics 97, Cambridge University Press, 2006.
 
+\bibitem{pritsker} I.~E. Pritsker, \href{https://doi.org/10.4153/CJM-2005-041-8}{The Gelfond--Schnirelman method in prime number theory}, \emph{Canad. J. Math.} \textbf{57} (2005), 1080--1101.
+
 \bibitem{oldguide} The \emph{riemann-rev} project.
 \href{https://nasqret.github.io/riemann-rev/guide/proof-guide.pdf}{\emph{The proof of the Riemann hypothesis announced by L.~Alp\"oge. Its architecture: the statements, the flow, and why each idea calls for the next}}.
 
+\bibitem{katz-cartier} N.~M. Katz, \href{https://web.math.princeton.edu/~nmk/old/divcongCartier.pdf}{Divisibilities, congruences, and Cartier duality}, \emph{J. Fac. Sci. Univ. Tokyo Sect. IA Math.} \textbf{28} (1981), 667--678.
+
+\bibitem{bannai-integral} K. Bannai and S. Kobayashi, \href{https://www.numdam.org/articles/10.5802/aif.3018/}{Integral structures on \(p\)-adic Fourier theory}, \emph{Ann. Inst. Fourier (Grenoble)} \textbf{66} (2016), 521--550.
+
+\bibitem{upper-moore-wolf} C.~C.~Moore and J.~A.~Wolf, \href{https://math.berkeley.edu/~jawolf/publications.pdf/paper_056.pdf}{Square integrable representations of nilpotent groups}, \emph{Trans. Amer. Math. Soc.} \textbf{185} (1973), 445--462.
+
+\bibitem{gan-qiu-takeda-rallis} W.~T. Gan, Y.~Qiu and S.~Takeda, \href{https://arxiv.org/pdf/1207.4709}{The regularized Siegel--Weil formula (the second term identity) and the Rallis inner product formula}, \emph{Invent. Math.} \textbf{198} (2014), 739--831.
+
 \bibitem{behrend} F.~A. Behrend, \href{https://doi.org/10.1073/pnas.32.12.331}{On sets of integers which contain no three terms in arithmetical progression}, \emph{Proc. Nat. Acad. Sci. U.S.A.} \textbf{32} (1946), 331--332.
+
+\bibitem{shapira-behrend} A. Shapira, \href{https://www.math.tau.ac.il/~asafico/behrend.pdf}{Behrend-type constructions for sets of linear equations}, \emph{Acta Arith.} \textbf{122} (2006), 17--33. The link is to the author's preprint.
+
+\bibitem{alon-shapira} N. Alon and A. Shapira, \href{https://www.math.tau.ac.il/~asafico/test_induced.pdf}{A characterization of easily testable induced subgraphs}, \emph{Combin. Probab. Comput.} \textbf{15} (2006), 791--805. The link is to the authors' preprint.
+
+\bibitem{newman} D.~J. Newman, \href{https://www.jstor.org/stable/2321853}{Simple analytic proof of the prime number theorem}, \emph{Amer. Math. Monthly} \textbf{87} (1980), 693--696.
+
+\bibitem{jutila} M. Jutila, \href{https://matwbn.icm.edu.pl/ksiazki/aa/aa27/aa27116.pdf}{On mean values of Dirichlet polynomials with real characters}, \emph{Acta Arith.} \textbf{27} (1975), 191--198.
 
 \bibitem{heath-brown-sieve} D.~R. Heath-Brown, \href{https://doi.org/10.4064/aa-72-3-235-275}{A mean value estimate for real character sums}, \emph{Acta Arith.} \textbf{72} (1995), 235--275.
 
 \bibitem{widder-laplace} D.~V. Widder, \href{https://doi.org/10.1515/9781400876457}{\emph{The Laplace Transform}}, Princeton Mathematical Series 6, Princeton University Press, 1941.
 
+\bibitem{suzuki} M. Suzuki, \href{https://doi.org/10.1007/s11139-025-01238-9}{On variants of Chebyshev's conjecture}, \emph{Ramanujan J.} \textbf{68} (2025), article 95.
+
+\bibitem{blake-deuring} C. Blake, \href{https://doi.org/10.1112/blms/bdu079}{A Deuring criterion for abelian varieties}, \emph{Bull. Lond. Math. Soc.} \textbf{46} (2014), 1256--1263. \href{https://arxiv.org/pdf/1311.5454}{Author's preprint}.
+
 \bibitem{theta-dlmf} F. W. J. Olver et al., eds.,
 \href{https://dlmf.nist.gov/}{NIST Digital Library of Mathematical Functions},
 Chs.~20 and~23.
+
+\bibitem{upper-milne-cm} J.~S.~Milne, \href{https://www.jmilne.org/math/CourseNotes/CM.pdf}{\emph{Complex Multiplication}}, version 0.10, 2020.
 
 \bibitem{legacy-bannai-kobayashi} K.~Bannai and S.~Kobayashi, \href{https://doi.org/10.1215/00127094-2010-024}{Algebraic theta functions and the \(p\)-adic interpolation of Eisenstein--Kronecker numbers}, \emph{Duke Math. J.} \textbf{153} (2010), 229--295. Numbering follows the \href{https://arxiv.org/pdf/math/0610163}{authors' preprint}.
 
@@ -17090,10 +17124,26 @@ Chs.~20 and~23.
 \href{https://mathweb.tifr.res.in/sites/default/files/publications/ln/tifr23.pdf}{Lectures on advanced analytic number theory},
 Tata Institute of Fundamental Research Lectures on Mathematics 23, Ch.~I, \S1.
 
+\bibitem{upper-gross-periods} B.~H.~Gross, \href{https://arxiv.org/pdf/2005.04194}{On the periods of abelian varieties}, \emph{Notices of the ICCM} \textbf{8} (2020), no.~2, 10--18. Section numbers refer to the linked author's version.
+
+\bibitem{upper-fourier} P.~Schneider and J.~Teitelbaum, \href{https://ems.press/journals/dm/articles/8965041}{\(p\)-adic Fourier theory}, \emph{Doc. Math.} \textbf{6} (2001), 447--481.
+
+\bibitem{upper-benson-doty} D.~Benson and S.~Doty, \href{https://arxiv.org/pdf/0805.1235}{Schur--Weyl duality over finite fields}, \emph{Arch. Math. (Basel)} \textbf{93} (2009), 425--435.
+
+\bibitem{upper-greenberg-voight} M.~Greenberg and J.~Voight, \href{https://jvoight.github.io/articles/orthohecke-240123.pdf}{Lattice methods for algebraic modular forms on classical groups}, in \emph{Computations with Modular Forms}, Contributions in Mathematical and Computational Sciences 6, Springer, 2014, 147--179.
+
+\bibitem{upper-kudla} S.~S.~Kudla, \href{https://wiki.epfl.ch/tan/documents/1984\%20kudla-1.pdf}{Seesaw dual reductive pairs}, in \emph{Automorphic Forms of Several Variables}, Progress in Mathematics 46, Birkh\"auser, 1984, 244--268.
+
 \bibitem{legacy-weil} A.~Weil, \href{https://doi.org/10.1007/BF02391012}{Sur certains groupes d'op\'erateurs unitaires}, \emph{Acta Math.} \textbf{111} (1964), 143--211.
+
+\bibitem{upper-wang} B.~P.~J.~Wang, \href{https://arxiv.org/pdf/2311.14234}{Global theta lifting and automorphic periods associated to nilpotent orbits}, \emph{J. Number Theory} \textbf{271} (2025), 122--149.
+
+\bibitem{upper-furusawa-morimoto} M.~Furusawa and K.~Morimoto, \href{https://arxiv.org/pdf/2205.09471}{On the Gan--Gross--Prasad conjecture and its refinement for \(({\rm U}(2n),{\rm U}(1))\)}, \emph{Math. Ann.} \textbf{391} (2025), 3799--3862.
 
 \bibitem{theta-howe} R. Howe,
 \href{https://www.math.auckland.ac.nz/~obrien/howe.pdf}{Standard monomial theory for \(\mathrm{GL}_n\)}, notes for the 2010 NZMRI Summer Workshop, \S\S4--5.
+
+\bibitem{upper-bombieri-vaaler} E.~Bombieri and J.~Vaaler, \href{https://doi.org/10.1007/BF01393823}{On Siegel's lemma}, \emph{Invent. Math.} \textbf{73} (1983), 11--32. For the formulation in terms of subspace height see L.~Fukshansky, \href{https://www1.cmc.edu/pages/faculty/Lenny/papers/CIMPA_2024-lecture_notes.pdf}{\emph{Search bounds for Diophantine equations}}, CIMPA, 2024, Theorem~9.1.
 
 \bibitem{theta-knapp} A. W. Knapp,
 \href{https://www.math.stonybrook.edu/~aknapp/download/Beyond2-clickable.pdf}{Lie Groups Beyond an Introduction},
@@ -17117,6 +17167,8 @@ Tata Institute of Fundamental Research Lectures on Mathematics 23, Ch.~I, \S1.
 \bibitem{theta-green} J. A. Green,
 \href{https://www.ams.org/tran/1955-080-02/S0002-9947-1955-0072878-2/S0002-9947-1955-0072878-2.pdf}{The characters of the finite general linear groups},
 \emph{Trans. Amer. Math. Soc.} \textbf{80} (1955), 402--447.
+
+\bibitem{upper-labesse} J.-P.~Labesse, \href{https://webusers.imj-prg.fr/~michael.harris/CBCM.pdf}{Changement de base CM et s\'eries discr\`etes}, in \emph{On the Stabilization of the Trace Formula}, vol.~1, International Press, 2011, 429--470.
 
 \bibitem{arith-cft} J. S. Milne. \emph{Class Field Theory}, version 4.03, 2020. \href{https://www.jmilne.org/math/CourseNotes/CFTc.pdf}{Author's edition.}
 
@@ -17142,11 +17194,29 @@ Tata Institute of Fundamental Research Lectures on Mathematics 23, Ch.~I, \S1.
 \href{https://www.math.tau.ac.il/~bernstei/Publication_list/publication_texts/Bernstein-P-invar-SLN.pdf}{\(P\)-invariant distributions on \(\mathrm{GL}(N)\) and the classification of unitary representations of \(\mathrm{GL}(N)\) (non-Archimedean case)},
 in \emph{Lie Group Representations, II}, Lecture Notes in Mathematics 1041, Springer, 1984, 50--102.
 
+\bibitem{prasanna-norms} K.~Prasanna, \href{https://sites.lsa.umich.edu/kartikp/wp-content/uploads/sites/1326/2024/07/prasanna_final.pdf}{Integrality of a ratio of Petersson norms and level-lowering congruences}, \emph{Ann. of Math.} \textbf{163} (2006), 901--967.
+
+\bibitem{gaudron} \'E. Gaudron, \href{https://www.numdam.org/item/RSMUP_2008__119__21_0/}{Pentes des fibr\'es vectoriels ad\'eliques sur un corps global}, \emph{Rend. Semin. Mat. Univ. Padova} \textbf{119} (2008), 21--95. \href{https://www-fourier.univ-grenoble-alpes.fr/sites/default/files/REF_688.pdf}{Author's preprint}.
+
+\bibitem{bost} J.-B. Bost, \href{https://numdam.org/articles/10.1007/s10240-001-8191-3/}{Algebraic leaves of algebraic foliations over number fields}, \emph{Publ. Math. Inst. Hautes \'Etudes Sci.} \textbf{93} (2001), 161--221.
+
+\bibitem{yang-hecke} T.~Yang, \href{https://people.math.wisc.edu/~tonghaiyang/thetashort.pdf}{Theta liftings and Hecke \(L\)-functions}, \emph{J. Reine Angew. Math.} \textbf{485} (1997), 25--53.
+
+\bibitem{snitz-matching} K.~Snitz, \href{https://arxiv.org/pdf/math/0509486}{Theta correspondence of automorphic characters}, \emph{J. Number Theory} \textbf{122} (2007), 429--465.
+
+\bibitem{weil-siegel-formula} A.~Weil, \href{https://doi.org/10.1007/BF02391774}{Sur la formule de Siegel dans la th\'eorie des groupes classiques}, \emph{Acta Math.} \textbf{113} (1965), 1--87.
+
+\bibitem{wu-unitary-tower} C.~Wu, \href{https://arxiv.org/pdf/1409.0770}{Irreducibility of theta lifting for unitary groups}, \emph{J. Number Theory} \textbf{133} (2013), 3296--3318.
+
 \bibitem{hecke1920} E.~Hecke.
 \href{https://geodesic.mathdoc.fr/item/MZ_1920__6_167556/}{Eine neue Art von Zetafunktionen und ihre Beziehungen zur Verteilung der Primzahlen. Zweite Mitteilung}.
 \emph{Math. Z.} \textbf{6} (1920), 11--51.
 
 \bibitem{tate1950} J.~T. Tate. Fourier analysis in number fields and Hecke's zeta-functions. \href{https://sites.math.rutgers.edu/~alexk/2023S572/Tate1950.pdf}{Princeton dissertation}, 1950. Reprinted in J.~W.~S. Cassels and A.~Fr\"ohlich (eds.), \emph{Algebraic Number Theory}. Academic Press, 1967, 305--347.
+
+\bibitem{katz-cm-lfunctions} N.~M. Katz, \href{https://web.math.princeton.edu/~nmk/old/padicLCM.pdf}{\(p\)-adic \(L\)-functions for CM fields}, \emph{Invent. Math.} \textbf{49} (1978), 199--297.
+
+\bibitem{chida-hsieh-theta} M.~Chida and M.-L.~Hsieh, \href{https://www.math.ntu.edu.tw/~mlhsieh/research/central.pdf}{Special values of anticyclotomic \(L\)-functions for modular forms}, \emph{J. Reine Angew. Math.} \textbf{741} (2018), 87--131.
 
 \bibitem{arith-conrad} B. Conrad. \emph{Lifting global representations with local properties}. 2011, Appendix~B. \href{https://math.stanford.edu/~conrad/papers/locchar.pdf}{Author's text.}
 
@@ -17154,9 +17224,15 @@ in \emph{Lie Group Representations, II}, Lecture Notes in Mathematics 1041, Spri
 
 \bibitem{arith-milne} J. S. Milne. \emph{Arithmetic Duality Theorems}, 2nd ed. BookSurge, 2006. \href{https://www.jmilne.org/math/Books/ADTnot.pdf}{Author's edition.}
 
+\bibitem{mazur-rubin-stability} B.~Mazur and K.~Rubin, with an appendix by M.~Larsen, \href{https://arxiv.org/pdf/1503.04642}{Diophantine stability}, \emph{Amer. J. Math.} \textbf{140} (2018), 571--616.
+
 \bibitem{arith-gross-koblitz} B. H. Gross and N. Koblitz. Gauss sums and the \(p\)-adic \(\Gamma\)-function. \emph{Ann. of Math.} 109 (1979), 569--581. \href{https://annals.math.princeton.edu/1979/109-3/p06}{Publisher.}
 
+\bibitem{rubin-euler-systems} K.~Rubin, \href{https://swc-math.github.io/aws/1999/99RubinES.pdf}{\emph{Euler Systems}}, Annals of Mathematics Studies 147, Princeton University Press, 2000.
+
 \bibitem{legacy-milne-ant} J.~S.~Milne, \href{https://www.jmilne.org/math/CourseNotes/ANT301.pdf}{\emph{Algebraic Number Theory}}, version 3.01, September 28, 2008.
+
+\bibitem{dksw-ribet} S.~Dasgupta, M.~Kakde, J.~Silliman and J.~Wang, \href{https://arxiv.org/pdf/2310.16396}{The residually indistinguishable case of Ribet's method for \(\mathrm{GL}_2\)}, arXiv:2310.16396 (2023).
 
 \bibitem{arith-stacks} The Stacks Project Authors. \href{https://stacks.math.columbia.edu/}{\emph{The Stacks Project}}.
 
@@ -17174,6 +17250,8 @@ in \emph{Lie Group Representations, II}, Lecture Notes in Mathematics 1041, Spri
 \href{https://www.math.purdue.edu/~tongliu/teaching/598/p-divisible.pdf}{\(p\)-Divisible groups}.
 In \emph{Proceedings of a Conference on Local Fields}, Springer, 1967, 158--183.
 
+\bibitem{lit-chenevier-harris} G.~Chenevier and M.~Harris, \href{https://intlpress.com/site/pub/files/_fulltext/journals/cjm/2013/0001/0001/CJM-2013-0001-0001-a002.pdf}{Construction of automorphic Galois representations, II}, \emph{Cambridge J. Math.} \textbf{1} (2013), 53--73.
+
 \bibitem{arith-shintani} T. Shintani. Two remarks on irreducible characters of finite general linear groups. \emph{J. Math. Soc. Japan} 28 (1976), 396--414. \href{https://doi.org/10.2969/jmsj/02820396}{Publisher.}
 
 \bibitem{arith-silberger-zink} A. J. Silberger and E.-W. Zink. Explicit Shintani base change and the Macdonald correspondence for characters of \(\mathrm{GL}_n(k)\). \emph{J. Algebra} 319 (2008), 4147--4176. \href{https://doi.org/10.1016/j.jalgebra.2008.02.010}{Publisher.}
@@ -17188,7 +17266,17 @@ In \emph{Proceedings of a Conference on Local Fields}, Springer, 1967, 158--183.
 
 \bibitem{legacy-henk} M.~Henk, \href{https://arxiv.org/abs/math/0204158}{Successive minima and lattice points}, \emph{Rend. Circ. Mat. Palermo (2), Suppl.} \textbf{70} (2002), 377--384.
 
+\bibitem{lit-liu-torsion} T.~Liu, \href{https://www.numdam.org/item/ASENS_2007_4_40_4_633_0.pdf}{Torsion \(p\)-adic Galois representations and a conjecture of Fontaine}, \emph{Ann. Sci. \'Ecole Norm. Sup.} (4) \textbf{40} (2007), 633--674.
+
+\bibitem{lit-wedhorn} T.~Wedhorn, \href{https://doi.org/10.1515/crll.2000.060}{Congruence relations on some Shimura varieties}, \emph{J. reine angew. Math.} \textbf{524} (2000), 43--71.
+
+\bibitem{lit-katz-serre-tate} N.~M.~Katz, \href{https://web.math.princeton.edu/~nmk/old/serretatelocmod.pdf}{Serre--Tate local moduli}, in \emph{Surfaces alg\'ebriques} (Orsay, 1976--78), Lecture Notes in Mathematics \textbf{868}, Springer, 1981, 138--202.
+
 \bibitem{legacy-mumford} D.~Mumford, \href{https://pazuki.perso.math.cnrs.fr/index_fichiers/Mumford66.pdf}{On the equations defining abelian varieties. I}, \emph{Invent. Math.} \textbf{1} (1966), 287--354.
+
+\bibitem{lit-kondyrev-prikhodko} G.~Kondyrev and A.~Prikhodko, \href{https://armj.math.stonybrook.edu/pdf-Springer-final/022-0206.pdf}{Holomorphic Atiyah--Bott formula for correspondences}, \emph{Arnold Math. J.} \textbf{8} (2022), 497--511.
+
+\bibitem{lit-artin-proper} M.~Artin, \href{https://link.springer.com/chapter/10.1007/BFb0070718}{Th\'eor\`eme de changement de base pour un morphisme propre}, in \emph{Th\'eorie des topos et cohomologie \'etale des sch\'emas} (SGA~4), tome~3, expos\'e~XII, Lecture Notes in Mathematics \textbf{305}, Springer, 1973, 79--131.
 
 \bibitem{legacy-scholze} P.~Scholze, \href{https://www.math.uni-bonn.de/people/scholze/pAdicHodgeTheory.pdf}{\(p\)-adic Hodge theory for rigid-analytic varieties}, \emph{Forum Math. Pi} \textbf{1} (2013), e1.
 

@@ -12,7 +12,7 @@ This manuscript gives an exposition of the argument of Levent Alpöge and Claude
 
 For the proof, start with Theorem 1.1 and continue at §2.1 (printed page 5). Chapters 2–3 deduce the assertion about zeros from three arithmetic estimates. Chapters 4–17 establish those estimates.
 
-For an introduction to the method, §1.2 uses a binomial coefficient and the lemniscate sine to illustrate how divisibility can give information about primes. Sections 1.3–1.4 trace the argument in two directions. All numbered examples are optional and are listed on page v.
+For an introduction to the method, §1.2 uses a binomial coefficient and the lemniscate sine to illustrate how divisibility can give information about primes. Section 1.3 starts from a proposed zero. Section 1.4 identifies the estimates specific to the GRH argument and the previously known mathematics they use. Appendix B explains the `Lib` and `New` labels in the source notes, including how the authors classify known theorems specialized to this proof. All numbered examples are optional and are listed on page v.
 
 ## Note from the human
 

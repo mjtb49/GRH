@@ -8,8 +8,16 @@
 \usepackage[colorlinks=true,linkcolor=pine,urlcolor=pine,citecolor=pine,bookmarksopen=true,bookmarksopenlevel=0,bookmarksnumbered=true,pdfdisplaydoctitle=true]{hyperref}
 \hypersetup{pdftitle={The Alp\"oge--Claude argument for Dirichlet GRH},pdfsubject={A mathematical exposition following grh-lean (72fead1) and the community revision (120962b4)}}
 \urlstyle{same}
-\newcommand{\src}[2]{\href{https://github.com/lsernau/grh-lean/blob/72fead102f663d5c7a407964a13dc0cf9d977207/grh/src/#1}{#2}}
-\newcommand{\comsrc}[2]{\href{https://github.com/leanprover-community/riemann-hypothesis/blob/120962b4fc014406f9c76adc53b5cf64475143d3/src/#1}{#2}}
+% Each source note is a group. Print its first source folder and each change of folder.
+\newcommand{\lastsourcefolder}{}
+\def\sourcefolder#1/#2\relax{%
+  \def\sourcetail{#2}\ifx\sourcetail\empty\def\thissourcefolder{src}\else\def\thissourcefolder{#1}\fi
+  \ifx\thissourcefolder\lastsourcefolder\else
+    {\footnotesize\sffamily\color{muted}[\thissourcefolder]}\nobreak\hspace{.35em}%
+    \let\lastsourcefolder\thissourcefolder
+  \fi}
+\newcommand{\src}[2]{\sourcefolder#1/\relax\href{https://github.com/lsernau/grh-lean/blob/72fead102f663d5c7a407964a13dc0cf9d977207/grh/src/#1}{#2}}
+\newcommand{\comsrc}[2]{\sourcefolder#1/\relax\href{https://github.com/leanprover-community/riemann-hypothesis/blob/120962b4fc014406f9c76adc53b5cf64475143d3/src/#1}{#2}}
 \newcommand{\rootlink}[2]{\href{https://github.com/lsernau/grh-lean/blob/72fead102f663d5c7a407964a13dc0cf9d977207/#1}{#2}}
 \newcommand{\leanroute}[1]{\par\smallskip\noindent\textit{Comparison with Lean (optional).}\enspace #1}
 \newcommand{\formalnote}[2]{\nobreak\hspace{.10em}\hypertarget{call.#1}{}\hyperlink{note.#1}{\textsuperscript{\normalfont\scriptsize #2}}}
@@ -140,7 +148,7 @@ The principal character has a pole at \(s=1\). Passage from a primitive characte
 \paragraph{Reading the proof.}
 From Theorem~\ref{thm:main}, go directly to \S\ref{sec:data}. Chapter~\ref{ch:volume} constructs the arithmetic data and combines Theorems A, B and C. Chapter~\ref{ch:analytic} deduces the assertion about zeros. Parts II--IV prove the three estimates used in that deduction.
 
-The rest of this introduction is optional. Section~\ref{sec:motivation} illustrates the method with elementary prime sums and the lemniscate sine. The divisibility used in the proof concerns derivatives of theta functions and is established in Chapter~\ref{ch:upper}. Sections~\ref{map:backward} and~\ref{map:forward} give two roadmaps. A proof-only reading may omit every numbered example, the notes headed \emph{Comparison with Lean}, and the source guides in Appendices~\ref{sec:outstanding} and~\ref{app:formal}.
+The rest of this introduction is optional. Section~\ref{sec:motivation} illustrates the method with elementary prime sums and the lemniscate sine. Section~\ref{map:backward} starts from a proposed zero. Section~\ref{map:forward} identifies the estimates specific to the GRH argument and the previously known results on which they depend. A proof-only reading may omit every numbered example, the notes headed \emph{Comparison with Lean}, and the source guides in Appendices~\ref{sec:outstanding} and~\ref{app:formal}.
 
 \section{From divisibility to a prime sum (optional motivation)}\label{sec:motivation}
 
@@ -226,15 +234,16 @@ With the constant \(c_{Q,d}\) specified in \S\ref{sec:analytic}, the centered st
 Take \(\varepsilon=\beta-1/2\). The bound \(R_{Q,d}(x)\le x^{-1/2+\varepsilon}\) for large \(x\) and boundedness on compact intervals allow us to choose a constant \(C>0\) so that \(Cx^{\beta-1}-R_{Q,d}(x)\) is nonnegative for all \(x\ge1\). By Landau's theorem, the transform of this nonnegative function against \(x^{-s}\,dx\) must have a singularity at its real abscissa of convergence if that abscissa is finite. To the right of \(\beta\) the term \(Cx^{\beta-1}\) has holomorphic transform \(C/(s-\beta)\). Any real pole there would consequently be simple with negative residue, from the minus sign before \(R_{Q,d}\). Such a pole would make the integral negative just to the right of its abscissa. Hence the abscissa is at most \(\beta\), and the transform of \(R_{Q,d}\) is holomorphic at \(\rho\), a contradiction.
 
 \paragraph{Admissible data at a prescribed cutoff.}
-With \(Q,d\) fixed, construct the field, levels and weights for each large \(x\). The volume inequality bounds a combination of remainders at \(x\) and a larger cutoff \(x_1\). The prime number theorem at fixed modulus makes the terms at \(x_1\) small, leaving the bound at \(x\).
+With \(Q,d\) fixed, construct the field, levels and weights for each large \(x\). The volume inequality involves remainders at \(x\) and a larger cutoff \(x_1\). At \(x_1\) the classical prime number theorem in progressions saves any fixed power of \(\log x_1\). At \(x\) the comparison of volumes gives \(R_{Q,d}(x)\le x^{-1/2+\varepsilon}\) for every \(\varepsilon>0\) and all sufficiently large \(x\) (Proposition~\ref{prop:an-one-sided}).
 
-\section{Roadmap from the volume estimates (optional)}\label{map:forward}
-Chapter~\ref{ch:volume} combines the three estimates and Chapter~\ref{ch:analytic} deduces Theorem~\ref{thm:main}. The proofs of the estimates occupy the remaining chapters.
+\section{Volume estimates and established inputs (optional roadmap)}\label{map:forward}
+The readable edition's \rootlink{grh/INDEX.md}{index of results} distinguishes previously known mathematics formalized for this project from the constructions and estimates particular to the GRH argument. Theorem B supplies independent vectors. Theorems A and C bound the volume of their lifts from above and below.
 \begin{description}
-\item[{\hyperref[thm:short]{Theorem A}.}] Chapters~\ref{ch:upper}--\ref{ch:upperlift} use divisibility of CM theta derivatives to obtain short lifted vectors and bound the index incurred in making them integral.
-\item[{\hyperref[thm:spanning]{Theorem B}.}] Chapters~\ref{ch:span}--\ref{ch:trace} show by a second-moment estimate that translates of the image of the Poincar\'e map span a subspace of dimension at least \((1-4/b^2)D\) in the good space \(Y\) of dimension \(D\).
-\item[{\hyperref[thm:volume]{Theorem C}.}] Chapters~\ref{ch:lower}--\ref{ch:deform} estimate the change in determinant under twisting and apply the product formula. Chapters~\ref{ch:local}--\ref{ch:cohom} supply the Galois and integral comparison results needed for the denominator bound.
+\item[{\hyperref[thm:short]{Theorem A} (short vectors).}] Divisibility estimates for derivatives on a single elliptic curve with complex multiplication were known. Chapters~\ref{ch:upper}--\ref{ch:upperlift} calculate the divisibility of theta derivatives along products of matrix minors. At the marked primes they use scaled Hecke operators to recover divisibility on a sublattice and bound its index.
+\item[{\hyperref[thm:spanning]{Theorem B} (spanning by translates).}] Schur orthogonality normalizes a matrix coefficient. Chapters~\ref{ch:span}--\ref{ch:trace} estimate the second moment of the translates of the Poincar\'e map and show that few translates span nearly all of the target. A comparison of traces across signatures transfers the dimension count from a definite unitary group.
+\item[{\hyperref[thm:volume]{Theorem C} (the determinant).}] The Rallis inner product formula gives norms for individual theta lifts. Chapters~\ref{ch:lower}--\ref{ch:chain} compare determinants for a whole chain with and without a twist. To bound the heights of twisted Hecke values they use \S\ref{sec:frame-attainment}, where the local divisibility bound is attained in prescribed degrees up to one factor of controlled size. For each coefficient prime \(\ell\) and isomorphism \(\mathbb C\simeq\overline{\mathbb Q}_\ell\), Chapters~\ref{ch:selmer}--\ref{ch:deform} choose one twist whose first \(m\) powers control the projection denominators for the \(m\) lifts. Chapter~\ref{ch:local} bounds the loss at \(\ell\). Chapters~\ref{ch:galois}--\ref{ch:cohom} supply the Galois representations with the properties stated in \S\ref{sec:galois}.
 \end{description}
+\noindent Chapter~\ref{ch:volume} combines A, B and C. Chapter~\ref{ch:analytic} turns the resulting bound at \(x\) into a zero-free half-plane by choosing a quadratic twist and applying Landau's theorem.
 
 
 
@@ -1972,7 +1981,7 @@ In (F3) the coefficient of \(z^{p+1}\) in \(Y^{p+1}\) is \(1\) modulo
 \(\pi\). This proves that \(\lambda\), hence every leading odd coupling
 coefficient in the one-curve expansion, is a unit.
 
-There is another precise sense in which the one-curve rate is sharp.
+For one curve at an inert prime \(p\), the slope \(p/(p^2-1)\) in the derivative divisibility bound is known to be sharp in infinitely many degrees. The \rootlink{grh/src/New/Derivatives/Sharpness/BoundAttained.lean\#L34-L42}{source note on one-curve sharpness} records the earlier work. Here the degrees are prescribed by the weights. We first need the following one-variable bound in each degree.
 Let \(C_n=\max_{F\in\mathcal I}|n![z^n]F|_p\) and put
 \(\gamma_p=1/(p-1)-\rho\). The maximum exists: only the finitely many
 monomials \(1,y,\dots,y^n\) can affect the coefficient and no integral
@@ -1991,7 +2000,7 @@ The equality uses that \(Q\) is a power of \(p\). For any fixed
 \(p^{-\gamma_p Q}\le C_Q\le C_n^h C_r\le C_n^h\). Letting \(j\) grow
 gives \(C_n\ge p^{-\gamma_p n}\). The series attaining the bound can depend on \(n\).\formalnote{4.54}{54}
 
-Section~\ref{sec:frame-attainment} uses this one-variable bound on the degrees left after the Frobenius pairs have been chosen. For twelve copies of the frame this gives the valuation bound \textup{(V5)}. Fourier inversion then gives the indicator estimate \textup{(V8)}, with one scalar valid at every prime.\formalnote{4.55}{55}
+Section~\ref{sec:frame-attainment} uses this one-variable bound on the degrees left after the Frobenius pairs have been chosen. For twelve copies of the frame this gives the valuation bound \textup{(V5)}. Fourier inversion then gives the indicator estimate \textup{(V8)}, with one scalar valid at every prime.\formalnote{4.55}{55} Chapter~\ref{ch:lower} uses this attainment estimate to \hyperlink{call.9.14}{bound the heights of twisted Hecke values} in the proof of Theorem C.
 
 
 
@@ -6996,6 +7005,8 @@ When the target weight \(d\) is identically zero the allowed parabolic is the wh
 
 Theorem B needs an upper bound for the dimension of its target space. On a definite unitary group one can bound the corresponding dimension by counting lattice classes. To transfer the count, we compare traces in the two signatures with the same finite-level projector.
 
+The background result compares traces of test functions that are cuspidal at a split place. Each summand of the projector onto the good forms gives such a test at some split place, which may depend on the summand. Applying the trace comparison with spherical Hecke operators then gives the same multiplicity for each eigensystem on the two spaces of good forms. See the \rootlink{grh/src/Lib/Adelic/TraceFormula/CuspidalComparison.lean}{trace comparison} and its \rootlink{grh/src/New/Spanning/Multiplicities/EqualMultiplicities.lean}{application to good forms}.
+
 \section{The signature comparison in the dimension formula}\label{sec:sieve-transfer}
 \subsection{Equality of target dimensions across signatures}
 
@@ -8103,7 +8114,7 @@ This gives Theorem C,
 
 \editionchapter{Theta exchange, local factors and the norm formula}\label{ch:exchange}
 
-The volume comparison needs a formula for the change in an inner product when the characters in a theta lift are changed. We compute it by expressing one pairing as a sum and integral in two ways. The factor relating them is a product of local factors, which are computed here with the measures used in the determinant.
+For the theta lift of a character from \(U(1)\) to a definite \(U(2k)\), \(k\ge2\), the squared norm at the prescribed level is an explicit multiple of a partial Hecke \(L\)-value. The source treats this as an established result. It computes the \rootlink{grh/src/Lib/SiegelWeil/RallisInner/SharpData.lean}{local sum and Euler product} in \texttt{Lib} and states the \rootlink{grh/src/New/OneLift/HeckeValues/CharacterLiftNorm.lean}{norm formula with the chosen levels and measures} in \texttt{New}. Chapter~\ref{ch:lower} needs the change in the determinant when the twisting character is changed. For this we choose matched test functions for three successive exchanges of theta integrals and keep track of all three scalar factors.
 
 \section{The three theta exchanges}
 \label{sec:three-exchanges}
@@ -9386,10 +9397,12 @@ The pairing matrix has an integer left multiple equal to the dual hook number \(
 
 \editionchapter{Auxiliary characters and global Selmer bounds}\label{ch:selmer}
 
-Fix a coefficient prime \(\ell\) and a comparison embedding \(\iota_\ell:\mathbb C\hookrightarrow\overline{\mathbb Q}_\ell\). We seek one finite-order character \(\xi\) such that each of \(\xi,\ldots,\xi^m\) satisfies two bounds. The first controls the lengths of the Selmer groups that enter the projection estimate. The second controls how much twisting changes the critical Hecke \(L\)-values in the norm formula. The product formula in Chapter~\ref{ch:lower} allows a separate choice of \(\xi\) at each comparison embedding \(\iota_\ell\). We first express those changes in terms of character values, then construct the character by imposing conditions at selected primes.
+Fix a coefficient prime \(\ell\) and a field isomorphism \(\iota_\ell:\mathbb C\simeq\overline{\mathbb Q}_\ell\). We seek one finite-order character \(\xi\) such that each of \(\xi,\ldots,\xi^m\) satisfies two bounds. The first controls the lengths of the Selmer groups that enter the projection estimate. The second controls how much twisting changes the critical Hecke \(L\)-values in the norm formula. The product formula in Chapter~\ref{ch:lower} allows a separate choice of \(\xi\) at each such isomorphism \(\iota_\ell\). The \rootlink{grh/src/New/Congruences/FitTwistsExist.lean}{simultaneous twisting theorem} bounds the total cost over the coefficient primes.
 
 \section{The group-ring elements for the critical Hecke values}
 \label{sec:critical-values}
+The interpolation of twisted Hecke \(L\)-values by integral group-ring elements, together with their norm relations, appears among the \rootlink{grh/INDEX.md\#known-results}{known results in the source index}. We specify the interpolation formula and the norm relation needed to choose \(\xi\).
+
 We need a lower bound for certain twisted critical values in
 \(\ell\)-adic absolute value. An analytic Euler product gives no such
 bound directly. Instead, the norm identity expresses the critical-value
@@ -9447,7 +9460,7 @@ Choose the common nonzero kernel scale \(N_0\) for this homogeneous polynomial, 
 For integrality, expand the period over definite lattice classes and residue-matrix translates. At \(g\), the kernel for \(\nu\tau\upsilon\) is the kernel for \(\nu\upsilon\) times \(\tau(\det g)\). For a fixed \(Q\) the indices \(g\) are independent of \(\tau\). Their coefficients in \(A N_0\Lambda_Q\) are the scaled kernel at \(g\) times \(A/|\operatorname{Aut}([g])|\). At each prime away from \(NQ\) a rational translate makes the point integral, and the homogeneous kernel bound then makes the scaled kernel integral. The second factor is an integer. Taking the squared modulus gives the products \(c_i\overline{c_j}\) at the points \(u_i/u_j\). Integrality at every embedding over a given prime also holds after complex conjugation. Finally, the local rank-two period relation upon inserting \(v\) is multiplication by the polynomial \((1-X)(1-q_vX)\) in the inverse normalized Frobenius value. In its squared modulus the two conjugate factors for the first term are \(1-a_v^{\pm1}/q_v\), and those for the second are \(1-a_v^{\pm1}\), in either ordering. This gives (CV2) with \(I_1=\{0,1\}\) without needing absolute convergence of the Euler product at one. Section~\ref{sec:period-insertion} derives both the insertion formula and the common scale, tracing them to the unramified vacuum action and the integral Taylor bound.\formalnote{12.2}{2}
 
 \subsection{Transport to the group ring and the cost at a tame generator}
-Fix the comparison embedding \(\iota_\ell\) of the scalar fields. At a fixed auxiliary modulus \(Q\), take any of the finite sums just constructed. For each \(u_i\) take a finite idele \(y_i\) for which the finite part of \(y_i/\bar y_i\) agrees with the finite part of \(u_i\). This is local Hilbert 90, with unit representatives away from the finitely many exceptional places. Weight-zero tame characters have trivial archimedean component, so \(\tau(u_i)=\tau_{\rm BC}(y_i)\). Write \(\mathrm{Cl}_Q\) for the group of norm-one finite ideles modulo rational norm-one points and its level-\(Q\) units. Set
+Fix the field isomorphism \(\iota_\ell:\mathbb C\simeq\overline{\mathbb Q}_\ell\). At a fixed auxiliary modulus \(Q\), take any of the finite sums just constructed. For each \(u_i\) take a finite idele \(y_i\) for which the finite part of \(y_i/\bar y_i\) agrees with the finite part of \(u_i\). This is local Hilbert 90, with unit representatives away from the finitely many exceptional places. Weight-zero tame characters have trivial archimedean component, so \(\tau(u_i)=\tau_{\rm BC}(y_i)\). Write \(\mathrm{Cl}_Q\) for the group of norm-one finite ideles modulo rational norm-one points and its level-\(Q\) units. Set
 \[
        \Theta_Q=\sum_i \iota_\ell(c_i)
           \left[\bigl(y_i/\bar y_i\bigr)^{-\delta}\right]
@@ -10727,6 +10740,8 @@ Taking \(i=|J|\) gives the congruence for every coefficient. This congruence and
 \editionchapter{Local cohomology and the integral period lattice}\label{ch:local}
 
 The preceding chapter reduces a denominator bound to lengths of Galois cohomology groups with finite coefficients. Here we estimate the part at the coefficient prime. Example~\ref{ex:local-lattice-extension} illustrates the obstruction to extending a map from a sublattice.
+
+The background calculation constructs an integral frame for a crystalline lattice, giving the part of \rootlink{grh/src/Lib/PadicHodge/Kisin/FrameTheorem.lean}{Breuil--Kisin theory} used below. The estimate specific to the determinant argument bounds the length of the crystalline cocycles on the Tate dual lattice modulo those whose finite cup products vanish against every allowed crystalline cocycle. This \rootlink{grh/src/New/Congruences/Lifting/CupOrthogonalityBounds.lean}{local length bound} enters the sum over coefficient primes.
 
 \section{The loss at places above the coefficient prime}
 \label{sec:crystalline-loss}
@@ -16033,6 +16048,7 @@ The argument uses rational test-ring cohomology. Sections~\ref{sec:test-proper-b
 \chapter{Comparison with the formal development (optional reference)}\label{sec:outstanding}
 The entries below identify places where the argument in the text differs from the readable Lean edition at \texttt{72fead1}. Each entry names the calculation or theorem concerned. Where a comparison uses a characteristic-zero result to obtain an integral bound, the linked passage also gives the argument on lattices.
 Each heading links to the passage where the two arguments are compared. Chapter~\ref{ch:volume} combines Theorems A, B and C, and Chapter~\ref{ch:analytic} deduces the conclusion about zeros. Parts II--IV give the proofs of the three estimates.
+For the division between established results and the estimates particular to this argument, see the roadmap in \S\ref{map:forward}. The comparisons here record a different distinction, namely where the written proof uses a different derivation of the same input.
 \section*{Proofs from the community revision}
 The following passages use the community edition at \texttt{120962b4}.
 For CM sections, \hyperlink{call.4.18}{the local height and a single evaluation}
@@ -16089,7 +16105,11 @@ from the authors' compact edition.
 \noindent\hyperref[route:31]{\textbf{Fixed ratios of crystalline periods} (p.~\pageref*{route:31})}. Fontaine's fixed-field theorem replaces clearing poles in chart coordinates. The integral period bounds elsewhere in the proof are still required.\par\smallskip
 
 \chapter{Formal source notes (optional reference)}\label{app:formal}
-\noindent Each superscript in the text leads to a note below. The numbers restart in each chapter. Follow the number to return to the mathematical argument, or the description to open the corresponding Lean file.
+\noindent Each superscript in the text leads to a note below. The numbers restart in each chapter. Follow the number to return to the mathematical argument, or the description to open the Lean file. Each note gives the source folder before the first link and whenever the folder changes.
+
+\noindent\textsf{[Lib]} marks the library of background results that the authors classify as known and that were missing from their version of Mathlib. It can be read independently of the GRH argument. \textsf{[New]} marks the setup and steps of the argument, including known theorems specialized to its data. \textsf{[src]} marks a file at the top level. Both folders use the Lean namespace \texttt{New}. The authors describe the folder names as a working classification and make no claim of historical priority on the basis of a name. See the \rootlink{grh/GUIDE.md\#4-conventions}{guide to the readable edition}.
+
+For an individual theorem, the \rootlink{grh/INDEX.md}{index of results} gives a finer distinction. Under \emph{Known results} it includes the prime number theorem at the auxiliary cutoff, equation~\eqref{eq:an-fixed-modulus-pnt}, although its statement for the weighted prime sum is in \texttt{New}. Under \emph{Steps of the argument} it includes the \texttt{Lib} bound for the number of Galois cocycles with specified local trivializations. Section~\ref{sec:split-duality} gives the corresponding Selmer count using Greenberg--Wiles. In using the index to trace a result to the literature, consult the file's introductory note, which distinguishes sources from related work.
 \begingroup\small\setlength{\parskip}{1.8pt}
 \section*{Chapter 1. Introduction}
 \noteline{1.1}{1}{\src{Statements.lean}{Dirichlet and zeta zero statements}. \src{Main.lean}{The final deductions in the readable edition}.}

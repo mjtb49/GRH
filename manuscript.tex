@@ -6,9 +6,10 @@
 \definecolor{pine}{HTML}{20594C}
 \definecolor{muted}{HTML}{4C5F59}
 \usepackage[colorlinks=true,linkcolor=pine,urlcolor=pine,citecolor=pine,bookmarksopen=true,bookmarksopenlevel=0,bookmarksnumbered=true,pdfdisplaydoctitle=true]{hyperref}
-\hypersetup{pdftitle={The Alp\"oge--Claude argument for Dirichlet GRH},pdfsubject={A mathematical exposition of the readable edition of grh-lean, commit 72fead1}}
+\hypersetup{pdftitle={The Alp\"oge--Claude argument for Dirichlet GRH},pdfsubject={A mathematical exposition following grh-lean (72fead1) and the community revision (120962b4)}}
 \urlstyle{same}
 \newcommand{\src}[2]{\href{https://github.com/lsernau/grh-lean/blob/72fead102f663d5c7a407964a13dc0cf9d977207/grh/src/#1}{#2}}
+\newcommand{\comsrc}[2]{\href{https://github.com/leanprover-community/riemann-hypothesis/blob/120962b4fc014406f9c76adc53b5cf64475143d3/src/#1}{#2}}
 \newcommand{\rootlink}[2]{\href{https://github.com/lsernau/grh-lean/blob/72fead102f663d5c7a407964a13dc0cf9d977207/#1}{#2}}
 \newcommand{\leanroute}[1]{\par\smallskip\noindent\textit{Comparison with Lean (optional).}\enspace #1}
 \newcommand{\formalnote}[2]{\nobreak\hspace{.10em}\hypertarget{call.#1}{}\hyperlink{note.#1}{\textsuperscript{\normalfont\scriptsize #2}}}
@@ -69,7 +70,7 @@
 \vspace{.6em}
 {\large From theta derivatives to a zero-free half-plane\par}
 \vspace{1.2em}
-{\normalsize An exposition of the readable edition of \texttt{grh-lean}\par}
+{\normalsize An exposition of \texttt{grh-lean} with proofs from the community revision\par}
 \end{center}
 \vspace{1.4em}
 \begin{quotation}
@@ -77,7 +78,7 @@
 We present the argument of Alp\"oge and Claude for Dirichlet GRH in the form recorded in the readable Lean development. The arithmetic step gives a one-sided bound for a centered sum over prime powers in a progression. If a Dirichlet \(L\)-function had a zero to the right of the critical line, one could choose a quadratic character so that this zero gives a pole of the Mellin transform of the centered prime sum. The bound excludes that pole by Landau's theorem. The bound itself comes from estimating a Gram determinant at the archimedean and finite places. Divisibility of derivatives of theta functions with complex multiplication gives short vectors. A second-moment estimate shows that finitely many translates of the image of a Poincar\'e map span a subspace of nearly full dimension in the space of forms under consideration. Congruences between automorphic forms bound the denominators incurred by projecting onto the images of theta lifts. The main contribution per dimension is nonnegative and occurs in at least as many dimensions in the lower bound as in the upper bound. Comparing the bounds and dividing by the number \(m\asymp\sqrt x\) of theta lifts gives the square-root saving.
 \end{quotation}
 \vfill
-\noindent\emph{Text and sources.} The \rootlink{README.md}{repository statement} gives the attribution and reports the machine checks. Superscript notes link to the formal sources at commit \texttt{72fead102f663d5c7a407964a13dc0cf9d977207}. Optional notes headed \emph{Comparison with Lean} identify changes of proof, including the use of published theorems. Appendix~\ref{sec:outstanding} indexes these notes.
+\noindent\emph{Text and sources.} The \rootlink{README.md}{repository statement} gives the attribution and reports the machine checks. Superscript notes link to the \rootlink{README.md}{readable edition (\texttt{72fead1})} or, for the revised passages indexed in Appendix~\ref{sec:outstanding}, to the \href{https://github.com/leanprover-community/riemann-hypothesis/tree/120962b4fc014406f9c76adc53b5cf64475143d3}{community revision (\texttt{120962b4})}. Optional notes headed \emph{Comparison with Lean} identify changes of proof, including the use of published theorems. Appendix~\ref{sec:outstanding} indexes these notes.
 \clearpage\hypersetup{pageanchor=true}
 \pdfbookmark[0]{Contents}{contents}
 \begingroup\small\setlength{\parskip}{0pt}\tableofcontents\endgroup
@@ -1485,37 +1486,26 @@ Choose normalized CM lattices in the ideal classes of \(K\). Taking the quotient
 \]
 If \(|s_C|_p>1\), then \(|s'_{gC}|_p\le1\), while the last product has norm greater than one. The first identity on \(gC\) forces \(|s_{gC}|_p=|h_{gC}|_p=|s_C|_p^{1/2}\). Iterating around the finite orbit contradicts \(|s_C|_p>1\). Applying this to both choices of \(b\) proves the two corresponding entries integral, and then \(h_C\) is integral. Multiplying \(s_{gC}h_{gC}=-s_C\) over all classes gives \(\prod_C h_C=(-1)^{h_K}\), where \(h_K\) is the class number, since every \(s_C\ne0\). Thus each \(h_C\) is a unit. In the chosen normalization \(h_C=a^4-64\), which proves both assertions.\formalnote{4.16}{16}
 
-\subsection{Torsion values and an integral basis of sections}
-Use the odd sigma section \(\sigma\), normalized to derivative one, and its even twisted translate \(\theta\) by \(t\), normalized to \(\theta(0)=1\). Write \(F[u]=e^{-m\pi |u|^2/(2A)}F(u)\) for the degree-\(m\) torsion value. The factor matters when multiplying and pulling back sections. The zeros of \(\sigma,\theta\) are respectively \(\Lambda,-t+\Lambda\), all simple. The sigma addition formula gives \(x\theta^2=\sigma^2\), \(\theta(2z)=\theta^4-\sigma^4\), and \(\sigma(2z)=x'\theta^4\), with the right-hand sides evaluated at \(z\). In particular the normalized square pair \(w(u)=(\theta[u]^2,\sigma[u]^2)\) satisfies \(w(2u)=D(w(u))\), where
+\subsection{The local height and an integral basis of sections}
+Let \(\sigma\) be the odd sigma section with \(\sigma'(0)=1\), and \(\theta\) its even twisted translate by \(t\), with \(\theta(0)=1\). Write \(|b|_p=|\iota(b)|_p\) for complex \(b\). The local height \(h(z)=\max(|\sigma(z)|_p,|\theta(z)|_p)\) is positive since the two sections have disjoint zero sets. The sigma addition formula gives \(x\theta^2=\sigma^2\), \(\theta(2z)=\theta^4-\sigma^4\) and \(\sigma(2z)=x'\theta^4\) off the poles of \(x\). By (CM1) the pair \((\theta^2,\sigma^2)\) transforms under doubling by the quartics
 \[
  D(U,V)=\big((U^2-V^2)^2,\ UV(4U^2+a^2 UV+4V^2)\big).
 \]
-The formula for the second coordinate of \(w(2u)\) follows by squaring \(x'\theta^4\) and using (CM1). Over the residue field the two coordinates of \(D(U,V)\) have no common projective zero. A zero of the first has \(V=\pm U\ne0\), where vanishing of the second would imply \(a^2=\pm8\), contrary to \(a^4-64\) being a unit. This works in residue characteristic two as well. Dividing by whichever coordinate has larger norm and reducing proves \(\|D(w)\|=\|w\|^4\) for the maximum norm.
+They have no common projective zero after reduction. Indeed, a zero of the first coordinate has \(V=\pm U\ne0\), and vanishing of the second would give \(a^4=64\), contrary to the unit discriminant. Homogeneity now gives \(h(2z)=h(z)^4\), also at \(p=2\).
 
-For torsion \(u\), the norms of the \(w(2^iu)\) depend only on \(2^iu\bmod\Lambda\). Twisted translation by a period contributes a sign and the composition of two torsion translations contributes a root of unity, all of norm one. Two of these points agree modulo \(\Lambda\). Since \(w(u)\ne0\), equality of two distinct powers of its norm gives
+Put \(G=y\theta^3\), which extends across the poles of \(y\). The equation \(G^2+a\theta\sigma^2G=\sigma^6+\theta^4\sigma^2\) gives \(|G(z)|_p\le h(z)^3\): a larger left-hand root would make \(G^2\) strictly larger in norm than every other term. Thus a monomial \(\theta^j\sigma^{2k}G^e\) of degree \(m=j+2k+3e\) has norm at most \(h^m\). The complex spanning result of \S\ref{sec:sigma-identities} gives \(|f|_p\le C_f h^m\) for every section of degree \(m\) with multiplier that of \(\theta^m\).
+
+For an isogeny \(z\mapsto\alpha z\) of degree \(n\) to a lattice with height \(h'\), the ratio \(r(z)=h'(\alpha z)/h(z)^n\) is bounded: the pullbacks of \(\theta'\) and \((\sigma')^2\) have degrees \(n,2n\). Doubling gives \(r(z)^4=r(2z)\), hence \(r\le1\). For translation by a torsion point \(u\), put \(b_u(z)=\exp[-\pi(\bar u z+|u|^2/2)/A]\), where \(A\) is the area of the lattice. Thus \(T_u^{(m)}f(z)=b_u(z)^m f(z+u)\). The ratio \(s(z)=|b_u(z)|_p h(z+u)/h(z)\) is bounded since the \(2N\)-th powers of the two translated functions are sections of degree \(2N\) when \(Nu\in\Lambda\). The identity \(b_u(z)^4=b_u(2z+u)b_u(2z)\) and doubling give \(s(z)^4=s(2z+u)s(2z)\). Taking suprema gives \(\sup s\le1\). Applying this also to the inverse translate gives equality pointwise. In particular the normalized torsion value \(f[u]=(T_u^{(m)}f)(0)\) is integral for each of the above monomials, since \(h(0)=1\), and \(|\sigma[t]|_p=1\) since \(\theta(t)=0\).\formalnote{4.17}{17}
+
+Suppose now that \(|f(z)|_p\le h(z)^m\) everywhere. Off the zeros of \(\theta\) the complex basis gives
 \[
-                          \max(|\theta[u]|_p,|\sigma[u]|_p)=1 .
+ f=\theta^m\{P(x)+yQ(x)\},\qquad
+ 2k\le m\text{ in }P,\quad 2k+3\le m\text{ in }Q,                  \tag{CM2}
 \]
-For \(G=y\theta^3\), the apparent poles at the zeros of \(\theta\) are removable. Equation (CM1), multiplied by \(\theta^6\), gives
-\[
- G[u]^2+a\theta[u]\sigma[u]^2G[u]
-                  =\sigma[u]^6+\theta[u]^4\sigma[u]^2 .
-\]
-The monic equation has integral coefficients, so \(G[u]\) is integral. Multiplication proves the same assertion for every monomial \(\theta^j\sigma^{2k}G^e\) at its own degree \(j+2k+3e\). Translating a section by torsion preserves integral torsion values by the same root-of-unity composition formula.\formalnote{4.17}{17}
-
-For the converse, let \(f\) be a theta section of degree \(m\) with multiplier that of \(\theta^m\) and with integral torsion values. The complex basis in \S\ref{sec:sigma-identities}, where \(Y=y\), gives the unique expansion
-\[
-         f=\theta^m(P(x)+yQ(x)),\qquad
-         2k\le m\text{ for }P,\quad 2k+3\le m\text{ for }Q,       \tag{CM2}
-\]
-where the last inequalities apply to degrees of occurring monomials.
-
-Put \(u_j=t/2^j\), \(j\ge1\). The reductions of the norm-one pairs \(w(u_j)\) are all distinct as projective points. For \(1\le i<j\), doubling \(j\) times sends \(u_j\) to \(t\) with square pair \((0:1)\) and \(u_i\) to a period with square pair \((1:0)\). Since the reduced doubling morphism is everywhere defined, the starting reductions differ. The same argument distinguishes each \(w(u_j)\) from \(w(t)\) and from \(w(0)\) by applying \(j\) doublings. Thus \(\theta[u_j]\) and \(\sigma[u_j]\) are units. The numbers \(x(u_j)=\sigma[u_j]^2/\theta[u_j]^2\) are integral with pairwise unit differences. Moreover \(x'(u_j)=\sigma[2u_j]/\theta[u_j]^4\) is a unit, using also \(|\sigma[t]|_p=1\).
-
-Evaluate (CM2) at \(u_j\) and \(-u_j\) and subtract after dividing the normalized values by \(\theta[\pm u_j]^m\). The result is \(x'(u_j)Q(x(u_j))\), since \(x\) is even and \(y(z)-y(-z)=x'(z)\). It is integral, so \(Q(x(u_j))\) is integral. Also \(y(u_j)=G[u_j]/\theta[u_j]^3\) is integral. This gives integrality of \(P(x(u_j))\). Lagrange interpolation at these nodes has unit denominators and integral numerators, hence \(P,Q\in O[X]\) after applying \(\iota\). When \(f\) is even, \(Q(x(u_j))=0\) for every \(j\), hence \(Q=0\). This proves the integral even expansion as well.\formalnote{4.18}{18}
+where \(k\) denotes an exponent with nonzero coefficient. The coefficients of \(P,Q\) are integral. To see this, put \(D_1(X)=4X^3+a^2X^2+4X\), so \(x'^2=D_1(x)\). Choose an integral \(c\) at which \(P,Q,D_1\) each attain their largest coefficient norm. Such a \(c\) exists: normalize each nonzero polynomial by a largest coefficient and avoid the finitely many roots of the reductions in the infinite residue field of the algebraically closed valued field \((\mathbb C,|\cdot|_p)\). At least one of \(4,a^2\) is a unit by the discriminant, so \(|D_1(c)|_p=1\). Choose \(z\) with \(x(z)=c\) by elliptic uniformization. At both \(z\) and \(-z\) we have \(h=|\theta|_p\) since \(\sigma^2=x\theta^2\). Thus \(P(c)+y(\pm z)Q(c)\) are integral. Their difference is \(x'(z)Q(c)\), with \(x'(z)\) a unit. Also \(y(z)\) is integral by its monic equation (CM1). Hence \(Q(c),P(c)\) are integral, as are all their coefficients by the choice of \(c\). For even \(f\), subtraction at \(z,-z\) gives \(x'Q(x)=0\) identically, hence \(Q=0\).\formalnote{4.18}{18}
 
 \subsection{Pullback, the CM phase and the first unit}
-The cubic reads \(x=y^2+axy-x^3\). Since \(x(0)=y(0)=0\), solving recursively expresses \(x\) as an integral series in \(y\), with leading term \(y^2\). Put \(\mathcal I=O[[y]]\). For an isogeny \(z\mapsto\alpha z\) from \(\Lambda\) to \(\Lambda'\) of degree \(n\), one has \(|\alpha|_\infty^2 A=n A'\). For a period \(l\) the theta multiplier is \((-1)^{|l|^2\sqrt d/(2A)}\). This exponent is the integral alternating pairing of \(\bar\beta l\) with \(l\). The sign formula follows from the theta semicharacter identity applied to \(l=\beta l+\bar\beta l\), whose two summands have multiplier one. The area identity matches both the multiplier and the exponential in the twist under pullback. Torsion pulls back with the same normalization. Applying (CM2) to the target sections \(\theta'\) and \(G'\) composed with the isogeny gives
+The cubic reads \(x=y^2+axy-x^3\). Since \(x(0)=y(0)=0\), solving recursively expresses \(x\) as an integral series in \(y\), with leading term \(y^2\). Put \(\mathcal I=O[[y]]\). For an isogeny \(z\mapsto\alpha z\) from \(\Lambda\) to \(\Lambda'\) of degree \(n\), one has \(|\alpha|_\infty^2 A=n A'\). For a period \(l\) the theta multiplier is \((-1)^{|l|^2\sqrt d/(2A)}\). This exponent is the integral alternating pairing of \(\bar\beta l\) with \(l\). The sign formula follows from the theta semicharacter identity applied to \(l=\beta l+\bar\beta l\), whose two summands have multiplier one. The area identity matches both the multiplier and the exponential in the twist under pullback. The height comparison gives the required bounds on the pullbacks. Applying (CM2) to the target sections \(\theta'\) and \(G'\) composed with the isogeny gives
 \[
  \theta'(\alpha z)=\theta(z)^n R_1,\qquad
  G'(\alpha z)=\theta(z)^{3n}R_3,\qquad R_1,R_3\in\mathcal I .
@@ -1562,12 +1552,7 @@ To obtain four \(p\)-adic integers whose squares sum to \(-1\), write each \(p^n
    \prod_c\theta(\delta_c z)=
    \prod_c\exp\{\delta_c^2 g(z)-g(\delta_c z)\}\ \in\ O[[y(z)]]^\times .
 \]
-The equality uses \(\sum_c\delta_c^2=0\); the constant coefficient is one, which proves invertibility. For the frame product \(\Theta=\prod_i\theta(\mu_i)^{m_i}\), substitute each linear form \(\mu_i\) into the identity and its inverse, and multiply with exponents \(m_i\). This proves the unit assertion in the exact integral ring \(O[[y(\mu_i):i]]\). To pass from a coefficient on the two sets of variables in (V3) to one in six copies, use \(z_0=z'+z''\) and \(z_c=\delta_c z'\) for \(c>0\). Each resulting coefficient is a finite sum of products of six coefficients times integer binomial coefficients and powers of the \(\delta_c\). Undoing \(z\mapsto\varpi z\) multiplies all the terms by \(\varpi^{-|\nu'+\nu''|}\). The known leading coefficient from (V3), the ultrametric inequality, and \(v_p(\lambda_p)=1/(p-1)-1\), with \(\lambda_p=\varpi^{p+1}/p\) as in (V2), therefore give
-\[
-      v_6(\nu'+\nu'')\le
-      J\bigl(1/(p-1)-1\bigr)-v(\nu''!)-\rho |\nu'+\nu''| .
-\]
-The second six-copy estimate uses the inverse unit in the first copy, to leave a single arbitrary integral one-curve series after diagonal substitution, as in \S\ref{sec:cm-detail}.\formalnote{4.24}{24}
+The equality uses \(\sum_c\delta_c^2=0\); the constant coefficient is one, which proves invertibility. For the frame product \(\Theta=\prod_i\theta(\mu_i)^{m_i}\), substitute each linear form \(\mu_i\) into the identity and its inverse, and multiply with exponents \(m_i\). This proves the unit assertion in the exact integral ring \(O[[y(\mu_i):i]]\). Section~\ref{sec:frame-attainment} uses this unit and its inverse to obtain the six-copy coefficient bounds \textup{(V3)}--\textup{(V4)}.\formalnote{4.24}{24}
 
 \subsection{A period integral at every finite place}
 Finally we justify the finite-unit normalization in \S\ref{sec:frame-proof}. Put \(h=h_K\). The ideal class group has odd order by the genus theorem for the prime fundamental discriminant \(-d\). In particular squaring permutes its elements. Choose representatives \(\mathfrak b_C\) and replace them by \(\mathfrak c_C=\mathfrak b_{C^2}/\mathfrak b_C\). These represent the same classes and have product the unit ideal. Choose normalized CM lattices \(\Lambda_C=\mu_C\mathfrak c_C\Lambda\), and let \(\Delta_C=a_C^4-64\) be their unit discriminants. Define \(u\) by
@@ -1664,7 +1649,7 @@ Let \(Y=(x'-bx)/2\) and \(G=Y\theta^3\). The last differential equation gives \(
             \theta^{m-2h-3c}(\sigma^2)^hG^c,\qquad
             c=0,1,\quad 2h+3c\le m .
 \]
-Its distinct pole orders before multiplication also give linear independence. For \(m=0\) or \(1\) only the constant survives before multiplication. This establishes the basis over \(\mathbb C\). The argument that its coefficients are integral under the torsion bounds takes place separately in \S\ref{sec:cm-integral}.\formalnote{4.29}{29}
+Its distinct pole orders before multiplication also give linear independence. For \(m=0\) or \(1\) only the constant survives before multiplication. This establishes the basis over \(\mathbb C\). The local height criterion of \S\ref{sec:cm-integral} gives integrality of the coefficients in \textup{(CM2)}.\formalnote{4.29}{29}
 
 
 \section{Transporting a CM period and its theta sections}
@@ -1771,7 +1756,7 @@ Let \(a\ne0\) satisfy \(a\Lambda\subseteq\Lambda'\) with \(N=[\Lambda':a\Lambda]
  T_u^{(rN)}[f(a\,\cdot)](z)=(T_{au}^{\prime(r)}f)(az).
  \tag{MT2}
 \]
-In particular the degree becomes \(rN\). For the torsion shift used in interpolation take \(a=\bar\delta\), an endomorphism, and \(\delta u\in\Lambda\). The commutator of \(T_{\bar\delta\ell}^{(1)}\) with \(T_u^{(1)}\) is \(\exp(2\pi i E_\Lambda(\bar\delta\ell,u))=1\), since \(E_\Lambda(\bar\delta\ell,u)=E_\Lambda(\ell,\delta u)\). Consequently \(z\mapsto(T_u^{(1)}\theta)(\bar\delta z)\) also has degree \(N=\delta\bar\delta\) and character \(\chi^N\). Evaluating (MT2) at zero commutes with transport of the normalized values. The integrality theorem of \S\ref{sec:cm-integral} applies to these sections at every prime. In the coordinates \(G=\theta^3Y\) it gives \(\theta_{\Lambda'}(az)=\theta_\Lambda(z)^N R(Y)\) and \(G_{\Lambda'}(az)=\theta_\Lambda(z)^{3N} S(Y)\) after passage to \(p\)-adic series, with \(R,S\) integral. As \(R(0)=1\), their quotient gives \(Y_{\Lambda'}(az)=S(Y)/R(Y)^3\). Its coefficient of \(Y\) is the image of \(a\), since each \(Y\) has linear term \(z\).\formalnote{4.41}{41}
+In particular the degree becomes \(rN\). For the torsion shift used in interpolation take \(a=\bar\delta\), an endomorphism, and \(\delta u\in\Lambda\). The commutator of \(T_{\bar\delta\ell}^{(1)}\) with \(T_u^{(1)}\) is \(\exp(2\pi i E_\Lambda(\bar\delta\ell,u))=1\), since \(E_\Lambda(\bar\delta\ell,u)=E_\Lambda(\ell,\delta u)\). Consequently \(z\mapsto(T_u^{(1)}\theta)(\bar\delta z)\) also has degree \(N=\delta\bar\delta\) and character \(\chi^N\). Evaluating (MT2) at zero commutes with transport of the normalized values. The isogeny and torsion-translation bounds of \S\ref{sec:cm-integral} therefore apply to the shifted pullback as well. Formula \textup{(CM2)} gives its integral power-series factor.\formalnote{4.41}{41}
 
 \subsection{From the elliptic translates to a single adelic multiplier}
 Take \(E=K(\zeta)\), \(q_1=\operatorname{ord}(\zeta)\), and a standard positive hermitian space of rank \(n\). For \(0\leq k<q_1\), a coordinate \(j\), and the chosen complex embeddings \(\Phi_w\) extending the given embedding of \(K\), put
@@ -1882,8 +1867,7 @@ less than \(q\) are integral. In all degrees it implies integrality
 after \(z\mapsto\varpi z\) with \(v_p(\varpi)\ge\rho\).
 
 We use two inputs from the CM curve. First, multiplication by \(\pi\)
-pulls back \(\theta\) to an even section of degree \(q\), with integral
-torsion values. The expansion of such even sections gives a polynomial
+pulls back \(\theta\) to an even section bounded by the \(q\)-th power of the local height of \S\ref{sec:cm-integral}. Its degree is \(q\), so (CM2) gives a polynomial
 \(D\) such that
 \[
  \theta(\pi z)=\theta(z)^qD(X(z)),\qquad 2\deg D<q .
@@ -1926,14 +1910,7 @@ This step uses the transformation law for the CM theta function under these
 roots of unity. The proof obtains it by approximating the roots and their
 norm characters by CM integers.
 
-Use the generator \(T\) of \(\mathcal I\) supported in degrees
-\(1\bmod(q-1)\). We need its first Frobenius coefficient to be a unit:
-\(T(\pi z)=\pi T(z)+b_1T(z)^q+\cdots\). The formal-group height estimate gives a nonzero coefficient in degree \(q\) after reduction, so \(b_1\) is a unit.
-Choose \(\varpi^{q-1}=-\pi/b_1\). The scaled-parameter theorem gives
-\(Y=T(\varpi z)/\varpi\in\mathcal O[[z]]\) with \(Y-Y^q\equiv z\bmod\pi\).
-Its unique zero-constant solution modulo \(\pi\) is
-\(\sum_{j\ge0}z^{q^j}\), by repeated substitution. These are congruences
-in \(\mathcal O/(\pi)\), which need not be the residue field.\formalnote{4.52}{52}
+Recall the parameter \(T=z+O(z^q)\) of \S\ref{sec:cm-integral}, supported in degrees \(1\bmod(q-1)\). The coefficient \(b_1\) of \(T^q\) in \(T(\pi z)\) is a unit. With \(\varpi^{q-1}=-\pi/b_1\), the scaled parameter \(Y=T(\varpi z)/\varpi\) belongs to \(\mathcal O[[z]]\) and reduces to \(\sum_{j\ge0}z^{q^j}\) modulo \(\pi\mathcal O\).\formalnote{4.52}{52}
 
 The least nonnegative representative \(i\) of \(p+1\bmod(q-1)\) is
 \(p+1\) if \(p\) is inert and \(2\) if \(p=d\). Project (F1)
@@ -2014,43 +1991,7 @@ The equality uses that \(Q\) is a power of \(p\). For any fixed
 \(p^{-\gamma_p Q}\le C_Q\le C_n^h C_r\le C_n^h\). Letting \(j\) grow
 gives \(C_n\ge p^{-\gamma_p n}\). The series attaining the bound can depend on \(n\).\formalnote{4.54}{54}
 
-For an actual vector of degrees \(\kappa_\tau\le l_\tau\le \kappa_\tau+x^{42}\),
-the manuscript uses a stronger, many-place statement. To state the extra
-input precisely, put \(s=\lceil6b/k\rceil\),
-\(B_\tau=\prod_{i=1}^{s}(\max(l_\tau-s,0)+i)\), and
-\(S_p=\sum_\tau s_p(\kappa_\tau,\tau)\). The finite-place theorem on twelve
-copies of a tight frame gives a Taylor coefficient of the prescribed
-multidegree with valuation at most
-\[
-          S_p+2\sum_\tau v_p(B_\tau)-\sum_\tau v_p(l_\tau!).
-\]
-This bound uses a frame resolving the
-identity up to \(M\), with a linear form having unit coefficients at every
-place for this \(p\). Its split case uses the one-curve bound. For inert
-\(p>k\), one assigns to \(\tau\) and \(-p\tau\) the number
-\(\min(\lfloor\max(l_\tau-s,0)/p\rfloor,l_{-p\tau})\) of first-layer
-couplings. Six copies supply these pairs and the next six absorb the
-remaining degree. For nonsplit \(p\le k\), sparsity of the chosen
-\(b\)-places distinguishes the near pairs and controls their common
-ends. Section~\ref{sec:frame-attainment} isolates a coefficient of the product over these pairs in (V4). The degree allocation and factorial estimates of \S\ref{sec:frame-proof} then yield the stated valuation bound, recorded as (V5).
-
-To see how the local assertion survives passage to an automorphic datum,
-take a nonzero value \(c_0\) of the integral vacuum and put
-\[
-                     t=M^{12f}c_0\prod_\tau B_\tau^2 .
-\]
-A frame of sufficiently large multiplicities (\(\ge6fb\)) realizes the
-products as Taylor series of vectors with integral values. Fourier
-inversion in the finite translation group transfers a coefficient to
-some indicator datum, costing \(v_p(M^{12f}c_0)\). Multiplying by
-\(\prod_\tau l_\tau!\) cancels the factorial valuations in the last
-displayed estimate. Thus some normalized indicator coefficient times
-\(\prod_\tau l_\tau!\) has valuation at most \(S_p+v_p(t)\), with the
-normalization \(\mathrm{vacuumScale}^{12}\). The frame and vacuum size
-bound gives \(|\sigma t|\le\exp(fmb/k)\) for every \(\sigma\).
-Here \(t\) works for all \(p\). The indicator and monomial may depend on
-the embedding. This application uses the actual integral frame and
-Fourier expansion theorems in addition to (F3) and the one-curve limit.\formalnote{4.55}{55}
+Section~\ref{sec:frame-attainment} uses this one-variable bound on the degrees left after the Frobenius pairs have been chosen. For twelve copies of the frame this gives the valuation bound \textup{(V5)}. Fourier inversion then gives the indicator estimate \textup{(V8)}, with one scalar valid at every prime.\formalnote{4.55}{55}
 
 
 
@@ -6219,9 +6160,31 @@ We describe the finite version of the one-frame estimate in \S\ref{sec:shell-mea
 
 Here is the replacement for integration of the reciprocal area of a disc. At an active relative position \(z=y^{-1}uyk\), with \(u\) Bessel unipotent and \(k\in K_M\), forget \(3\rho\) free directions. The remaining ones can be taken as integral common vectors, primitive together. Indeed impose the \(\rho\) chart equations, the vanishing of the last \(\rho\) rows of the transported columns, and that of the first \(\rho\) rows after applying \(u^{-1}-1\). Integral column operations at each valuation ring put these at most \(3\rho\) rows on the omitted columns. The shape of \(u\) then fixes every remaining transported column, and \(k\equiv1\bmod g\) supplies closeness. Let \(Y\) collect the remaining columns of the resulting matrix in \(\mathrm{GL}(R)\). For a test vector \(v\), let \(tR\) be the ideal of the entries of \(Y^*v\). Products with common vectors contain \(\bar t R\). Conversely any scalar giving only integral pairings with the common vectors must belong to \(t^{-1}R\), by testing the individual columns. Thus \(\Phi(v)=|t|^{-1}\) controls both volume factors in the two pivot integrals.
 
-There are \(s+m+5\) such columns, where \(s\) is the volume exponent of the finite frame. For integral, uniformly distributed coordinates, the event that their content lies in a particular ideal \(J\) has probability \([R:J]^{-(s+m+5)}\). Sum over the possible contents and bound the event of equality by that of inclusion. The \(s\)-th moment of \(\Phi\) is at most \(\zeta_R(m)\). A coordinate change in \(\mathrm{GL}(R)\) preserves the box. Rescaling a box of size \(j\) to size zero costs \(|\alpha^j|^{-(3\rho+m+5)}\) after cancellation against the \(s\)-th power, giving a bound \(L^{99n(j+1)}\). The remaining quadric block has \(2m+4\) coordinates. Its norm-fiber integral on \(u^{-1}R^{2m+4}\) is bounded by \(\zeta_R(m)|u|^{-(2m+3)}\). In the Fourier formula for this fiber, use the squared Gauss integral for the unimodular block and integrate by denominator ideals as in the one-vector calculation of \S\ref{sec:orbital-sieve}. The unscaled integral is bounded by the ideal sum, and scaling contributes one inverse modulus less than the ambient box volume. These two estimates are the only place-specific volume bounds in the two opposite pivot integrations of \S\ref{sec:shell-measure}. The unweighted pivot mass at unit scale is at most \(V=2^{99\cdot13n}\), from the box of size \(7\) in the quadric chart, whose free integral volume at this scale is one.\formalnote{6.60}{60}
+There are \(s+m+5\) such columns, where \(s\) is the volume exponent of the finite frame. For integral, uniformly distributed coordinates, the event that their content lies in a particular ideal \(J\) has probability \([R:J]^{-(s+m+5)}\). Sum over the possible contents and bound the event of equality by that of inclusion. The \(s\)-th moment of \(\Phi\) is at most \(\zeta_R(m)\). A coordinate change in \(\mathrm{GL}(R)\) preserves the box. Rescaling a box of size \(j\) to size zero costs \(|\alpha^j|^{-(3\rho+m+5)}\) after cancellation against the \(s\)-th power, giving a bound \(L^{99n(j+1)}\).\formalnote{6.60}{60}
 
-More explicitly, write \(\ell=2m+4\), \(h=u^{-1}\), and group the skew Fourier frequencies \(b\) by the exact ideal \(I=\{c\in R:h\bar h\,bc\in R\}\), of index \(N_I\). In the squared Gauss integral on a coset of \(hR^\ell\), substitute the difference of the two vector variables. Integration over the original variable vanishes by character orthogonality unless the difference, divided by \(h\), belongs to \(I^\ell\): the polar form is unimodular and the integral lattice is self-dual. Thus the squared absolute Gauss integral is at most \(|h|^{2\ell}N_I^{-\ell}\). The skew frequencies with this prescribed ideal lie in \((h\bar h I)^{-1}R\) in the skew subspace. Its skew volume is at most \(|h|^{-1}N_I^{1/2}\). Indeed if \(S\) is this intersection with the skew subspace, the map \((a,b)\mapsto \tau\delta^{-1}a+b\) sends \(S\times S\) into the full fractional ideal. Here \(\tau+\bar\tau=1\) and \(\delta\) is the integral skew unit. This is the trace and skew decomposition, preserving the normalized measures since it carries integral coordinates bijectively to \(R\). The volume of the full ideal is \(|h|^{-2}N_I\). The product of the two bounds, after taking the square root of the first, is \(|h|^{\ell-1}N_I^{-(\ell-1)/2}\). Summing by \(I\) gives \(|h|^{\ell-1}\zeta_R(m)\), proving the asserted fiber bound, including the normalization.\formalnote{6.61}{61}
+The remaining block has \(\ell=2m+4\) coordinates. In an integral hyperbolic basis
+reserve one plane for the quadric chart. Fix one half \(v\in R^{m+1}\) of the remaining
+hyperbolic pairs. Almost surely its entries generate a finite-index ideal \(cR\).
+Write \(c=\sum_i r_i v_i\) with \(r_i\in R\). Translating the coordinates opposite \(v\)
+by \(c\bar r_i t\), \(t\in R\), preserves the box and changes the Hermitian norm by
+\(c\bar c(t+\bar t)\). The integral trace is onto since \(R\) contains an element of trace one.
+After multiplication by the integral skew unit, these shifts comprise \(c\bar c\) times the
+integral skew elements, a subgroup of measure \(|c|\). Thus the conditional mass on any one quadric,
+multiplied by \(|c|\), is at most the mass integrated over all quadrics. The latter is the
+ambient volume by disintegration. The resulting weight is \(|c|^{-1}=[R:cR]\).
+For each finite-index ideal \(I\), the probability that \(cR\subseteq I\) is
+\([R:I]^{-(m+1)}\). Summing the index over possible contents gives
+\[
+ \mathbb E[R:cR]\le\sum_I[R:I]\Pr(cR\subseteq I)=\zeta_R(m).
+\]
+This bounds the mass of the unit box uniformly in the value of the form.
+Scaling to \(u^{-1}R^\ell\) multiplies ambient volume by \(|u|^{-\ell}\). The skew parameter
+scales by \((u\bar u)^{-1}\), of modulus \(|u|^{-1}\) on the skew line. The fibre bound is
+therefore \(\zeta_R(m)|u|^{-(\ell-1)}\).
+Together with the preceding moment bound this supplies the two finite-place estimates
+in \S\ref{sec:shell-measure}. The unweighted pivot mass at unit scale is at most
+\(V=2^{99\cdot13n}\), from the box of size \(7\) in the quadric chart, whose free
+integral volume at this scale is one.\formalnote{6.61}{61}
 
 For each position \(x\), let \(J=cR\) be the common denominator ideal of \((x-1)/g\), with \([R:J]=|c|^{-1}\). Its generator is obtained by taking the largest denominator valuation in each component. Let \(P=2^h\) be the first power of two at least this index. There are at most \(2P^{9n}\) such ideals, by the zeta bound and \(m<9n\). For each ideal its entire shell lies in the position box at scale \(\bar c c\), with loss \(2[R:J]^2\le LP^2\).
 
@@ -6610,7 +6573,7 @@ Write \(\lambda,\nu\) for the two doubled Harish--Chandra parameters, \(r,k\) fo
 \]
 Use \(\beta\ge10^{12}\) and \(\beta\ge r+k+\max(|\lambda_i|,|\nu_j|)\). In either rank \(s_0\), the gap of the undoubled parameters between unlike signs is at least \(500s_0^3+h\), with \(h\ge10^{30}T^3\). These conditions hold for the chosen parameters with \(\beta=b^3\). The rank, gap and weight checks are in the local construction.\formalnote{7.12}{12}
 
-First consider \(g,g'\) within \(\delta\) of \(1\) in Frobenius norm, where \(\delta T\le10^{-12}\). For either parameter the coefficient divided by its trace phase has distance at most \(a/10+e^{-100T}\) from a real number \(a\in[0,1]\). Here is how this error arises. In the Flensted--Jensen integral at \(g=\exp Y\), put \(q_0=Q_{-\lambda^{\rho}}(Y)/4\), with \(\lambda^\rho=\lambda/2+\rho\) and
+First consider \(g,g'\) within \(\delta\) of \(1\) in Frobenius norm, where \(\delta T\le10^{-12}\). For either parameter the coefficient divided by its trace phase has distance at most \(a/10+e^{-100T}\) from a real number \(a\in[0,1]\). Here is how this error arises. In the Flensted--Jensen integral at \(g=\exp Y\), put \(q_0=Q_{-\lambda^{\rho}}(g-1)/4\), with \(\lambda^\rho=\lambda/2+\rho\) and
 \[
  Q_w(U)=\sum_{i,j}|w_i-w_j|\,|U_{ij}|^2 .
 \]
@@ -6690,52 +6653,46 @@ Here \(k\le r\) implies \(s+99r^2\le339r^2\). Taking the prescribed exponent \(i
 
 \section{The lowest-type coefficient and localization of its phase}
 \label{sec:bessel-minors}
-In \S\ref{sec:bessel-period} the coefficient integral is approximated by a positive Gaussian after division by a trace phase. The quadratic form of that Gaussian has weights of the size of the Harish--Chandra parameter. A bound of order \(\|\log g\|^3\) per minor would accumulate an uncontrolled multiple of the largest weight. We prove the stronger bound that charges a minor only for matrix entries crossing its two blocks, then derive the reduction to the identity neighborhood.
+In \S\ref{sec:bessel-period} the coefficient integral is approximated by a positive Gaussian after division by a trace phase. The quadratic form of that Gaussian has weights of the size of the Harish--Chandra parameter. A bound of order \(\|g-1\|_F^3\) per minor would accumulate an uncontrolled multiple of the largest weight. We prove the stronger bound that charges a minor only for matrix entries crossing its two blocks, then derive the reduction to the identity neighborhood.
 
 \subsection{A dimension-independent expansion of a minor}
-Use the Frobenius norm. Let \(P=P^*=P^2\) and let \(A_1,A_2,A_3\) have norms at most \(\eta\le1/20\). Define \(B_P(U,V)=\operatorname{tr}(PU(1-P)V)\), and put \(D=\det(1+P(e^{A_1}e^{A_2}e^{A_3}-1))\). In the orthogonal splitting by \(P\) this determinant reads the principal block on \(\operatorname{im}P\). The expansion we need is
+Write \(\|\cdot\|\) for the Frobenius norm. Suppose \(P,Q\) are orthogonal projections,
+\(\|X\|\le\delta\le1/2\), and \(Y\) satisfies
 \[
- \begin{aligned}
- D&=\exp\left(\sum_i\operatorname{tr}(PA_i)
-       +\tfrac12\sum_iB_P(A_i,A_i)+\sum_{i<j}B_P(A_i,A_j)+r\right),\\
- |r|&\le10^4\eta\,\zeta^2,\qquad \zeta=\max_i\|[P,A_i]\|_F .
- \end{aligned}                                                        \tag{M1}
+ \|[P,X]-Y\|\le\delta c,\qquad
+ \max(\|Y\|,\|P-Q\|)\le c,\qquad \operatorname{tr}([P,Q]Y)=0 .
 \]
-For the initial cubic estimate let \(\|A_i\|\le u\le 1/10\) and \(h=3u\). The exponential product minus the identity has first two terms \(L=\sum A_i\), \(S=\frac12\sum A_i^2+\sum_{i<j} A_iA_j\). Its homogeneous terms of degree \(k\) have total norm bounded by \(h^k/k!\) by the multinomial theorem. For \(k\ge2\) the same bound holds for the trace after multiplication by \(P\), since
-\(|\operatorname{tr}(P U_1\cdots U_k)|\le\prod\|U_i\|_F\) by Hilbert--Schmidt Cauchy--Schwarz. Let \(M=P(e^{A_1}e^{A_2}e^{A_3}-1)\). Then \(\|M\|_F\le e^h-1\le(4/3)h<1/2\), \(\|M-PL\|_F\le h^2\), and \(|\operatorname{tr}(M-P(L+S))|\le h^3\). The convergent trace logarithm satisfies
+Put \(Z=\log(1+X)\), using its convergent series. Then
 \[
- \left|\operatorname{tr}\log(1+M)-\operatorname{tr} M+
-               \tfrac12\operatorname{tr}M^2\right|
-       \le \sum_{k\ge3}\|M\|_F^k/k\le2\|M\|_F^3 .
+ \det(1+PX)=\exp\{\operatorname{tr}(QZ)-\tfrac14\operatorname{tr}(Y^2)+r\},
+ \qquad |r|\le100\delta c^2 .                                      \tag{M1}
 \]
-Replacing \(M^2\) by \((PL)^2\) in its trace costs at most
-\(\|M-PL\|_F(\|M\|_F+\|PL\|_F)\). The total error is at most \(8h^3=216u^3\). In \(\operatorname{tr}(PS)-\frac12\operatorname{tr}((PL)^2)\), cyclicity gives exactly the two crossing-block sums of (M1).
+Indeed, set \(A=[P,X]\). Expand the trace logarithm on \(\operatorname{im}P\) and subtract \(\operatorname{tr}(PZ)\). The linear terms cancel, and the quadratic difference is \(-\operatorname{tr}(A^2)/4\). For degree \(j\ge3\), telescope \(PX^jP-(PXP)^j\) at the first occurrence of \(1-P\). Its trace is the sum of the traces of
+\((PXP)^kPX(1-P)X^{j-1-k}P\), \(0\le k\le j-2\), on \(\operatorname{im}P\). The two factors crossing between the blocks have Frobenius norms at most \(\|A\|\) and \((j-1-k)\delta^{j-2-k}\|A\|\), respectively, by the commutator formula for a power. Cauchy--Schwarz bounds the sum by \(\binom j2\delta^{j-2}\|A\|^2\). Dividing by \(j\) and summing gives at most \(3\delta\|A\|^2\).
 
-Decompose each \(A_i\) into its block diagonal part and its crossing part, and multiply the latter by \(z\). Its norm before multiplication is \(\|[P,A_i]\|_F\), since only the sign of one block changes. For \(0<\zeta<\eta\), on \(|z|<\eta/\zeta\) the modified matrices have norms at most \(2\eta\). The difference between their trace logarithm and its stated quadratic part is holomorphic there and bounded by \(216(2\eta)^3\). At \(z=0\) the matrices commute with \(P\), and determinants of the three exponential blocks multiply, giving zero remainder. Conjugation by \(2P-1\) exchanges \(z,-z\), so the remainder is even. Schwarz's lemma twice at \(z=1\) gives \(216(2\eta)^3(\zeta/\eta)^2\). If \(\zeta=0\) the remainder is zero, and if \(\zeta\ge\eta\) the original cubic estimate suffices. This proves (M1).\formalnote{7.18}{18}
+To replace \(P\) by \(Q\), split \(P-Q\) into blocks for \(P\). Its two diagonal blocks have opposite signs and their trace norms sum to \(\|P-Q\|^2\). Their contribution to \(\operatorname{tr}((P-Q)Z)\) is at most \(2\delta c^2\). The off-diagonal contribution is \(\operatorname{tr}([P,Q][P,Z])\). We have \(\|[P,Q]\|\le\|P-Q\|\), may subtract \(Y\) from \([P,Z]\) by hypothesis, and the logarithm series gives \(\|[P,Z]-Y\|\le\delta c+\delta\|A\|/(1-\delta)\le4\delta c\). Finally \(\|A\|\le(1+\delta)c\), so replacing \(A^2\) by \(Y^2\) in the trace costs at most \(\delta c(\|A\|+\|Y\|)\). These bounds give (M1). The formal calculation integrates the two logarithmic derivatives on the segment from \(0\) to \(X\); the series above estimates the same trace logarithms term by term.\formalnote{7.18}{18}
 
 \subsection{From one minor to the discrete-series coefficient}
-For one group of rank \(d\) put \(J=\operatorname{diag}(\epsilon_i)\), \(g=e^Z\in U(J)\), \(Z^*J+JZ=0\). Let \(\lambda\) be the undoubled Harish--Chandra parameter. For the positive roots in parameter order, write \(\rho_{\rm roots}\) for their half-sum and \(\rho_c\) for the half-sum over the compact positive roots. Put \(v=\lambda+\rho_{\rm roots}\). The highest weight of the lowest compact type is \(\mu=v-2\rho_c\). For an integer weight \(w\), write \(m_w(Y)=\det(Y)^b\prod_{b<t\le B}\det Y_{P_t,P_t}\) for \(b\le w_i\le B\), \(P_t=\mathbf1_{\{w_i\ge t\}}\). This is independent of \(b,B\). In the strictly ordered indices of \(\lambda\), let \(u_{ij}=Z_{ij}\) when \(\epsilon_i=\epsilon_j,\ \lambda_i<\lambda_j\), and \(v'_{ij}=Z_{ij}\) when \(\epsilon_i=\epsilon_j,\ \lambda_i>\lambda_j\); set the other entries to zero. The reduced matrix is \(\widetilde g=e^{-u}e^Ze^{-v'}\). The two removed triangular exponentials in the complexified compact group have diagonal one. The Borel transformation law of the Flensted--Jensen integral, applied on the left and right, thereby gives for small \(Z\)
-\[
-     c_\lambda(g)=\frac1{K_\mu}\int_K
-             \frac{|m_\mu(k_0)|^2}{m_{-v}(k_0^*\widetilde g k_0)}\,dk_0,
-                 \qquad K_\mu=\int_K|m_\mu(k_0)|^2\,dk_0 .             \tag{M2}
-\]
-Haar measure of \(K=U(d_+)\times U(d_-)\) is one. This is the representation-theoretic coefficient formula used below.\formalnote{7.19}{19}
+For one group of rank \(d\), let \(J=\operatorname{diag}(\epsilon_i)\), \(g\in U(J)\), \(X=g-1\), and \(\delta=\|X\|<10^{-3}\). Write \(Z=\log g\). For the undoubled Harish--Chandra parameter \(\lambda\), put \(v=\lambda+\rho_{\rm roots}\), where \(\rho_{\rm roots}\) is the half-sum of positive roots in parameter order. The highest weight of the lowest compact type is \(\mu=v-2\rho_c\), with \(\rho_c\) the half-sum of positive compact roots. For an integer weight \(w\) define \(m_w(M)=\det(M)^b\prod_{b<t\le B}\det M_{P_t,P_t}\), where \(P_t=\mathbf1_{\{w_i\ge t\}}\) and \(b\le w_i\le B\). This is independent of the bounds.
 
-Take \(P\) to be a threshold of \(w=-v\), so \(\lambda_i<\lambda_j\) whenever \(i\) is inside and \(j\) outside. Apply (M1) with \(A_1=-u,A_2=Z,A_3=-v'\) and projection \(Q=k_0Pk_0^*\). First consider the quadratic sum at \(P\). Write \(c_0,b_0\) for the sums of \(|Z_{ji}|^2\) over these inside/outside pairs with equal and opposite signs respectively. The Lie algebra identity reads \(Z_{ij}=-\epsilon_i\epsilon_j\overline{Z_{ji}}\). The \(Z,Z\) term before halving is therefore \(-c_0+b_0\). The two triangular self terms vanish. The three cross terms in positions \(12,13,23\) are \(c_0,-c_0,c_0\), by the triangular masks. Their total with the half-diagonal terms is \((c_0+b_0)/2=\|[P,Z]\|_F^2/4\).
+Let \(u,u'\) retain the entries \(X_{ij}\) with \(\epsilon_i=\epsilon_j\) and \(\lambda_i<\lambda_j,\ \lambda_i>\lambda_j\), respectively, and vanish elsewhere. Both \(1-u\) and \(1-u'\) are triangular in parameter order with diagonal one. Applying the Borel transformation law on both sides of \(W=(1-u)g(1-u')\) gives
+\[
+ c_\lambda(g)=\frac1{K_\mu}\int_K\frac{|m_\mu(k)|^2}{m_{-v}(k^*Wk)}\,dk,
+ \qquad K_\mu=\int_K |m_\mu(k)|^2\,dk .                            \tag{M2}
+\]
+Here \(K=U(d_+)\times U(d_-)\) has Haar mass one.\formalnote{7.19}{19}
 
-For the perturbation set \(x_0=\|[P,Z]\|_F,\ t=\|Q-P\|_F=\|[P,k_0]\|_F,\ \eta=\|Z\|_F\). Each \(\|[Q,A_i]\|_F\le z_0=x_0+2\eta t\), by subtracting \(P\) and using submultiplicativity. In the linear term \(A_1+Z+A_3\) retains only the diagonal and the opposite-sign entries. Since \(P,Q\) preserve signs, only its diagonal contributes to the traces. The sum of absolute diagonal changes of \(Q-P\) equals \(t^2\): on \(\operatorname{im}P\) they are losses, on its complement gains, and their sum is \(\operatorname{tr}(P+Q-2PQ)\). The first-order error is therefore at most \(\eta t^2\). Each crossing trace is the trace of a product of its two off-diagonal blocks. On replacing \(P\) by \(Q\), the Frobenius change of either block is at most \(2\eta t\), and the other block has norm at most \(z_0\). Telescoping the product of the blocks gives \(4\eta t z_0\) per term, hence \(18\eta t z_0\) in the half-weighted sum. Adding the error of (M1) gives
+Fix a threshold \(P=P_t\) of \(-v\), so that the entries of \(\lambda\) on \(P\) are lower than those on \(1-P\). Write \(A=[P,X]\), \(E=A-[P,u]-[P,u']\), \(Q=kPk^*\), \(a=\|A\|\), and \(s=\|[P,k]\|=\|Q-P\|\). The matrix \(E\) consists of the entries of \(A\) between opposite signs, whereas \(P,Q\) preserve signs, so \(\operatorname{tr}([Q,P]E)=0\). Expanding the three factors gives \(\|W-1\|\le4\delta\) and \(\|[P,W-1]-E\|\le8\delta a\): each remaining product in the commutator has a factor of norm at most \(\delta\) and a commutator of norm at most \(a\). Replacing \(P\) by \(Q\) in this last commutator costs at most \(8\delta s\).
+
+Apply (M1) to the complementary minors of \(g,W\), using \(1-P\) for both projections and \(-A,-E\) for \(Y\), respectively. Apply it once more to the minor of \(k^*Wk\) on \(P\), using projections \(Q,P\) and \(Y=E\). The respective pairs of bounds \((\delta,c)\) in (M1) are \((\delta,a),(4\delta,4a),(4\delta,4(a+s))\). Triangularity gives equal complementary minors for \(W,g\) and also \(\det W=\det g\). Combining the three exponentials therefore leaves the linear term \(\operatorname{tr}(PZ)\) and the quadratic term \(\{\operatorname{tr}(A^2)-2\operatorname{tr}(E^2)\}/4\). Since \(g^*Jg=J\), we have \(A^*=Jg^{-1}Ag^{-1}J\). Thus \(\|A^*-JAJ\|\le5\delta a\), using \(\|g^{-1}-1\|\le2\delta\). Since \(JAJ=A-2E\), the quadratic term differs from \(a^2/4\) by at most \(5\delta a^2/4\). In total the error per minor is at most \(2\cdot10^5\delta(a^2+s^2)\).
+
+Multiply over all thresholds and restore the determinant power in \(m_{-v}\). Each ordered pair \(i,j\) crosses exactly \(|v_i-v_j|\) thresholds, so the quadratic terms sum to \(q=Q_{-v}(X)/4\), with \(Q_w\) as in \S\ref{sec:bessel-period}. The linear terms sum to \(-\operatorname{tr}(\operatorname{diag}(v)Z)\). Using \(|2\rho_{c,i}|\le d\), \(\|Z\|\le2\delta\) and \(\|k\|^2=d\) gives \(Q_{-v}(k)\le Q_\mu(k)+2d^2\). Hence the denominator in (M2) is
 \[
-  \eta t^2+18\eta t z_0+10^4\eta z_0^2
-               \le 10^5\eta(x_0^2+t^2) .
+ \exp\{q-\operatorname{tr}(\operatorname{diag}(\mu)Z)-r(k)\},
+ \qquad |r(k)|\le10^6\delta\{q+Q_\mu(k)+d^2\}.
 \]
-The determinant of the full reduced matrix is \(e^{\operatorname{tr} Z}\). Multiplying the threshold formulas and restoring its integer power therefore restores precisely \(\operatorname{tr}(w Z)\) in the linear term. Also \(\sum_t\|[P_t,H]\|^2=\sum_{ij}|w_i-w_j||H_{ij}|^2=Q_w(H)\), because each ordered crossing is counted that many times. Thus the denominator in (M2) equals
-\[
-     \exp\left(q-\operatorname{tr}(\operatorname{diag}(\mu)Z)-r(k_0)\right),
-     \qquad q=Q_{-v}(Z)/4,\quad
-     |r(k_0)|\le 5\cdot10^5\eta\{q+Q_\mu(k_0)+d^2\}.
-\]
-In deriving the last bound use \(|2\rho_{c,i}|\le d\), so the change in the linear trace is at most \(d^2\eta\) and \(Q_{-v}(k_0)\le Q_\mu(k_0)+2d^2\) because \(\|k_0\|_F^2=d\). For \(\|g-1\|_F\le\delta\le1/2\), the logarithm series gives \(\eta\le2\delta\). These are the constants and the Gaussian exponent in \S\ref{sec:bessel-period}.\formalnote{7.20}{20}
+This is the coefficient estimate used in \S\ref{sec:bessel-period}.\formalnote{7.20}{20}
+
 \subsection{The compact normalization and the identity neighborhood}
 Let \(L\) bound the absolute values of the doubled parameters on both groups, with \(\beta\ge r+k+L\) and \(T=(r+k)^2\log\beta\). The assumptions include \(\beta\ge10^{12}\). Within each sign block, order the coordinates by decreasing parameter. The weight \(\mu\) is dominant in that order. For two coordinates within a block, the difference of the \(\lambda\)-coordinates is at least their distance in the full order, and the compact \(\rho_c\)-difference is at most that distance. The principal minors defining \(m_\mu\) on \(K=U(d_+)\times U(d_-)\) are coefficients of the leading wedge vectors in the exterior powers. Their product, with the indicated determinant power, is the coefficient of the tensor of these unit highest vectors, which generates the irreducible highest-weight representation \(V_\mu\). Since \(K\) has Haar mass one, Schur orthogonality \cite[Corollary~4.10]{theta-knapp} gives \(K_\mu=(\dim V_\mu)^{-1}\).
 
@@ -6871,15 +6828,7 @@ Put \(a(g)=(g+JgJ)/2\), the two diagonal blocks of \(g\). In the polar decomposi
                   |\det a(g)|=|\det a(z)|\ \ge\ (r/2)^2.
 \]
 
-For an integral weight \(w\), write \(m_w(z)\) for the product of principal minors on \(\{i:w_i\ge t\}\), over integer thresholds \(t\), dividing the factor at \(t\le0\) by \(\det z\). Only finitely many factors differ from one. For \(0\le c\le h\) an integer set \(\mu=\lambda+\rho\), \(v=\mu+c\). At a threshold \(t\) put \(I=\{t\le\mu_i\}\), \(H=\{\mu_i<t\le v_i\}\), \(D=\{v_i<t\}\). All indices in \(H\) have the same sign when \(H\) is nonempty. Indeed their \(\mu_i\) differ by less than \(c\), and \(\rho_i-\rho_j\) increases the separation of distinct \(\lambda_i,\lambda_j\) in their ordering. Denote a principal minor by \(\Delta\). Fischer's determinant inequality for the positive matrix \(a=a(z)\) gives \(\Delta_{I\cup H}(a)\le\Delta_I(a)\Delta_H(a)\). On \(H\) the block part agrees with \(z\). Jacobi's complementary minor identity, \(z^{-1}=JzJ\), and \(\det z=1\) give \(\Delta_H(z)=\Delta_{I\cup D}(z)\). Applying Fischer's inequality again bounds this by \(\Delta_I(z)\Delta_D(z)\).
-
-Multiply over thresholds. Jacobi's identity on \(D\) supplies the complementary factors on \(z^{-1}\). After the determinant normalizations the result is
-\[
- m_v(a)\le m_\mu(a)m_\mu(z)m_v(z^{-1}).
-\]
-Here \(m_v(a)=m_\mu(a)(\det a)^c\), \(m_v(z^{-1})=m_\mu(z^{-1})=m_\mu(z)\), and \(m_{-\mu}(z)=m_\mu(z^{-1})\). The last equality follows from complementary minors and reversal of the integer thresholds. All the minors on these positive matrices are positive, so division gives \(|\det a|^c\le |m_{-\mu}(z)|^2\).\formalnote{7.37}{37}
-
-The same lower bound applies at \(u^{-1}zu\) for \(u\in K\), since compact conjugation preserves the determinant of the block part. In the polar integral the denominator is \(m_{-\mu}(u^{-1}zu)\). The numerator is \(m_\Lambda(ku)\overline{m_\Lambda(u)}\) and the normalization is \(\int_K |m_\Lambda(u)|^2\,du\). Cauchy--Schwarz and translation invariance bound the integral of the absolute numerator by precisely this normalization. Hence
+For any integer \(0\le c\le h\), apply \textup{(M3)} and the ensuing polar-integral estimate of \S\ref{sec:bessel-minors} with gap exponent \(c\). The weight denoted there by \(v\) is \(\lambda+\rho\), and the block determinant is \(\det a(g)\). Together with the preceding eigenvalue bound this gives\formalnote{7.37}{37}
 \[
               |c_\lambda(g)|^2 |\det a(g)|^c\le1,\qquad
               |c_\lambda(g)|\le(2/\|g\|)^c .                         \tag{RD1}
@@ -8316,33 +8265,35 @@ Summing the exponents \(1,3,\ldots,2d-1\) gives \(d^2\). Nonvanishing
 of the positive-weight Hecke \(L\)-function on the real interval
 \([1,\infty)\) makes each division legitimate. Sections~\ref{sec:plane-period} and~\ref{sec:hecke-endpoint} derive the two formulas for the single line orbit and prove the nonvanishing at one.\formalnote{10.7}{7}
 
-There is still a possible character dependence in the equal-rank period.
-Write \(H\) for a hyperbolic plane, \(J=I_{2k}\), and \(Y=H\oplus J\).
-For a real Schwartz vector \(v\) let
+It remains to determine the dependence of the equal-rank period on \(\lambda\).
+Put \(k=s_0\), let \(H\) be a hyperbolic plane and take \(J=I_{2k}\) positive definite.
+Then \(X=H^{\oplus l}\oplus J\) has the signature of \(W\).
+For an archimedean Schwartz vector \(v\) on the pair \((Y,Y)\), where \(Y=H\oplus X\), set
 \[
-      r_\lambda(v)=|I_{Y,Y}(v)(1)|^2/L_*(k+1),
+ r_\lambda(v)=|I_{Y,Y}(v)(1)|^2/L_*(k+l+1).
 \]
-using the standard determinant function of the ramified character.
-Apply the exchange with complementary partners \(J,0\) in both orders.
-For this same \(v\) it supplies scalars \(c_1,c_2\) and constants \(B,D\)
-independent of \(\lambda\), with
+The finite function in this integral is the standard determinant function of the ramified character.
+Remove the \(l+1\) planes above \(J\) in the exchange identity, first with complementary
+partners \(J,0\) and then with the partners interchanged. Use the same \(v\) in both
+identities and take the intermediate vector on \((J,J)\) from the first as datum for the second. This gives
 \[
- B|c_1|^2=L_*(k)\,r_\lambda(v),\qquad
- D|c_2|^2=L_*(-k)\,r_\lambda(v).
+ B|c_1|^2=L_*(k)r_\lambda(v),\qquad D|c_2|^2=L_*(-k)r_\lambda(v).
 \]
-Both exchanges integrate the same kernel on \(U(J)\times U(J)\).
-Integrating in the two orders gives \(c_1c_2=\xi_v\), fixed by the real
-data; the common volume of the rank-zero quotient is nonzero.
-Multiplication gives \(r_\lambda(v)^2=BD|\xi_v|^2\). Since \(r_\lambda(v)\)
-is nonnegative, its value is independent of \(\lambda\). There is a
-choice of \(v\) for which this value is nonzero. Otherwise all the
-equal-rank periods would vanish; descent of vanishing along the
-hyperbolic planes would force the rank-zero partner's vacuum integral,
-a positive volume, to vanish. This uses the existence of Schwartz
-vectors with prescribed smaller cone integral and the nonvanishing of
-the corresponding line factors. Adding a plane multiplies the ratio
-for a suitably lifted vector by a fixed positive real number. Hence the
-same conclusion holds for the required signature.
+Here \(c_1,c_2\) are the exchange scalars. Integrating the resulting common kernel on
+\([U(J)]\times[U(J)]\) in the two orders gives \(c_1c_2=\xi_v\) after cancellation of the
+rank-zero volume. The exchange identities fix \(B,D,\xi_v\) independently of \(\lambda\).
+Since \(L_*(k)L_*(-k)=1\), the nonnegative number \(r_\lambda(v)\) has constant square
+\(BD|\xi_v|^2\).
+
+Fix one admissible character. If its ratio vanished for every \(v\), the equal-rank
+periods in the Fourier coefficients for \((H^{\oplus 2k}\oplus Y,J^-\oplus Y)\) would all vanish,
+where \(J^-\) carries the negative of the form on \(J\). The theta integral for this pair would
+therefore vanish on all standard data. By \S\ref{sec:det-cone}, vanishing on determinant
+vectors descends through \(2k+l+1\) planes to \((J,0)\), where the vacuum integral is a
+positive volume. Thus some \(v\) has positive ratio for the chosen character and hence for
+every admissible character. Replacing \(Y\) by \(H\oplus W\) translates the argument of the
+constant equal-rank theta integral and multiplies its value by a scalar of modulus one.
+This gives the same ratio for the required space.
 
 As a result, for any prescribed real Schwartz datum \(v'\) on
 \((V',W)\) there is a real datum \(v\) on \((W,I_a)\), independent of
@@ -8358,10 +8309,7 @@ determinant character. The equivariant linear functional on row data
 then factors through the section on column data. Reduction from the
 product of the marked local integer rings to \(R\) preserves the
 residue character and detects units, so functions matched modulo
-\(\mathfrak m\) give these same local data. The analytic inputs in this
-derivation are the large-triple period identity, the plane constant
-term on both sides of Poisson summation, and the existence of the
-Schwartz vectors with the specified cone integral.\formalnote{10.8}{8}
+\(\mathfrak m\) give these same local data.\formalnote{10.8}{8}
 
 \subsection{Projection to the determinant vectors}
 
@@ -8474,32 +8422,12 @@ operators. For a joint-harmonic vector joining the specified compact
 types, the real zeta integral
 \(\int\langle v,\omega(x)v\rangle\overline{e(x)}/e(1)\,dx\)
 is nonzero, where \(e\) is the source type function. This yields the
-norm pairing and injectivity on the indicated level. The doubling
-formula, this real integral, and the local sharpness and spherical
-vacuum calculations are the specific Rallis inputs.\formalnote{10.10}{10}
+norm pairing. For injectivity, one may impose integrality at successively
+more unramified places in the doubling integral. The limiting integral
+is the sharp mass times the nonzero real factor times the squared norm
+of the source form. We give the argument in \S\ref{sec:odd-lifts}.\formalnote{10.10}{10}
 
-Apply this formula to the character lift \(U(1)\to U(N)\) used in
-the norm comparison, with \(N=2k\ge4\). At a chosen place of norm \(q\), its block test function
-has mean square \(q^{-N}\). At a twisting place it has mean square
-\((q-1)/q\). The target level indices are respectively \(q^N-1\)
-and \(1+q+\cdots+q^{N-1}\). The unramified vacuum sum gives
-\(L^S(k,\mu^{-1})/\zeta_{E^+}(N)\) with the missing correction
-\((1-q^{-N})^{-1}\) at each marked place, for the CM field and
-unramified extension over \(E^+\) used here. Multiplying the three
-local factors gives
-\[
- q^{-N}(q^N-1)(1-q^{-N})^{-1}=1,\qquad
- \frac{q-1}{q}\,\frac{q^N-1}{q-1}\,(1-q^{-N})^{-1}=q^{N-1}.
-\]
-Consequently the twisting places contribute \(N(Q)^{N-1}\) to this
-norm. The full squared norm of the class-sum lift is that power times
-\(L^S(k,\mu^{-1})\), the source level index
-\(\prod_{\rm chosen}(q-1)\), the hook number and dimension of the
-Weyl representation of its weight, and the fixed quotient-volume factor
-\(\operatorname{vol}[U(N)]\operatorname{vol}[U(1)]/\zeta_{E^+}(N)\).
-Here the local sharpness of this particular block vector is what
-allows the stabilizer index and the missing Euler factors to be
-combined in the displayed products.\formalnote{10.11}{11}
+For the character lift \(U(1)\to U(2k)\), \(k\ge2\), each chosen place contributes \(1\) to the product of the local mean square, target level index, and missing Euler factor. Each twisting place of norm \(q\) contributes \(q^{2k-1}\). Thus for twisting modulus \(Q\) the conductor contributes \(N(Q)^{2k-1}\). Formula \textup{(SV3)} in \S\ref{sec:split-vacuum} gives the full squared norm of the class-sum lift.\formalnote{10.11}{11}
 
 
 \section{Doubling the theta kernel in the convergent range}
@@ -8825,21 +8753,29 @@ Here \(\alpha_0>0\) is the module of the scale idele, \(Q_S=\prod_{w\in S}q_w\),
 
 For \(e\ge0\) take \(x=e+1\) on the plus side. For \(e<0\) take \(x=-e\) on the minus side so that \(1-x=e+1\). In either case \(x\ge1\) and the scalar in the plane constant term has modulus \(C Q_S^{x-1/2}|L^S(x,\nu)|\), with \(C>0\) independent of the twisting character at fixed weight and ranks. In particular, the first negative step \(e=-1\) and the middle step \(e=0\) both call for the endpoint \(x=1\).\formalnote{10.45}{45}
 
-\subsection{Reflecting the nonpositive critical integers}
-The rank-zero specialization of the same integral supplies a further fact used in \S\ref{sec:critical-values}. Set \(W=V=0\), and take the Gaussian times the test polynomial \(\prod_{w,i}X_{w,i,i}^{m_w}\) on the positive coordinates of \(\operatorname{Hom}(H,H)\), where \(m_w=\mu_w\ge k\ge0\). The two diagonal entries at \(w\) supply \(\bar a_w^{\,2m_w}\) in either slice. The maximal compact fixes this test vector for the action in the integrand, and the angular character cancels its phase. The empty-space theta value is its quotient volume times the finite datum at the empty matrix, which equals 1 there. Thus the last factor in (PP2) is now \(\kappa G_m(x)\) on both sides, with a common nonzero \(\kappa\), where
+\subsection{Descent on determinant vectors}\label{sec:det-cone}
+To descend vanishing of a theta integral through one hyperbolic plane, we need only one
+family of test vectors in \textup{(PP2)}. Here \(k=s_0\) and \(\mu_w\) is the weight of
+\(\lambda\) at \(w\). Put \(m_w=\mu_w-k\ge0\).
+For a matrix \(F_w\) of frame parameters at each infinite place, let \(u_{+,w}\) be the
+positive-coordinate part of the variable \(u\) in the Fock model. Multiply the Gaussian by the
+complex conjugate of the product, over \(w\), of the two principal minors of \(u_{+,w}F_w\)
+on the positive and negative sign blocks of the target, raised to \(m_w\) and \(m_w+2k\), respectively.
+Denote this vector by \(v_F\). On extending \(F\) by the adapted plane frame, each sign block
+acquires a scalar diagonal block in the line slice. The two minors thus contribute
+\(\bar a_w^{\,2\mu_w}\) in either model. The vector transforms under the compact group by the
+character canceled in the cone integral, and \((a_w/|a_w|)^{2\mu_w}\) cancels the phase of this power,
+so the cone integrand for the extended frame is \(v_F\) times
 \[
-       G_m(x)=\int_{(\mathbb C^\times)^{[F:\mathbb Q]}}
-                 \prod_w e^{-|a_w|^2}|a_w|^{2(m_w+x)}\,d^\times a.
+                 \prod_{w\mid\infty} e^{-|a_w|^2}|a_w|^{2(x+\mu_w)}.
 \]
-It is positive and real-analytic for \(x>-k\): in each radial integral substitute \(t=|a_w|^2\), obtaining a positive Haar constant times \(\Gamma(m_w+x)\). Divide \(\mathcal Z(t)\) by \(\epsilon_+\alpha_0^t Q_S^{t-1/2}\kappa G_m(t)\) to obtain \(\Lambda(t)\) there. Equation (PP2) in its plus form proves agreement with \(L^S(t,\nu)\) at \(t\ge1\). Its minus form gives, for \(1\le z<1+k\),
-\[
- Q_S^{\,1/2-z}|\Lambda(1-z)|
- =\frac{|\epsilon_-|}{|\epsilon_+|}
-    \alpha_0^{2z-1}\frac{G_m(z)}{G_m(1-z)}
-    Q_S^{\,z-1/2}|L^S(z,\nu)|.
-\]
-Every factor multiplying the normalized right-hand value is positive and independent of the character. If \(-k<j\le0\) is integral, substitute \(z=1-j\). This proves nonvanishing there. The positive integers were already covered by the Euler product and its value at one. The reflection is needed for the critical-value assertion even though both plane-removal formulas themselves were obtained with \(x\ge1\).\formalnote{10.46}{46}
-
+For \(x>0\) its scalar integral is positive and finite, as is seen by putting \(t=|a_w|^2\)
+in each radial integral. Rescaling the extended vector gives any prescribed multiple of \(v_F\)
+downstairs. For the value \(x\ge1\) used in \textup{(PP2)}, the Hecke factor is nonzero, and
+the adapted integral frame carries each standard row datum to an admissible datum upstairs.
+Consequently vanishing on these vectors upstairs implies vanishing on them downstairs.
+When the second space has rank zero, the two minors are empty determinants and \(v_F\) is
+the vacuum.\formalnote{10.46}{46}
 
 \section{The ramified line in the theta exchange}
 \label{sec:finite-period}
@@ -8943,7 +8879,7 @@ More precisely, the direct Poisson variable is \(a\) and the dual variable is \(
 \]
 Here \(\mathcal Z\) includes the fixed unfolding constant. The modulus of \(e_\beta\) depends on the side and the fixed spaces and measures, uniformly in the tame character. Its phase includes the normalized Gauss sum and the character at \(\alpha_0c^{-1}\). The rank of the smaller source is even, the splittings are adapted to the integral vacuum, the real vector is Schwartz, and the Levi coordinate is either \(1\) or the two smaller spaces have equal rank. These are the hypotheses of the constant-term identity used in the exchange.\formalnote{10.54}{54}
 
-At \(x=1\) the ideal sum above need not be absolutely convergent. To pass to the endpoint, the unfolded \(\mathcal Z(s)\) is a Mellin integral of \(T\,D^s\) for a positive function \(D\). The two Poisson formulas above give absolute convergence at \(s=R\) and \(s=1-R\) for every \(R>1\). On the strip between them, \(|T|D^{\Re s}\) is dominated by the sum of the two integrable endpoint functions. On compact substrips one can also absorb every fixed power of \(|\log D|\) into a slightly wider pair of exponents. Thus the Mellin integral is continuous at \(1\) and \(0\). The real cone integral is continuous at \(x=1\) by its own Mellin bound, and the partial Hecke value is continuous there because the weight is nonzero. Taking \(x\downarrow1\) proves the endpoint formulas on both sides. In particular at the first step, squaring the modulus yields \(Q_S |L^S(1,\nu)|^2\) times the fixed factor required in the endpoint case of \S\ref{sec:critical-values}.\formalnote{10.55}{55}
+The endpoint argument following \textup{(PP2)} in \S\ref{sec:plane-period} applies at \(s=1\) on the direct side and \(s=0\) on the Poisson side. Thus at the first step the squared modulus contains \(Q_S|L^S(1,\nu)|^2\), up to the fixed factor used in \S\ref{sec:critical-values}.\formalnote{10.55}{55}
 
 \subsection{Support of the definite character-lift vector}
 
@@ -9340,7 +9276,7 @@ Here \(a^*z\) denotes the adjoint vector obtained by transposing the kernel agai
 \subsection{Peeling one block off the Gram form}
 Write \(X_{i,0}=1\), \(X_{i,h+1}=w_h a_{i,h}X_{i,h}\), and let
 \(j_{i+1}B_i x=d_{i,0}a_{i,0}j_i x\).
-To see this last definition is possible, pair the right side with an arbitrary base form transported by negation. The first-edge adjoint gives the Gram pairing of \(a_{i,0}\). The base level preserves that pairing by its action on the finite point datum, so the represented vector has the base level. The first-edge sharp-data Rallis identity of Section~\ref{sec:one-exchange} applies because \(2b_0<b_1\). Its injectivity shows that \(B_i\) has zero kernel, since \(\langle B_i x,x\rangle=\|a_{i,0}j_i x\|^2\).\formalnote{11.13}{13}
+To see this last definition is possible, pair the right side with an arbitrary base form transported by negation. The first-edge adjoint gives the Gram pairing of \(a_{i,0}\). The base level preserves that pairing by its action on the finite point datum, so the represented vector has the base level. Since \(2b_0<b_1\), the stable-range injectivity theorem for the sharp datum (\S\ref{sec:odd-lifts}) applies to the first-edge lift \(a_{i,0}\). It follows that \(B_i\) has zero kernel, since \(\langle B_i x,x\rangle=\|a_{i,0}j_i x\|^2\).\formalnote{11.13}{13}
 
 Applying (CS1) successively gives, on the base,
 \[
@@ -10242,12 +10178,17 @@ Here is a bound for \(s\) including \(\ell=2\). For any finite completion \(K_v\
 \]
 The valuation group contributes the first \(M\). On a sufficiently deep group of principal units, the logarithm changes the power map into multiplication by \(M\) on an open additive ideal, whose cokernel has order \(|M|_v^{-1}\) and whose kernel is trivial. On the finite group of remaining unit cosets the cokernel and kernel of an endomorphism have the same order. Multiplicativity of the cokernel-to-kernel ratio in this short exact sequence gives the formula for all units, with their actual kernel \(\mu_M(K_v)\). One may take the logarithm arbitrarily deep at residue characteristic two. Since \(\prod_{v\in\Sigma}|M|_v^{-1}\le M^d\), the product of the displayed indices is at most \(M^{2|\Sigma|+d}\).\formalnote{12.50}{50}
 
-For the other factor, Minkowski's ideal-class bound gives each class an integral ideal of norm \(k\le B_0=2^d|\Delta_K|\). Such an ideal contains \((k)\), as \(k\) kills its additive quotient. It has the form \((k,\alpha)\): choose \(\alpha\) locally by the valuation of the ideal at the primes dividing \((k)\), then apply the Chinese remainder theorem. Only \(\alpha\bmod k\mathcal O_K\) matters. There are at most \(k^d\) residues for each \(k\), hence \(h_K\le B_0^{d+1}\). To bound the discriminant, write \(X^M-1=\Phi_M(X)H(X)\) and let \(\zeta\) be a primitive \(M\)-th root. Differentiation gives \(\Phi_M'(\zeta)H(\zeta)=M\zeta^{-1}\). The absolute discriminant of the power basis is \(\lvert N_{K/\mathbb Q}\Phi'_M(\zeta)\rvert\), which divides \(M^d\), and the field discriminant divides that of the power basis. Using \(d,|\Sigma|\le M\) and \(M\le 2^M\) gives
+For the class number the community proof invokes the effective bound \(h_K\le4^d|\Delta_K|\).
+Indeed Minkowski's theorem \cite[\href{https://www.jmilne.org/math/CourseNotes/ANT301.pdf}{Theorem 4.3}]{legacy-milne-ant}
+gives each class an integral ideal of norm at most \(B=(4/\pi)^{r_2}(d!/d^d)\sqrt{|\Delta_K|}\),
+where \(r_2\) counts complex places. Summing \((B/N\mathfrak a)^2\) over integral ideals gives
+\(h_K\le B^2\zeta_K(2)\le4^d|\Delta_K|\), since \(2r_2\le d\) and the Euler products give
+\(\zeta_K(2)\le\zeta(2)^d<2^d\). Thus \(h_K\le(2^d|\Delta_K|)^{d+1}\). To bound the discriminant, write \(X^M-1=\Phi_M(X)H(X)\) and let \(\zeta\) be a primitive \(M\)-th root. Differentiation gives \(\Phi_M'(\zeta)H(\zeta)=M\zeta^{-1}\). The absolute discriminant of the power basis is \(\lvert N_{K/\mathbb Q}\Phi'_M(\zeta)\rvert\), which divides \(M^d\), and the field discriminant divides that of the power basis. Using \(d,|\Sigma|\le M\) and \(M\le 2^M\) gives\formalnote{12.51}{51}
 \[
  2^s\le |B|\le (2^M(2^M)^M)^{M+1}\,(2^M)^{3M}
                =2^{M^3+5M^2+M}.
 \]
-\cite[\href{https://www.jmilne.org/math/CourseNotes/ANT301.pdf}{Theorem 4.3}]{legacy-milne-ant}.\formalnote{12.51}{51}
+
 
 \subsection{Restoring the twist without paying for its depth}
 Add to \(\{b_i\}\) one representative per coset of \(G_K\) in \(G_E\). There are at most \(\varphi(M)\) of these. Suppose \(z\) vanishes at the resulting set, and induct on \(j\) such that \(\ell^j z=0\). For \(j=0\) this already says \(z=0\). For \(j\ge1\), the cocycle \(Mz\) vanishes at the same points and is killed by \(\ell^{j-1}\), since \(\ell\mid M\). Induction gives \(Mz=0\).
@@ -11680,8 +11621,7 @@ to \(B^+\) preserving \(D\).\formalnote{14.51}{51}
 Let \(S_B\) consist of multipliers commuting with all \(S\)-linear maps
 \(B^+\to B^+\) preserving \(D\). Each such bounded map is continuous
 for the neighborhoods \(p^nD\), and is automatically \(S[1/p]\)-linear.
-Consequently multiplication by \(E/p\) commutes with it. Each extended
-coordinate \(\widehat\lambda_i\) has image in \(S_B\). To see this,
+Each extended coordinate \(\widehat\lambda_i\) has image in \(S_B\). To see this,
 approximate any element of \(B^+\) by elements of \(A[1/p]\). Their
 coordinates lie in \(S[1/p]\), and the identity expressing commutation
 with a bounded map passes to the limit after multiplication by a fixed
@@ -11689,19 +11629,13 @@ element of \(B^+\). Thus \(\mathrm{pr}=\widehat\lambda_0\) maps into
 \(S_B\). Conversely \(\mathrm{pr}(y)=y\,\mathrm{pr}(1)=y\) for
 \(y\in S_B\).
 
-In fact \(S_B=\overline{S[E/p]}[1/p]\), with closure in \(D\).
-Given \(y\in S_B\), take \(p^d y\in D\) and approximate by polynomials
-in \(\xi/p\) with coefficients in \(A\). Writing \(\xi=vE\) with
-\(v\in A^\times\), the projection sends \(a(\xi/p)^n\) to
-\(\lambda_0(av^n)(E/p)^n\). It fixes \(p^d y\), yielding the claimed
-approximation. Conversely the closure and its \(p\)-localization
-commute with all the bounded maps. As the fixed locus of the continuous
-projection \(\mathrm{pr}\), \(S_B\) is closed in \(B^+\).
-Frobenius preserves \(D\) and \(S\), and sends \(E/p\) to
-\(\varphi(E)/p\in S[1/p]\). Continuity then gives
-\(\varphi(S_B)\subset S_B\). The element
-\(\varphi(E)\) is associated to \(p\) in \(D\), so its inverse in
-\(B^+\) also commutes with every bounded map.\formalnote{14.52}{52}
+Thus \(S_B\), the fixed locus of the continuous projection \(\mathrm{pr}\),
+is closed. For \(y\in S_B\), choose \(a_j\in A[1/p]\) tending to \(y\).
+Then \(\mathrm{pr}(a_j)\in S[1/p]\) tends to \(y\). Frobenius preserves
+\(S[1/p]\subset S_B\), so continuity gives \(\varphi(y)\in S_B\).
+Moreover \(\varphi(E)\in S\) is associated to \(p\) in \(D\). Its
+inverse in \(B^+\) therefore commutes with every bounded map as
+well.\formalnote{14.52}{52}
 
 For \(y\in B^+\) and any precision \(N\), every sufficiently large
 finite set \(F\) of basis indices satisfies
@@ -11895,7 +11829,12 @@ For \(g\) fixing the constants and \(\theta z\), choose a lift \(\gamma\in\Gamma
 
 \subsection{Retractions and preservation of the Hodge conditions}
 
-The regular sequence \((p,z)\) on \(A\) supplies a topological \(S\)-basis \((b_i)\) containing \(1\). Indeed \(A/p=\mathcal O_{\mathbb C_p}^\flat\) is a domain, \(z\bmod p\) is nonzero and is a nonunit, and \(1\) survives modulo \((p,z)\). Extend that residue vector to a residue basis and lift it by the adic basis theorem. The coordinate \(\lambda_0\) at \(1\) is an \(S\)-linear retraction \(A\to S\). Its extension to \(B^+\), as well as the extension \(\widehat f\) of any \(S\)-linear \(f:A\to A\), preserves \(A_{\max}\). In fact \(p^j A_{\max}\cap A=(p,\xi)^j=(p,E)^j\) under the natural inclusion, so \(f\) respects the divisibility needed to define \(f(p^{-m}x)=p^{-m}f(x)\) on the elements of \(A_{\max}\) with \(p^m\)-multiple in \(A\). These elements are dense. Extend by continuity and invert \(p\). The definition of \(S_B\) now makes \(\widehat f\) linear over \(S_B\).\formalnote{14.68}{68}
+Take the topological \(S\)-basis \((b_i)\) of \(A\) from
+\S\ref{sec:integral-coordinates}, with \(b_0=1\) and coordinate
+\(\lambda_0:A\to S\) at \(b_0\). By the extension proved there, every
+\(S\)-linear \(f:A\to A\) extends to a map \(\widehat f:B^+\to B^+\)
+preserving \(A_{\max}\). By the definition of \(S_B\), each such extension is
+\(S_B\)-linear.\formalnote{14.68}{68}
 
 We need the following stability. For \(y\in(B^+)^d\) and \(n\ge0\),
 \[
@@ -12036,7 +11975,7 @@ image of the local group when the hypothesis holds everywhere, and
 on an open subgroup contained in the image of the identity
 neighborhood when it holds only near \(1\).
 
-\phantomsection\label{route:25}\leanroute{Lean derives the fixed-field theorem by Ax's polynomial approximation and proves twisted vanishing by a bounded normalized trace on the cyclotomic tower. The cited theorem gives both statements for the open subgroups used here. We retain the deductions for the de Rham filtration and for the period coordinates.\formalnote{14.89}{89}}
+\phantomsection\label{route:25}\leanroute{The original formalization proves the two scalar assertions by Ax's polynomial approximation and a normalized trace on the cyclotomic tower. The community formalization invokes the Ax--Sen--Tate fixed-field theorem and Tate's vanishing theorem here.\formalnote{14.89}{89}}
 
 \subsection{Lifting an invariant class}
 
@@ -12843,7 +12782,7 @@ Here is the compact correspondence behind this rule. Remove the determinant char
 \]
 Order rows and columns by the two extremal flags, with the dual flag on a factor carrying the contragredient action. Each diagonal coordinate in position \(i\) occurs with weight \(a_i\) on its side, since the exponents of minors containing it telescope. Triangular row and column additions in the extremal unipotents preserve the minors. Evaluation on the rectangular identity gives one. The Cauchy decomposition of the polynomial algebra pairs the two Schur modules indexed by \(a\), once each as a tensor product, using the dual on the contragredient side. It follows in degree \(d\) also by decomposing the two tensor powers into Schur modules times Specht modules of \(S_d\) and taking diagonal \(S_d\)-invariants. Two Specht factors contribute a line precisely when their partitions agree. The extremal lines in that summand are therefore the ones selected by \(\Phi_a\). Restoring the vacuum characters and dual flags gives the weight pair computed above \cite[\href{https://www.math.auckland.ac.nz/~obrien/howe.pdf}{Theorem 4.4.1}]{theta-howe}.
 
-With Haar probability on either compact unitary group, integration against the conjugate coefficient of a unit extremal vector, multiplied by the dimension, is the orthogonal projection onto that extremal line in each copy of its representation, by Schur orthogonality. Applying either projection to \(\Phi_a\) fixes it, so the composite fixes it in either order. Translating by the other compact group spans the entire partner representation inside the projected piece, by irreducibility. The normalized integral in the lift norm is the squared norm of the nonzero projected vector divided by the positive dimension. Taking the product of these local vectors gives \(v_\infty\) and a nonzero real factor at all places. These are the two properties needed for the definite lift here.\formalnote{15.57}{57}
+By compact Schur orthogonality the normalized projections onto the two extremal lines fix \(\Phi_a\). Its translates under the partner group span the partner type by irreducibility. The real integral of \S\ref{sec:real-pairing} is the squared norm of the nonzero projected vector divided by the source dimension. The product over the infinite places gives \(v_\infty\) and the nonzero factor \(Z_\infty\).\formalnote{15.57}{57}
 
 Let \(H\) be the open right stabilizer of \(f\), \(K_0\) the stabilizer of the standard integral lattice, and \(\widehat{\mathcal O}=\prod_w\mathcal O_{E_w}\). Choose a finite set \(B\) such that integral elements trivial at \(B\) and its conjugates belong to \(H\), and an integer \(N>0\) with \(K(N)\subset H\). Take \(B\) to avoid the pairs of places at which \(H\) contains the local maximal compact. Put \(z=N^{-1}\) on \(B\cup\bar B\), zero elsewhere, and let \(S\) be the places at which \(z\) is nonintegral. There is a matrix \(x\in M_{m,n}(\widehat{\mathcal O})\) with \(x^*x=0\) whose first \(n\) rows are the identity. To construct it take two disjoint blocks of \(n\) rows and put \(I_n,\epsilon I_n\) in them. The integral finite adele \(\epsilon\) of norm \(-1\) furnished by the Weil data gives \(1+\bar\epsilon\epsilon=0\). Set \(\Psi\) equal to the finite Heisenberg translate of the vacuum by \(zx\). It has nonzero norm and is a vacuum off \(S\), since that translation is integral there.
 
@@ -12855,19 +12794,16 @@ Put \(J=H\cap\operatorname{Stab}(\Psi)\), with the stabilizer taken for the sour
 For the support calculation put \(D=g^{-1}-1\). In the integral-lattice model a nonzero vacuum overlap requires an integral matrix \(u\) with \(zxD+ug^{-1}\) integral. Reading the identity block of \(x\) and subtracting the integral term \(u\) gives \(zD_{pj}+\sum_k u_{pk}D_{kj}\) integral for every \(p,j\), using only those rows of \(u\). At a fixed place choose an entry \(D_{pj}\) of largest absolute value in its column. If its absolute value exceeds \(1\), the displayed integrality forces \(|z|\le1\): otherwise the first term strictly dominates all the others. But \(g^{-1}\) is integral at such a place by the assumption off \(S\), a contradiction. Hence \(D\) and then \(zD\) are integral. This gives \(g\in K_0\) by unitarity. Its component at \(B\cup\bar B\) is congruent to the identity modulo \(N\); the complementary component is in \(H\) by the choice of \(B\). Thus \(g\in H\). Finally the difference between the translated labels is \(zxD\), which is integral, and the Heisenberg phase is trivial since \(x^*x=0\). So \(g\) fixes \(\Psi\). On \(J\cap K_0\) the coefficient is its value at the identity, proving (OL1).\formalnote{15.58}{58}
 
 \subsection{The nonvanishing test}
-Normalize finite Haar measure by \(\operatorname{vol}K_0=1\). The integral in the finite directions of (OL1) contributes \(d=\|\Psi\|^2/[K_0:J\cap K_0]>0\). The directions off \(S\) give the operator
+Normalize finite Haar measure by \(\operatorname{vol}K_0=1\), and put \(d=\|\Psi\|^2/[K_0:J\cap K_0]>0\). Write \({\cal R}y=\sum_\gamma b_{\rm vac}(\gamma) R(\gamma)y\), where \(R\) is right translation and \(b_{\rm vac}\) is the rank-\(m\) vacuum coefficient for \(b\). The representatives \(\gamma\) of the finite adelic group modulo the subgroup integral off \(S\) are chosen to be supported away from \(S\). Doubling for the vacuum and the constant form on a definite source gives an integrable matrix coefficient. On each coset of the everywhere integral level, the integral of its absolute value is the absolute vacuum coefficient times a fixed positive integral over the identity coset. The coefficients are therefore summable, also on the subset of cosets off \(S\) and after a unitary twist. For the forms of the chosen type the norm formula of \S\ref{sec:doubling-integral} gives
 \[
-   {\cal R}y=\sum_{\gamma} b_{\rm vac}(\gamma)\,R(\gamma)y ,
+   \langle Ly',Ly\rangle_W=A d\,\langle y',{\cal R}y\rangle_V,\qquad
+   A=\operatorname{vol}[U(W)]\,Z_\infty\ne0 .                    \tag{OL2}
 \]
-where \(\gamma\) runs over representatives of the finite adelic group modulo the subgroup integral off \(S\), chosen supported away from \(S\), \(R\) is right translation, and \(b_{\rm vac}\) is the rank-\(m\) vacuum coefficient for \(b\). The identity coset acts as \(1\) on these forms. The strict inequality \(m>2n\) makes the series absolutely convergent on bounded forms. The convergent-range doubling formula, applied to the theta integral and unfolded, gives for every form \(y'\) of the same type
-\[
-   \langle Ly',Ly\rangle_{W}
-      =A\,d\,\langle y',{\cal R}y\rangle_V,\qquad
-    A=\operatorname{vol}[U(W)]\,Z_\infty\ne0 .                    \tag{OL2}
-\]
-Here \(y\) is \(J\)-invariant. The real factor \(Z_\infty\) is the integral of \(\langle v_\infty,\omega_{1,b}(g,1)v_\infty\rangle\) against the conjugate source type coefficient divided by its identity value. The joint harmonic makes this integral nonzero. Formula (OL1) cuts out the remaining finite support in each coset, giving exactly \(d\) times its vacuum coefficient in (OL2).\formalnote{15.59}{59}
+Here \(Z_\infty\) is the nonzero real-place factor for the joint harmonic \(v_\infty\).\formalnote{15.59}{59}
 
-Here is why (OL2) detects \(y\). For a set of unramified places whose total neighbour weight is \(u\le1/3\), every nonidentity lattice coset can be reached by a string of elementary neighbour steps. At \(w\) the weight counted with all choices of the step is their number times \(q_w^{-m/2}\). Summing over paths bounds the sum of the absolute values of the nonidentity coefficients by \(\sum_{j\ge1}u^j\le1/2\). Thus if the operator for these places kills a bounded function of the indicated level, its supremum norm is at most half itself. This argument applies separately to each single conjugate orbit: the step weights are at most \(1/(q_w-1)\) at a self-conjugate place and \(1/((q_w-1)\sqrt{q_w})\) at either member of a split pair, and the Weil field has \(q_w\ge4\). The total step weight is summable, using the split bound and the square residue norms at inert places. Outside finitely many conjugate orbits its sum is at most \(1/3\). Operators on disjoint conjugate-stable sets compose by absolute convergence and factorization of the vacuum coefficients. Each preserves the other sets' invariances. Their product \({\cal R}\) is therefore injective. The series preserves the source compact type and defines another form of that type. If \(Ly=0\), substitute \(y'={\cal R}y\) in (OL2). Then \(\langle{\cal R}y,{\cal R}y\rangle_V=0\), hence \(y=0\). This proves that the algebraic form \(F\) corresponding to \(Ly\) is nonzero.\formalnote{15.60}{60}
+Suppose \(Ly=0\). For a finite set \(T\) off \(S\), pair \(Ly\) with the lift of \(y\) for a second datum whose mixed Weil coefficient cuts out integrality at \(T\). Using the frame \(x\) above, apply the unitary shear \(1+u x x^*\), where \(u\) is skew, supported on \(T\cup\bar T\) and nonintegral there. Translate by the Heisenberg operator for the identity rows of \(x\) at these places and normalize by the vacuum multiplier. For \(g\) integral at \(T\), vacuum projection recovers the original coefficient. Conversely, a nonzero pairing forces the two Heisenberg characters to agree on their common stabilizer. At a place \(w\in T\cup\bar T\), let \(h\) be an entry of largest absolute value in a row of \(g_w^{-1}\), and choose \(\mu\) with \(|\mu|_w=\max(|u_w|_w,|h|_w)\). Testing integral multiples of the corresponding matrix unit scaled by \(\mu^{-1}\), self-duality gives \((1+u_w)h/\mu\) integral. If \(|h|_w>1\), its absolute value is \(\min(|u_w|_w,|h|_w)>1\). Thus \(g^{-1}\) is integral on \(T\cup\bar T\), as required by unitarity.
+
+Doubling now makes each restricted integral zero. Let \(T\) exhaust the places off \(S\). Absolute integrability in the range \(m>2n\) permits passage to the limit. On points integral off \(S\), (OL1) gives the finite factor \(d\); the archimedean pairing gives \(Z_\infty\langle y,y\rangle_V\). Thus \(d Z_\infty\langle y,y\rangle_V=0\), forcing \(y=0\). The lift of our nonzero form is therefore nonzero.\formalnote{15.60}{60}
 
 \subsection{The polynomial at a split place}
 Where \(f\) is spherical, the finite datum is a vacuum at \(w,\bar w\). The local maximal compact on the target fixes it: the change of variables preserves the lattice and the splitting is trivial on these units. Equivariance of the theta integral makes \(F\) spherical there as well. Suppose also that \(w\ne\bar w\), put \(q=q_w\), and define \(\alpha=\upsilon(\varpi_w)^{-n}q^{n/2}\) and \(\beta=b(\varpi_w/\bar\varpi_w)\upsilon(\varpi_w)^{-m}q^{m/2}\), with \(\varpi_w\) read as a local idele and \(\upsilon\) the Weil splitting character. Write \(p(Y)\) for the reciprocal eigenpolynomial of the original Hecke operators, with coefficients \((-1)^j q^{\binom j2}t_j\) and \(t_0=1\). Then the target reciprocal eigenpolynomial is
@@ -12900,7 +12836,7 @@ Apply (OL4) to each \(b_i\) with \(s=n+1\), so \(m=2n+1\). The odd-rank theorem 
 
 To identify every jump of the twisted representation, observe that the twist shifts the jumps of the rank-\(m\) weight by \(-c_v\) at the chosen embedding and by \(c_v-s\) at its conjugate. At index \(p<n\) the two resulting jumps are \(p-\lambda_p\) and \(\lambda_p+n-1-p\), exactly the original ones. At \(p=n+a\) for \(0\le a<s\) they are \(n+a-c_v\) and \(c_v-1-a\). These are the jumps of \(\theta_a\) on the chosen embedding and of \(\theta_{s-1-a}\) on its conjugate. The added characters thus account for every additional jump with multiplicity. The two cross-disjoint strings give the trace subtractions and the relatively prime polynomial factors used in \S\ref{sec:galois}.\formalnote{15.64}{64}
 
-The underlying inputs used here are the joint-harmonic compact theta correspondence, the convergent Siegel--Weil doubling identity proved from the reduction and local Weil estimates in \S\ref{sec:doubling-integral}, the local lattice-neighbour bounds for the vacuum, and class-field-theoretic compatibility for algebraic characters. The odd-rank Galois representation itself enters only after the two nonzero algebraic forms have been constructed.\formalnote{15.65}{65}
+The underlying inputs used here are the joint-harmonic compact theta correspondence, the convergent Siegel--Weil doubling identity proved from the reduction and local Weil estimates in \S\ref{sec:doubling-integral}, the dual finite datum cutting out integrality, and class-field-theoretic compatibility for algebraic characters. The odd-rank Galois representation itself enters only after the two nonzero algebraic forms have been constructed.\formalnote{15.65}{65}
 
 
 \section{Approximation with prescribed weight gaps}\label{sec:weight-density}
@@ -16085,6 +16021,21 @@ The argument uses rational test-ring cohomology. Sections~\ref{sec:test-proper-b
 \chapter{Comparison with the formal development (optional reference)}\label{sec:outstanding}
 The entries below identify places where the argument in the text differs from the readable Lean edition at \texttt{72fead1}. Each entry names the calculation or theorem concerned. Where a comparison uses a characteristic-zero result to obtain an integral bound, the linked passage also gives the argument on lattices.
 Each heading links to the passage where the two arguments are compared. Chapter~\ref{ch:volume} combines Theorems A, B and C, and Chapter~\ref{ch:analytic} deduces the conclusion about zeros. Parts II--IV give the proofs of the three estimates.
+\section*{Proofs from the community revision}
+The following passages use the community edition at \texttt{120962b4}.
+For CM sections, \hyperlink{call.4.18}{the local height and a single evaluation}
+give the integral coefficient bound. In the finite-place mass calculation,
+\hyperlink{call.6.61}{translation in a hyperbolic plane} bounds the mass of a box on a quadric.
+For the real discrete series, \hyperlink{call.7.18}{a trace logarithm} controls each minor.
+The \hyperlink{call.10.8}{equal-rank theta period} uses two exchanges in the prescribed signature
+and \hyperlink{call.10.46}{descent on explicit determinant vectors}.
+The \hyperlink{call.12.51}{effective class-number bound} bounds the number of generators needed
+for ray-class detection.
+The \hyperlink{call.14.52}{Frobenius-stability argument} uses the coordinate projection directly.
+For injectivity of the definite theta lift the community edition adopts the
+\hyperlink{call.15.60}{second test function in the doubling integral}
+from the authors' compact edition.
+
 \section*{The main theorem and its reduction}
 \noindent\hyperref[route:1]{\textbf{Primes for the two level windows} (p.~\pageref*{route:1})}. Siegel--Walfisz gives the required uniformity for moduli bounded by powers of the logarithm. Lean obtains a zero-free estimate for the special moduli in the construction.\par\smallskip
 \noindent\hyperref[route:2]{\textbf{The error at the auxiliary cutoff} (p.~\pageref*{route:2})}. The quantitative prime number theorem for the fixed modulus replaces a zero-free region and a quantitative Tauberian theorem. Partial summation still determines the centering constant.\par\smallskip
@@ -16115,7 +16066,7 @@ Each heading links to the passage where the two arguments are compared. Chapter~
 \section*{Galois representations and integral comparison}
 \noindent\hyperref[route:23]{\textbf{Local crystalline cocycle lengths} (p.~\pageref*{route:23})}. Bloch--Kato and local duality give the rational dimension after the local condition is identified. The integral lattice loss is computed separately.\par\smallskip
 \noindent\hyperref[route:24]{\textbf{Integral de Rham columns} (p.~\pageref*{route:24})}. A basis adapted to the filtration replaces the successive determinant-lowering procedure and gives the fixed integral change of columns used in the period matrix.\par\smallskip
-\noindent\hyperref[route:25]{\textbf{Twisted invariants in the completed local field} (p.~\pageref*{route:25})}. Tate's fixed-field and twisted-invariant theorems replace the Ax approximation and cyclotomic-trace calculations. Lifting a fixed filtered class and identifying its pure-weight coordinates still require a separate argument.\par\smallskip
+\noindent\hyperref[route:25]{\textbf{Twisted invariants in the completed local field} (p.~\pageref*{route:25})}. The community formalization also invokes the two scalar theorems. The lifting of a fixed filtered class and the determination of its pure-weight coordinates are proved here.\par\smallskip
 \noindent\hyperref[route:26]{\textbf{Transfer of residue-field labels} (p.~\pageref*{route:26})}. Shintani relates the character on the Frobenius coset to its value at the norm. Restriction of the tame parameter identifies the lifted label.\par\smallskip
 \noindent\hyperref[route:27]{\textbf{Split Iwahori blocks} (p.~\pageref*{route:27})}. The ordering and the spherical-vector argument follow the formal proof. The classical Jacquet-module comparisons identify the normalization of the exponents.\par\smallskip
 \noindent\hyperref[route:28]{\textbf{Realizing a limiting trace} (p.~\pageref*{route:28})}. The characteristic-zero pseudocharacter theorem replaces the matrix-algebra construction. Continuity and the assertions at the prescribed Frobenius elements remain separate steps.\par\smallskip
@@ -16166,11 +16117,11 @@ Each heading links to the passage where the two arguments are compared. Chapter~
 \noteline{4.14}{14}{\src{New/Reduction/ShortAndEnough.lean}{Theorem A(a), \texttt{span\_\allowbreak{}short\_\allowbreak{}integralRamified\_\allowbreak{}eq\_\allowbreak{}top}}.}
 \noteline{4.15}{15}{\src{New/Reduction/Lattices/TwistedLattice.lean}{The determinant definition of index}. \src{New/Reduction/ShortAndEnough.lean}{Theorem A(b), \texttt{indexLe\_\allowbreak{}normalizedPoincare}}.}
 \noteline{4.16}{16}{\src{Lib/CM/GoodReduction.lean}{Degree-two isogenies, ideal classes and the unit discriminant}.}
-\noteline{4.17}{17}{\src{Lib/CM/Sigma/Basic.lean}{Analytic sigma function and addition}. \src{Lib/CM/Integrality/Doubling.lean}{Normalized duplication formulas}. \src{Lib/CM/Integrality/TorsionValues.lean}{Twisted values and the integral monomials}.}
-\noteline{4.18}{18}{\src{Lib/CM/Integrality/IntegralSections.lean}{Halving points, coefficient interpolation and the degree bounds}.}
-\noteline{4.19}{19}{\src{Lib/CM/Sigma/ThetaSections.lean}{Period multiplier and the transformed sections}. \src{Lib/CM/Integrality/IsogenyIntegrality.lean}{Pullbacks and integral translated coordinates}.}
+\noteline{4.17}{17}{\comsrc{Lib/CM/Integrality/Doubling.lean\#L127-L176}{Duplication formulas}. \comsrc{Lib/CM/Integrality/TorsionValues.lean\#L183-L267}{Local height and monomial bounds}. \comsrc{Lib/CM/Integrality/TorsionValues.lean\#L306-L451}{Isogenies, torsion translation and integral values}.}
+\noteline{4.18}{18}{\comsrc{Lib/CM/Integrality/IntegralSections.lean\#L66-L127}{Polynomial coordinates and even sections}. \comsrc{Lib/CM/Integrality/IntegralSections.lean\#L189-L354}{An integral point attaining the coefficient norms and the integral basis}.}
+\noteline{4.19}{19}{\src{Lib/CM/Sigma/ThetaSections.lean}{Period multiplier and the transformed sections}. \comsrc{Lib/CM/Integrality/IsogenyIntegrality.lean\#L50-L115}{Pullbacks and integral translated coordinates}.}
 \noteline{4.20}{20}{\src{Lib/CM/Integrality/LogTheta.lean}{Logarithmic second derivative, norm pairs and the quadratic coefficient}. \src{Lib/General/NumberTheory/PadicLimitsValuation.lean}{Norm pairs in the quadratic completion}.}
-\noteline{4.21}{21}{\src{Lib/CM/FormalGroup/InseparableDegree.lean}{Even section with a unit coefficient and all three prime types}.}
+\noteline{4.21}{21}{\comsrc{Lib/CM/FormalGroup/InseparableDegree.lean\#L193-L255}{A unit coefficient of the even section}. \comsrc{Lib/CM/FormalGroup/InseparableDegree.lean}{Inseparable degree in all three prime types}.}
 \noteline{4.22}{22}{\src{Lib/CM/FormalGroup/FormalParameter.lean}{Integral generator, its unit coefficient and scaled series}.}
 \noteline{4.23}{23}{\src{Lib/CM/Integrality/LogTheta.lean}{Euler addition in integral coordinates}.}
 \noteline{4.24}{24}{\src{New/Derivatives/Sharpness/LeastValuation.lean}{Coefficient pullback and six-copy units}. \src{New/Derivatives/Sharpness/Couplings.lean}{Derivative in the second group of variables}.}
@@ -16190,7 +16141,7 @@ Each heading links to the passage where the two arguments are compared. Chapter~
 \noteline{4.38}{38}{\src{Lib/CM/ChowlaSelberg.lean\#L270-L327}{Compactness and the explicit congruence for nearby rational shifts}.}
 \noteline{4.39}{39}{\src{Lib/CM/Sigma/ThetaSections.lean\#L109-L156}{The marked shift, lattice sign and semicharacter}.}
 \noteline{4.40}{40}{\src{Lib/CM/Sigma/ThetaSections.lean\#L440-L462}{The two trivial signs}. \src{Lib/CM/Sigma/ThetaSections.lean\#L484-L527}{Evaluation of the remaining sign}.}
-\noteline{4.41}{41}{\src{Lib/CM/Sigma/ThetaSections.lean\#L530-L566}{The isogeny law}. \src{Lib/CM/Sigma/ThetaSections.lean\#L821-L849}{The commutator for torsion}. \src{Lib/CM/Integrality/IsogenyIntegrality.lean\#L116-L159}{Integral pullbacks and the coefficient of degree one}.}
+\noteline{4.41}{41}{\src{Lib/CM/Sigma/ThetaSections.lean\#L530-L566}{The isogeny law}. \src{Lib/CM/Sigma/ThetaSections.lean\#L821-L849}{The commutator for torsion}. \comsrc{Lib/CM/Integrality/IsogenyIntegrality.lean\#L82-L159}{Integral pullbacks, the linear coefficient and torsion shifts}.}
 \noteline{4.42}{42}{\src{New/Derivatives/Vacuum/IntegralVacuum.lean\#L76-L153}{Finite Fourier projection, trace coordinates and the product of jets}. \src{New/Derivatives/Vacuum/IntegralVacuum.lean\#L160-L209}{Construction on a normalized CM lattice}. \src{New/Derivatives/Vacuum/IntegralVacuum.lean\#L493-L510}{Generation by the finite translates}.}
 \noteline{4.43}{43}{\src{New/Derivatives/Vacuum/IntegralVacuum.lean\#L451-L493}{Evaluation of the absolute scale}. \src{New/Derivatives/Vacuum/IntegralVacuum.lean\#L510-L532}{The place permutation on the linear forms}.}
 \noteline{4.44}{44}{\src{New/Derivatives/Vacuum/IntegralVacuum.lean\#L536-L582}{Simultaneous rational approximation and substitution}. \src{New/Derivatives/Vacuum/IntegralVacuum.lean\#L595-L649}{The common multiplier in all ranks}.}
@@ -16200,7 +16151,7 @@ Each heading links to the passage where the two arguments are compared. Chapter~
 \noteline{4.48}{48}{\src{Lib/Weil/DualPair/GaloisLaw.lean\#L58-L96}{The multiplier quotient and its square}. \src{Lib/Weil/DualPair/GaloisLaw.lean\#L279-L312}{Application to the finite projection sum}. \src{Lib/Weil/DualPair/GaloisLaw.lean\#L369-L385}{Removal of the central unitary scalar}. \src{Lib/ClassField/HeckeCharacter/AlgebraicValues.lean\#L362-L380}{Archimedean norms of conjugate character values}.}
 \noteline{4.49}{49}{\src{Lib/CM/KroneckerLimit.lean\#L122-L386}{Row subtraction, constant term and the derivative at the prescribed scale}. \src{Lib/CM/Sigma/Basic.lean\#L815-L857}{The lattice discriminant with periods \(a,a\tau\)}.}
 \noteline{4.50}{50}{\src{Lib/CM/ChowlaSelberg.lean\#L162-L217}{Euler factors by splitting type}. \src{Lib/CM/ChowlaSelberg.lean\#L541-L630}{The logarithmic derivative after summing ideal classes}.}
-\noteline{4.51}{51}{\src{Lib/CM/Integrality/LogTheta.lean}{CM logarithm and torsion-value inputs}. \src{New/Derivatives/FormalGroup/FrobeniusCongruence.lean}{Even sections and the logarithm}.}
+\noteline{4.51}{51}{\comsrc{Lib/CM/Integrality/LogTheta.lean}{CM logarithm}. \comsrc{New/Derivatives/FormalGroup/FrobeniusCongruence.lean\#L147-L169}{The even section in the Frobenius congruence}.}
 \noteline{4.52}{52}{\src{Lib/CM/FormalGroup/InseparableDegree.lean}{The formal-group height input}. \src{Lib/CM/FormalGroup/FormalParameter.lean}{Construction of the scaled parameter}.}
 \noteline{4.53}{53}{\src{New/Derivatives/FormalGroup/Exponent.lean}{Functional equation and its solution}.}
 \noteline{4.54}{54}{\src{New/Derivatives/Sharpness/OneCurve.lean}{Sharp one-curve rate}.}
@@ -16251,7 +16202,7 @@ Each heading links to the passage where the two arguments are compared. Chapter~
 \noteline{5.43}{43}{\src{New/UpperBound/Seesaw/IntegralAsCosetSum.lean}{Stabilizer indices, Haar densities and the finite period}. \src{New/UpperBound/Seesaw/SeesawIdentity.lean}{Induction over the outer integrals}.}
 \noteline{5.44}{44}{\src{New/UpperBound/Seesaw/UnfoldingStages.lean}{Products of constant terms, unipotent means and the triple theta integral}.}
 \noteline{5.45}{45}{\src{New/UpperBound/Seesaw/EdgePairEvaluation.lean}{The two explicit splittings and their finite evaluations}. \src{New/UpperBound/Seesaw/UnfoldingStages.lean}{Induction identifying each even stage with a definite matrix coefficient}.}
-\noteline{5.46}{46}{\src{New/UpperBound/Seesaw/SeesawIdentity.lean}{Top Schur factor, equality by pairing and joint level invariance}.}
+\noteline{5.46}{46}{\src{New/UpperBound/Seesaw/SeesawIdentity.lean}{Top Schur factor, equality by pairing and joint level invariance}. \comsrc{Lib/GLn/Branching/NormBound.lean\#L381-L425}{The hook-number bound for the branching vector via an integral left inverse}. \comsrc{Lib/GLn/Branching/IntegralMap.lean\#L578-L603}{Use of the bound in the branching map}.}
 \noteline{5.47}{47}{\src{New/UpperBound/Seesaw/AdmissibleEvaluation.lean}{Integral lattice lifts, neighbour lattices and preservation of denominators}. \src{New/UpperBound/Seesaw/GoodDatum.lean}{Fourier coefficients of the level datum and finite evaluation}.}
 \noteline{5.48}{48}{\src{New/UpperBound/Seesaw/Cut.lean}{Number of untwisted cut points}. \src{New/UpperBound/Seesaw/GoodDatum.lean}{Pairwise denominators and the integral-vacuum scalar}. \src{New/UpperBound/Seesaw/SeesawIdentity.lean}{Final normalization and supported translations}.}
 \noteline{5.49}{49}{\src{New/UpperBound/Objects/Columns.lean}{Finite gluing as a sum of Schrödinger data}. \src{New/UpperBound/Divisibility/ValuationAtLevel.lean}{Marked coordinate changes and their two determinant factors}.}
@@ -16360,8 +16311,8 @@ Each heading links to the passage where the two arguments are compared. Chapter~
 \noteline{6.57}{57}{\src{New/Spanning/Unfolding/Moments.lean\#L696-L779}{The trace at a single level factor}. \src{New/Spanning/Unfolding/Moments.lean\#L900-L1024}{Reduction of the local integral to the finite conjugacy average}.}
 \noteline{6.58}{58}{\src{New/Spanning/Unfolding/Moments.lean\#L1026-L1210}{Trace of the discarded types and the two-factor loss}.}
 \noteline{6.59}{59}{\src{New/Spanning/MainTerm/FillingLevel.lean\#L532-L558}{The finite lattice datum and its rank constraints}.}
-\noteline{6.60}{60}{\src{New/Spanning/Frames/StandardLevel.lean\#L544-L698}{Common vectors, content moments and block disintegration}. \src{Lib/SiegelWeil/OneVector/StandardQuadrics.lean\#L125-L176}{Scaling the finite quadric measure on a coordinate box}.}
-\noteline{6.61}{61}{\src{Lib/SiegelWeil/OneVector/SemilocalDensityBounds.lean\#L40-L173}{Polarization, skew-frequency volume and the ideal sum}.}
+\noteline{6.60}{60}{\comsrc{New/Spanning/Frames/StandardLevel.lean}{Common integral vectors and their content moments}.}
+\noteline{6.61}{61}{\comsrc{Lib/SiegelWeil/OneVector/StandardQuadrics.lean\#L236-L290}{Translation by the content of a hyperbolic block}. \comsrc{Lib/SiegelWeil/OneVector/StandardQuadrics.lean\#L428-L456}{The standard quadric in rank at least \(2m+4\)}. \comsrc{New/Spanning/Frames/StandardLevel.lean\#L553-L581}{The bound used at the pivot}.}
 \noteline{6.62}{62}{\src{New/Spanning/Frames/FiniteDepth.lean\#L80-L162}{Stable-pair lattices and the coordinate ideal}. \src{New/Spanning/Frames/FiniteDepth.lean\#L445-L543}{A common multiple and propagation through the frame}.}
 \noteline{6.63}{63}{\src{New/Spanning/Frames/Shells.lean\#L88-L247}{Per-box losses and the choice of gain on each shell}. \src{New/Spanning/Frames/FiniteShells.lean\#L198-L318}{The ideal-shell cover and its sum}. \src{New/Spanning/Frames/FiniteShells.lean\#L591-L724}{Both pivot gains off the congruence group and the finite mass}.}
 \noteline{6.64}{64}{\src{New/Spanning/Frames/FiniteDepth.lean\#L262-L405}{Head products, weights and scale}. \src{New/Spanning/Frames/FiniteShells.lean\#L345-L552}{Replacing a frequency and retaining the denominator saving}.}
@@ -16378,15 +16329,15 @@ Each heading links to the passage where the two arguments are compared. Chapter~
 \noteline{7.10}{10}{\src{New/Appendix/DiscreteSeries/PositionGroup.lean}{Trace calculation for the position group}.}
 \noteline{7.11}{11}{\src{New/Appendix/DiscreteSeries/Localization.lean}{The logarithmic phase identity}.}
 \noteline{7.12}{12}{\src{New/Spanning/Bessel/FillingData.lean}{Specialization to the two parameters}.}
-\noteline{7.13}{13}{\src{New/Appendix/DiscreteSeries/GaussianShape.lean}{Coefficient integral and compact mass}. \src{New/Appendix/DiscreteSeries/MinorSecondOrder.lean}{The minor remainder}.}
+\noteline{7.13}{13}{\comsrc{New/Appendix/DiscreteSeries/GaussianShape.lean\#L182-L199}{Product of the minors}. \comsrc{New/Appendix/DiscreteSeries/GaussianShape.lean\#L296-L358}{Gaussian estimate for the coefficient}.}
 \noteline{7.14}{14}{\src{New/Appendix/DiscreteSeries/Localization.lean}{Gap estimate and translation to the identity}.}
 \noteline{7.15}{15}{\src{New/Appendix/DiscreteSeries/Periods.lean}{Period inequality with the small-ball scale}. \src{Lib/DiscreteSeries/Haar/TotalMass.lean}{Haar covering estimates}.}
 \noteline{7.16}{16}{\src{New/Spanning/Bessel/LargeFunction.lean}{Controlled position, unfolding and norm of the average}.}
 \noteline{7.17}{17}{\src{New/Spanning/Bessel/CutTailBound.lean}{The group normalization and transfer of decay to the average}.}
-\noteline{7.18}{18}{\src{New/Appendix/DiscreteSeries/MinorSecondOrder.lean}{Trace expansion and the double zero in the crossing variables}.}
-\noteline{7.19}{19}{\src{New/Appendix/DiscreteSeries/OneMinor.lean}{The two triangular factors and invariance of the integral}.}
-\noteline{7.20}{20}{\src{New/Appendix/DiscreteSeries/GaussianShape.lean}{Sum over thresholds, comparison of weights and Gaussian coefficient}.}
-\noteline{7.21}{21}{\src{New/Appendix/DiscreteSeries/GaussianShape.lean\#L42-L79}{The compact squared norm and the bound used in the Gaussian integral}.}
+\noteline{7.18}{18}{\comsrc{New/Appendix/DiscreteSeries/MinorExpansion.lean\#L144-L236}{Logarithm of a compressed matrix and the uniform trace estimate}.}
+\noteline{7.19}{19}{\comsrc{New/Appendix/DiscreteSeries/MinorExpansion.lean\#L250-L346}{Triangular factors in the Flensted--Jensen integral}.}
+\noteline{7.20}{20}{\comsrc{New/Appendix/DiscreteSeries/MinorExpansion.lean\#L347-L462}{Complementary minors and the estimate for one minor}. \comsrc{New/Appendix/DiscreteSeries/GaussianShape.lean\#L188-L254}{Threshold sum and comparison of weights}.}
+\noteline{7.21}{21}{\comsrc{New/Appendix/DiscreteSeries/GaussianShape.lean\#L51-L88}{The compact squared norm and its lower bound}.}
 \noteline{7.22}{22}{\src{Lib/DiscreteSeries/FlenstedJensen/SquareIntegrability.lean\#L849-L874}{The derivative bound at the required small-ball scale}.}
 \noteline{7.23}{23}{\src{Lib/DiscreteSeries/FlenstedJensen/SquareIntegrability.lean}{Gap, complementary positive minors, and the polar coefficient integral}.}
 \noteline{7.24}{24}{\src{New/Appendix/DiscreteSeries/Localization.lean}{Shared compact translation and the two distance bounds}.}
@@ -16494,7 +16445,7 @@ Each heading links to the passage where the two arguments are compared. Chapter~
 \noteline{10.5}{5}{\src{New/OneLift/ComparisonOperator/ThreeExchanges.lean}{The three critical pairs and their product}.}
 \noteline{10.6}{6}{\src{New/Determinant/Exchange/MatchingPartners.lean}{Complementary minors and the induced sections of the local group}. \src{New/OneLift/ComparisonOperator/OneExchange.lean}{Product kernels, convergence and class sums at the row stabilizer}.}
 \noteline{10.7}{7}{\src{New/Determinant/Exchange/LargeTriple.lean}{The Fourier terms, their support in Gram matrices and the period identity}. \src{New/Determinant/Exchange/RemovingPlanes.lean}{Descent on either side by the constant term}. \src{Lib/SiegelWeil/Tower/LargeSideConstantTerm.lean}{Unfolding the isotropic line and the ramified normalization}. \src{Lib/SiegelWeil/Tower/FiniteTateIntegral.lean}{The finite integral, its domain of convergence and the Euler factors}.}
-\noteline{10.8}{8}{\src{New/Determinant/Exchange/TheoremForPartners.lean}{Double calculation of the equal-rank period and the complementary-space theorem}. \src{New/Determinant/Exchange/VanishingDescends.lean}{Descent of simultaneous vanishing to the vacuum}.}
+\noteline{10.8}{8}{\comsrc{New/Determinant/Exchange/TheoremForPartners.lean\#L391-L423}{The two exchanges and nonvanishing}. \comsrc{New/Determinant/Exchange/TheoremForPartners.lean\#L722-L823}{The constant square and passage to the required signature}. \comsrc{New/Determinant/Exchange/TheoremForPartners.lean}{Extension to matched functions}.}
 \noteline{10.9}{9}{\src{New/Determinant/Exchange/ExplicitMatching.lean}{Circle projection, unitary polarization, definite class sum, and normalization}. \src{New/OneLift/ComparisonOperator/ThreeExchanges.lean}{The rank-zero integral and nonzero carrier}.}
 \noteline{10.10}{10}{\src{Lib/SiegelWeil/RallisInner/Doubling.lean}{The doubled integral and Weil matrix coefficients}. \src{Lib/SiegelWeil/RallisInner/SharpData.lean}{Sharp mass, the real zeta integral and the unramified coset sum}.}
 \noteline{10.11}{11}{\src{New/OneLift/HeckeValues/CharacterLiftNorm.lean}{Block means, level indices, and the norm on the chosen rank-one character lift}.}
@@ -16532,7 +16483,7 @@ Each heading links to the passage where the two arguments are compared. Chapter~
 \noteline{10.43}{43}{\src{Lib/Weil/MixedModel/FockSections.lean\#L53-L130}{The coherent-state integral and rapid slice estimate}. \src{Lib/SiegelWeil/Tower/RealConeIntegral.lean\#L77-L153}{Restriction to the two archimedean lines}.}
 \noteline{10.44}{44}{\src{Lib/SiegelWeil/Tower/RealConeIntegral.lean\#L155-L253}{The integrable moments}. \src{Lib/SiegelWeil/Tower/LargeSideConstantTerm.lean\#L164-L207}{The uniform estimate on the other group}.}
 \noteline{10.45}{45}{\src{Lib/SiegelWeil/Tower/LargeSideConstantTerm.lean\#L520-L647}{Factoring the integral and its endpoint}. \src{Lib/SiegelWeil/Tower/LargeSideConstantTerm.lean\#L650-L718}{Mellin convergence and unfolding at the rank exponent}. \src{Lib/SiegelWeil/Tower/LargeSideConstantTerm.lean\#L817-L888}{The two resulting plane identities}.}
-\noteline{10.46}{46}{\src{Lib/SiegelWeil/Tower/TestVector.lean\#L336-L405}{The Gaussian polynomial in each polarization}. \src{Lib/SiegelWeil/Tower/FunctionalEquation.lean\#L281-L345}{The shared nonzero rank-zero factor}. \src{Lib/SiegelWeil/Tower/FunctionalEquation.lean\#L362-L442}{Division, reflection and nonvanishing}.}
+\noteline{10.46}{46}{\comsrc{Lib/SiegelWeil/Tower/TestVector.lean\#L342-L381}{Determinant vectors}. \comsrc{Lib/SiegelWeil/Tower/TestVector.lean\#L607-L715}{Their slices and positive cone integral}. \comsrc{New/Determinant/Exchange/VanishingDescends.lean\#L187-L248}{Descent with standard row data}.}
 \noteline{10.47}{47}{\src{Lib/ClassField/HeckeCharacter/SplitTameCharacters.lean\#L400-L428}{The nontrivial residue characters at the marked places}. \src{Lib/Weil/MixedModel/Slices.lean\#L291-L325}{Conductor of the additive character in the slice}.}
 \noteline{10.48}{48}{\src{Lib/Weil/TameGaussSum.lean\#L147-L213}{The transform, including vanishing outside the unit shell}.}
 \noteline{10.49}{49}{\src{Lib/SiegelWeil/Tower/LineGaussSums.lean\#L298-L346}{The integral frame matrices and their determinant contribution}.}
@@ -16574,7 +16525,7 @@ Each heading links to the passage where the two arguments are compared. Chapter~
 \noteline{11.10}{10}{\src{New/Determinant/Exchange/OneSquare.lean\#L719-L845}{Splitting the exchange into the two paths}.}
 \noteline{11.11}{11}{\src{New/Determinant/Chain/SquareLaw.lean\#L146-L216}{The point identity and its average}. \src{New/Determinant/Chain/ChainNorms.lean\#L142-L250}{The first square and its Hecke values}.}
 \noteline{11.12}{12}{\src{New/Determinant/Chain/SquareLaw.lean\#L388-L505}{Fourier transformation, corner Gauss sum, and the reversed square}. \src{New/Determinant/Chain/ChainNorms.lean\#L378-L578}{Kernel reversal and the adjoint identity}.}
-\noteline{11.13}{13}{\src{New/Determinant/Chain/TriangleLifts.lean\#L441-L516}{The level and first-edge injectivity}.}
+\noteline{11.13}{13}{\comsrc{New/Determinant/Chain/TriangleLifts.lean\#L446-L517}{The level and first-edge injectivity}.}
 \noteline{11.14}{14}{\src{New/Determinant/Chain/TriangleNorms.lean\#L201-L260}{The two inductions along rows}. \src{New/Determinant/Chain/TriangleNorms.lean\#L398-L494}{Gram recurrence and the induction down the triangle}.}
 \noteline{11.15}{15}{\src{New/Determinant/Chain/ChainNorms.lean\#L683-L787}{Flag orders, level indices and the final inner product}. \src{New/Determinant/Chain/NormOfChain.lean\#L145-L246}{The Rallis operators and their normalization}. \src{New/Determinant/Chain/NormOfChain.lean\#L291-L428}{Taking determinants and dividing by the trivial twist}.}
 \noteline{11.16}{16}{\src{New/Determinant/AuxiliaryForms/DeepLevelPoincarePeriod.lean}{Separation by the last column and the identity term in the period}. \src{New/Determinant/AuxiliaryForms/DeepLevelVanishing.lean}{The two half-bounds, smoothing and the choice of the real translate}. \src{New/Determinant/AuxiliaryForms/FirstPath.lean}{Surjectivity of the transposed chain and the pairing on the first path}.}
@@ -16632,7 +16583,7 @@ Each heading links to the passage where the two arguments are compared. Chapter~
 \noteline{12.48}{48}{\src{New/Congruences/FirstOrder/RibetElement.lean}{The odd, Selmer, local and auxiliary-place terms for the actual lattices}. \src{New/Congruences/FirstOrder/TateTwistCocycles.lean}{The triangle cost in terms of crystalline colength and the odd module}. \src{New/Congruences/FirstOrder/RibetLemma.lean}{Valuation of the glued determinant at the lift}.}
 \noteline{12.49}{49}{\src{Lib/ClassField/Global/ExistenceTheorem.lean\#L926-L984}{The quotient, its order and the lifted generators}.}
 \noteline{12.50}{50}{\src{Lib/ClassField/Global/ExistenceTheorem.lean\#L95-L163}{Local power indices and their product}.}
-\noteline{12.51}{51}{\src{Lib/General/NumberTheory/SUnitsAndClassNumber.lean\#L240-L272}{The ideal count}. \src{Lib/Cyclotomic/OddSha.lean\#L89-L145}{The cyclotomic discriminant and the numerical bound}.}
+\noteline{12.51}{51}{\comsrc{Lib/General/NumberTheory/SUnitsAndClassNumber.lean\#L182-L200}{The effective class-number bound}. \src{Lib/Cyclotomic/OddSha.lean\#L89-L145}{The cyclotomic discriminant and the numerical bound}.}
 \noteline{12.52}{52}{\src{Lib/Cyclotomic/OddSha.lean\#L176-L267}{The induction and the cocycle equation over \(K\)}.}
 \noteline{12.53}{53}{\src{Lib/Cyclotomic/OddSha.lean\#L114-L130}{The polynomial bound}. \src{Lib/Cyclotomic/OddSha.lean\#L269-L302}{The cyclotomic-kernel version}.}
 \noteline{12.54}{54}{\src{Lib/Cyclotomic/OddSha.lean\#L550-L581}{From evaluation to integral length}. \src{Lib/Cyclotomic/OddSha.lean\#L634-L679}{One integer for all depths, twists and primes}.}
@@ -16723,7 +16674,7 @@ Each heading links to the passage where the two arguments are compared. Chapter~
 \noteline{14.49}{49}{\src{Lib/PadicHodge/Kisin/Charts.lean\#L108-L127}{The chart data}. \src{Lib/PadicHodge/Kisin/Charts.lean\#L282-L344}{Injectivity and the two expressions for the divisor}.}
 \noteline{14.50}{50}{\src{Lib/General/Algebra/AdicCompletion.lean\#L522-L581}{Adic coordinates for two generators}. \src{Lib/PadicHodge/Kisin/Charts.lean\#L425-L475}{Application to the chart including the vector \(1\)}.}
 \noteline{14.51}{51}{\src{Lib/PadicHodge/PeriodRings/CrystallineRings.lean\#L365-L420}{Reduction and cancellation of monic polynomials}. \src{Lib/PadicHodge/PeriodRings/CrystallineRings.lean\#L466-L493}{Intersection with \(p^nD\)}. \src{Lib/PadicHodge/Kisin/Bicommutant.lean\#L105-L205}{The bounded extension}.}
-\noteline{14.52}{52}{\src{Lib/PadicHodge/Kisin/Bicommutant.lean\#L233-L305}{Coordinates in the bicommutant and its retraction}. \src{Lib/PadicHodge/Kisin/Bicommutant.lean\#L321-L405}{Description by polynomial approximation}. \src{Lib/PadicHodge/Kisin/Bicommutant.lean\#L445-L466}{Frobenius and the inverse of the translated divisor}.}
+\noteline{14.52}{52}{\comsrc{Lib/PadicHodge/Kisin/Bicommutant.lean\#L235-L297}{Coordinates in the bicommutant and its retraction}. \comsrc{Lib/PadicHodge/Kisin/Bicommutant.lean\#L356-L376}{Frobenius and the inverse of \(\varphi(E)\)}.}
 \noteline{14.53}{53}{\src{Lib/PadicHodge/Kisin/Bicommutant.lean\#L406-L442}{Common finite coordinate expansions}.}
 \noteline{14.54}{54}{\src{Lib/PadicHodge/PeriodRings/CrystallineRings.lean\#L419-L466}{Division by the linear polynomial and iteration}. \src{Lib/PadicHodge/Kisin/Bicommutant.lean\#L467-L490}{Projection of the integral remainder}.}
 \noteline{14.55}{55}{\src{Lib/PadicHodge/PeriodRings/CrystallineRings.lean\#L682-L713}{Approximation with a power of \(\mu\) in the error}. \src{Lib/PadicHodge/PeriodRings/CrystallineRings.lean\#L857-L886}{The finite de Rham truncations}.}
@@ -16760,7 +16711,7 @@ Each heading links to the passage where the two arguments are compared. Chapter~
 \noteline{14.86}{86}{\src{Lib/PadicHodge/Kisin/FrameTheorem.lean\#L418-L442}{From scalar relations to vector relations}. \src{Lib/PadicHodge/Kisin/FrameTheorem.lean\#L517-L555}{Spanning after descent and linear independence}.}
 \noteline{14.87}{87}{\src{Lib/PadicHodge/Kisin/Modules.lean\#L268-L279}{Saturation by products of the chart primes}. \src{New/Congruences/Lifting/ExponentLattices.lean\#L754-L786}{Locating the form values in \(\mathcal K_m\)}. \src{New/Congruences/Lifting/ExponentLattices.lean\#L788-L852}{Factoring the retraction through the tensor product}. \src{New/Congruences/Lifting/HodgeExpansion.lean\#L188-L228}{Preservation of the target congruence and the letter}.}
 \noteline{14.88}{88}{\src{Lib/PadicHodge/Crystalline/HodgeTateJumps.lean\#L208-L240}{Existence of the de Rham frame}. \src{Lib/PadicHodge/TateSen.lean\#L490-L523}{Passage from invariance modulo a filtration step to a constant}.}
-\noteline{14.89}{89}{\src{Lib/PadicHodge/PeriodRings/AxTheorem.lean\#L376-L527}{Ax's approximation and the open fixed field}. \src{Lib/PadicHodge/TateSen.lean\#L105-L274}{The normalized trace and twisted vanishing}.}
+\noteline{14.89}{89}{\src{Lib/PadicHodge/PeriodRings/AxTheorem.lean\#L376-L527}{Ax's approximation in the original formalization}. \src{Lib/PadicHodge/TateSen.lean\#L105-L274}{Its normalized trace}. \comsrc{Lib/PadicHodge/PeriodRings/AxTheorem.lean\#L335-L359}{Fixed fields in the community formalization}. \comsrc{Lib/PadicHodge/TateSen.lean\#L48-L74}{Twisted vanishing for open subgroups}.}
 \noteline{14.90}{90}{\src{Lib/PadicHodge/TateSen.lean\#L416-L480}{Residues and the filtration}. \src{Lib/PadicHodge/TateSen.lean\#L487-L550}{Lifting a fixed class by subtracting its residue}.}
 \noteline{14.91}{91}{\src{Lib/PadicHodge/TateSen.lean\#L291-L402}{Support elimination and algebraic coordinates}.}
 \noteline{14.92}{92}{\src{Lib/PadicHodge/Kisin/Modules.lean\#L127-L183}{Coefficient roots, letters and the crystallinity hypothesis}. \src{Lib/PadicHodge/Kisin/Modules.lean\#L291-L317}{The projector, type of a functional and jump multiplicity}. \src{Lib/PadicHodge/Kisin/Modules.lean\#L458-L483}{Image and fixed vectors of the projector}. \src{Lib/PadicHodge/Kisin/KummerChartDeRham.lean\#L150-L155}{Openness of the chart subgroup's image}.}
@@ -16855,8 +16806,8 @@ Each heading links to the passage where the two arguments are compared. Chapter~
 \noteline{15.56}{56}{\src{Lib/GaloisRep/Main/ThetaLift.lean\#L295-L322}{The weight rule}.}
 \noteline{15.57}{57}{\src{Lib/Weil/Lift.lean\#L594-L624}{The normalized coefficient pairing}. \src{Lib/Weil/Lift.lean\#L727-L741}{The joint harmonic in the oscillator representation}.}
 \noteline{15.58}{58}{\src{Lib/SiegelWeil/RallisInner/Doubling.lean\#L630-L652}{The finite isotropic frame}. \src{Lib/GaloisRep/Main/ThetaLift.lean\#L80-L277}{Integral support, stabilizer and sharp datum}.}
-\noteline{15.59}{59}{\src{Lib/SiegelWeil/RallisInner/SharpData.lean\#L363-L450}{Norm formula and the real and finite factors}.}
-\noteline{15.60}{60}{\src{Lib/SiegelWeil/UnramifiedSeries/VacuumCoefficients.lean\#L477-L522}{Local and global neighbour weights}. \src{Lib/SiegelWeil/UnramifiedSeries/RallisSeries.lean\#L424-L503}{The supremum-norm bound and the product of operators}.}
+\noteline{15.59}{59}{\comsrc{Lib/SiegelWeil/RallisInner/VacuumSummability.lean\#L55-L130}{Absolute summability from doubling}. \comsrc{Lib/SiegelWeil/RallisInner/SharpData.lean\#L436-L496}{The sharp norm identity and the real factor}.}
+\noteline{15.60}{60}{\comsrc{Lib/SiegelWeil/RallisInner/DualDatum.lean\#L204-L265}{The shear, the Heisenberg translation and the coefficient at integral points}. \comsrc{Lib/SiegelWeil/RallisInner/DualDatum.lean\#L266-L358}{Integrality from the additive character}. \comsrc{Lib/SiegelWeil/RallisInner/SharpData.lean\#L294-L407}{Exhaustion by finite sets of places and the sharp mass}.}
 \noteline{15.61}{61}{\src{Lib/Weil/Unramified/HeckeTransfer.lean\#L336-L451}{The two residue kernels and the product identity}. \src{Lib/Weil/Unramified/HeckeTransfer.lean\#L608-L653}{Transfer through the theta integral}.}
 \noteline{15.62}{62}{\src{Lib/GaloisRep/Main/ThetaLift.lean\#L276-L298}{Conversion from reciprocal to monic polynomials}. \src{Lib/GaloisRep/Main/ThetaLift.lean\#L323-L350}{The two character normalizations}.}
 \noteline{15.63}{63}{\src{Lib/GaloisRep/Main/AllRanks.lean\#L108-L161}{The two weights and the split-place contradiction}.}

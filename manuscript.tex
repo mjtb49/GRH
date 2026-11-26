@@ -1497,7 +1497,7 @@ Put \(G=y\theta^3\), which extends across the poles of \(y\). The equation \(G^2
 
 For an isogeny \(z\mapsto\alpha z\) of degree \(n\) to a lattice with height \(h'\), the ratio \(r(z)=h'(\alpha z)/h(z)^n\) is bounded: the pullbacks of \(\theta'\) and \((\sigma')^2\) have degrees \(n,2n\). Doubling gives \(r(z)^4=r(2z)\), hence \(r\le1\). For translation by a torsion point \(u\), put \(b_u(z)=\exp[-\pi(\bar u z+|u|^2/2)/A]\), where \(A\) is the area of the lattice. Thus \(T_u^{(m)}f(z)=b_u(z)^m f(z+u)\). The ratio \(s(z)=|b_u(z)|_p h(z+u)/h(z)\) is bounded since the \(2N\)-th powers of the two translated functions are sections of degree \(2N\) when \(Nu\in\Lambda\). The identity \(b_u(z)^4=b_u(2z+u)b_u(2z)\) and doubling give \(s(z)^4=s(2z+u)s(2z)\). Taking suprema gives \(\sup s\le1\). Applying this also to the inverse translate gives equality pointwise. In particular the normalized torsion value \(f[u]=(T_u^{(m)}f)(0)\) is integral for each of the above monomials, since \(h(0)=1\), and \(|\sigma[t]|_p=1\) since \(\theta(t)=0\).\formalnote{4.17}{17}
 
-Suppose now that \(|f(z)|_p\le h(z)^m\) everywhere. Off the zeros of \(\theta\) the complex basis gives
+Let \(f\) be a section of degree \(m\) with the multiplier of \(\theta^m\). Suppose that \(|f(z)|_p\le h(z)^m\) for every \(z\). Off the zeros of \(\theta\) the complex basis gives
 \[
  f=\theta^m\{P(x)+yQ(x)\},\qquad
  2k\le m\text{ in }P,\quad 2k+3\le m\text{ in }Q,                  \tag{CM2}
@@ -2541,12 +2541,13 @@ because \(\tau\mapsto-p\tau\) is a permutation. With
 \(j_\tau=\min(\lfloor(l_\tau-s_0)_+/p\rfloor,l_{-p\tau})\).
 The explicit degree inequality gives \(\nu\le l\) coordinatewise.
 Use (V4) on \(\nu\) and the zero upper bound on \(l-\nu\).
-For \(p\le k\) nonsplit, the near-pair lemmas give the uniqueness
-condition for the near pairs between the \(b\)-places and permit
-\(j_\tau=\lfloor l_\tau/p^{e_\tau}\rfloor\). Use the second bound
-from (V4) and the one-variable derivative bound on the remainder.
-For \(p=d\) the near-pair set is empty. At split \(p\) the
-one-variable bound alone applies with \(\gamma_p=0\).
+For nonsplit \(p\le k\), first consider the case in which the near-pair set is empty.
+This includes the ramified prime \(p=d\). Take the constant coefficient \(1\) in the
+first six copies and apply the one-variable derivative bound to the full degree in the other six.
+If a near pair occurs, \(p\) is inert. The uniqueness condition for the near pairs
+between the \(b\)-places then permits \(j_\tau=\lfloor l_\tau/p^{e_\tau}\rfloor\).
+Use the second bound from (V4) on their degrees and the one-variable bound on the remainder.
+At split \(p\) the one-variable bound alone applies with \(\gamma_p=0\).
 Section~\ref{sec:frame-proof} proves the simultaneous degree inequalities, sparsity of near pairs, and the comparison of their factorial valuations with \(S_p\). With \(B_\tau\) the
 loss product of the preceding subsection, they give in all cases\formalnote{5.13}{13}
 \[
@@ -6162,12 +6163,18 @@ Here is the replacement for integration of the reciprocal area of a disc. At an 
 
 There are \(s+m+5\) such columns, where \(s\) is the volume exponent of the finite frame. For integral, uniformly distributed coordinates, the event that their content lies in a particular ideal \(J\) has probability \([R:J]^{-(s+m+5)}\). Sum over the possible contents and bound the event of equality by that of inclusion. The \(s\)-th moment of \(\Phi\) is at most \(\zeta_R(m)\). A coordinate change in \(\mathrm{GL}(R)\) preserves the box. Rescaling a box of size \(j\) to size zero costs \(|\alpha^j|^{-(3\rho+m+5)}\) after cancellation against the \(s\)-th power, giving a bound \(L^{99n(j+1)}\).\formalnote{6.60}{60}
 
-The remaining block has \(\ell=2m+4\) coordinates. In an integral hyperbolic basis
-reserve one plane for the quadric chart. Fix one half \(v\in R^{m+1}\) of the remaining
+The remaining block has \(\ell=2m+4\) coordinates. To put it in hyperbolic form,
+choose \(\epsilon\in R^\times\) with \(\epsilon\bar\epsilon=-1\). Such a unit exists
+because each finite place of \(E/E^+\) is split or unramified
+(\S\ref{sec:split-vacuum}) and the norm on units is surjective in either case.
+A primitive sixth root \(\tau\in R\) has \(\tau+\bar\tau=1\).
+For each pair of orthonormal basis vectors \(e,f\), the vectors
+\(e+\epsilon f,\ \bar\tau e-\tau\epsilon f\) are isotropic, have mutual pairing \(1\),
+and have determinant \(-\epsilon\) in this basis. Reserve one of these planes for the quadric chart. Fix one half \(v\in R^{m+1}\) of the remaining
 hyperbolic pairs. Almost surely its entries generate a finite-index ideal \(cR\).
 Write \(c=\sum_i r_i v_i\) with \(r_i\in R\). Translating the coordinates opposite \(v\)
 by \(c\bar r_i t\), \(t\in R\), preserves the box and changes the Hermitian norm by
-\(c\bar c(t+\bar t)\). The integral trace is onto since \(R\) contains an element of trace one.
+\(c\bar c(t+\bar t)\). The integral trace is onto by the choice of \(\tau\).
 After multiplication by the integral skew unit, these shifts comprise \(c\bar c\) times the
 integral skew elements, a subgroup of measure \(|c|\). Thus the conditional mass on any one quadric,
 multiplied by \(|c|\), is at most the mass integrated over all quadrics. The latter is the
@@ -6566,14 +6573,14 @@ Taking \(j=2,3,\ldots\) in turn and expanding by the binomial theorem gives \(H(
 Thus the scalar phase removed from the product of lowest-type coefficients at \(g,g'\) is exactly the Bessel character, even though the individual coefficients have nonlinear phases.\formalnote{7.11}{11}
 
 \subsection{A cone estimate for the two coefficients}
-Write \(\lambda,\nu\) for the two doubled Harish--Chandra parameters, \(r,k\) for their dimensions, \(c_\lambda,c_\nu\) for their normalized coefficients. Put
+Let \(\lambda,\nu\) be the Harish--Chandra parameters in the two groups of ranks \(r,k\). Their doubles are \(2\lambda,2\nu\). Write \(c_\lambda,c_\nu\) for the normalized coefficients. Put
 \[
  Z(s)=c_\lambda(g)\overline{c_\nu(g')}\,e^{-\phi(s)},\quad
  N_0=(r+k)^2,\quad T=N_0\log\beta .
 \]
-Use \(\beta\ge10^{12}\) and \(\beta\ge r+k+\max(|\lambda_i|,|\nu_j|)\). In either rank \(s_0\), the gap of the undoubled parameters between unlike signs is at least \(500s_0^3+h\), with \(h\ge10^{30}T^3\). These conditions hold for the chosen parameters with \(\beta=b^3\). The rank, gap and weight checks are in the local construction.\formalnote{7.12}{12}
+Use \(\beta\ge10^{12}\) and \(\beta\ge r+k+2\max_{i,j}(|\lambda_i|,|\nu_j|)\). In either rank \(s_0\), the gap of the undoubled parameters between unlike signs is at least \(500s_0^3+h\), with \(h\ge10^{30}T^3\). These conditions hold for the chosen parameters with \(\beta=b^3\). The rank, gap and weight checks are in the local construction.\formalnote{7.12}{12}
 
-First consider \(g,g'\) within \(\delta\) of \(1\) in Frobenius norm, where \(\delta T\le10^{-12}\). For either parameter the coefficient divided by its trace phase has distance at most \(a/10+e^{-100T}\) from a real number \(a\in[0,1]\). Here is how this error arises. In the Flensted--Jensen integral at \(g=\exp Y\), put \(q_0=Q_{-\lambda^{\rho}}(g-1)/4\), with \(\lambda^\rho=\lambda/2+\rho\) and
+First consider \(g,g'\) within \(\delta\) of \(1\) in Frobenius norm, where \(\delta T\le10^{-12}\). For either parameter the coefficient divided by its trace phase has distance at most \(a/10+e^{-100T}\) from a real number \(a\in[0,1]\). Here is how this error arises. In the Flensted--Jensen integral at \(g=\exp Y\), put \(q_0=Q_{-(\lambda+\rho)}(g-1)/4\), where \(\rho\) is the half-sum of positive roots in parameter order and
 \[
  Q_w(U)=\sum_{i,j}|w_i-w_j|\,|U_{ij}|^2 .
 \]
@@ -6713,7 +6720,7 @@ For \(y>0\) in \(U(J)\), write \(a=(y+JyJ)/2\) for its sign-block diagonal part,
 \[
                      |\det a|^h\le |m_{-v}(y)|^2                       \tag{M3}
 \]
-for any integer \(h\) up to the gap between unlike signs in the parameter. For each threshold \(t\) let \(S=\{i:v_i\ge t\}\), \(S'=\{i:v_i+h\ge t\}\). The difference \(C=S'\setminus S\) has only one sign by the gap, so the principal blocks of \(a,y\) on \(C\) coincide. For a positive matrix the determinant on a union of disjoint coordinate sets is at most the product of their determinants, by Schur complementation. Thus \(\det a_{S'}\le\det a_S\det y_C\). Since \(y^{-1}=JyJ\) and \(\det y=1\), Jacobi's complementary-minor identity gives \(\det y_C=\det y_{C^c}\). Splitting \(C^c=S\sqcup(S')^c\) a second time gives
+for any nonnegative integer \(h\) at most the gap between unlike signs in the parameter. For each threshold \(t\) let \(S=\{i:v_i\ge t\}\), \(S'=\{i:v_i+h\ge t\}\). The difference \(C=S'\setminus S\) has only one sign by the gap, so the principal blocks of \(a,y\) on \(C\) coincide. For a positive matrix the determinant on a union of disjoint coordinate sets is at most the product of their determinants, by Schur complementation. Thus \(\det a_{S'}\le\det a_S\det y_C\). Since \(y^{-1}=JyJ\) and \(\det y=1\), Jacobi's complementary-minor identity gives \(\det y_C=\det y_{C^c}\). Splitting \(C^c=S\sqcup(S')^c\) a second time gives
 \[
                    \det a_{S'}\le\det a_S\,\det y_S\,\det y_{(S')^c}.
 \]
@@ -8118,7 +8125,7 @@ For a set \(S\) of marked places, a character \(\alpha\), and an integer \(z\ge1
   \left(\prod_{w\in S} q_w\right)^{z^2}
              \prod_{u=1}^z |L^S(u,\alpha)|^2 .
 \]
-Here \(q_w\) is the residue cardinality at \(w\). The partial Hecke value \(L^S(u,\alpha)\) omits the Euler factors at \(S\) and its conjugate \(\bar S\), with one factor \(q_w^{z^2}\) outside the \(L\)-product for each \(w\in S\). The splitting character on the norm-one torus is \(\upsilon\). For a tame weight-zero character \(c\), let \(\chi_c\) denote its finite residue character.\formalnote{10.1}{1}
+Here \(q_w\) is the residue cardinality at \(w\). The partial Hecke value \(L^S(u,\alpha)\) omits the Euler factors at \(S\) and its conjugate \(\bar S\), with one factor \(q_w^{z^2}\) outside the \(L\)-product for each \(w\in S\). Let \(\upsilon\) be the Weil splitting character on \(E^\times\backslash\mathbb A_E^\times\). In products of characters on the norm-one torus, \(\upsilon\) denotes its restriction to that torus. For a tame weight-zero character \(c\), let \(\chi_c\) denote its finite residue character.\formalnote{10.1}{1}
 
 \paragraph{Turning the first class sum into the constant function.}
 Take the standard positive definite space \(I_m\) twice. The row set of the partner in the first exchange is empty. Its finite datum is \(1\) and its archimedean polynomial is \(1\), since it is an empty product of minors. The polynomial on the definite side specializes to the prescribed product of powers of the determinant. Twisting both splitting characters cancels the determinant character outside the kernel on the rank-zero partner. The integral on that space is therefore the constant \(1\) with the fixed measure normalization. For the character \(c^{-1}\) the first exchange supplies a scalar \(\gamma_1\), making the normalized class sum \(1\), with
@@ -8170,7 +8177,7 @@ of \(V'\) as \((p,l)\). The dimension conditions are
  n=\dim W=m+l=a+b,\qquad m=p+a,\qquad b=p+l,\qquad
  a=b+2d,\qquad n\ge 2l+2.
 \]
-Write \(\upsilon\) for the splitting character on the norm-one torus.
+In the following weight formulas, \(\upsilon\) is restricted to the norm-one torus.
 Choose \(t_\tau\) frames \(\eta_{\tau i}\) of size \(p\times m\) at each
 infinite place; their entries can be arbitrary. Let \(\alpha\) be tame
 of weight \(l-t_\tau\), ramified exactly at the nonempty set \(S\) of
@@ -8272,7 +8279,7 @@ For an archimedean Schwartz vector \(v\) on the pair \((Y,Y)\), where \(Y=H\oplu
 \[
  r_\lambda(v)=|I_{Y,Y}(v)(1)|^2/L_*(k+l+1).
 \]
-The finite function in this integral is the standard determinant function of the ramified character.
+At the ramified places the finite function on an invertible integral matrix \(y\) is the inverse of the local unit character of \(\lambda\) evaluated at \(\det y\). It is zero off the integral general linear group.
 Remove the \(l+1\) planes above \(J\) in the exchange identity, first with complementary
 partners \(J,0\) and then with the partners interchanged. Use the same \(v\) in both
 identities and take the intermediate vector on \((J,J)\) from the first as datum for the second. This gives
@@ -8425,7 +8432,12 @@ is nonzero, where \(e\) is the source type function. This yields the
 norm pairing. For injectivity, one may impose integrality at successively
 more unramified places in the doubling integral. The limiting integral
 is the sharp mass times the nonzero real factor times the squared norm
-of the source form. We give the argument in \S\ref{sec:odd-lifts}.\formalnote{10.10}{10}
+of the source form. This argument also applies in mixed signature: the source form
+of the specified cuspidal type is rapidly decreasing, so doubling is absolutely
+convergent for \(N>2r\). In the archimedean pairing its real translates contribute
+the coefficient \(\overline{e(x)}/e(1)\), giving the nonzero integral above
+(\S\ref{sec:real-pairing}). The finite-place test and limit are described in
+\S\ref{sec:odd-lifts}.\formalnote{10.10}{10}
 
 For the character lift \(U(1)\to U(2k)\), \(k\ge2\), each chosen place contributes \(1\) to the product of the local mean square, target level index, and missing Euler factor. Each twisting place of norm \(q\) contributes \(q^{2k-1}\). Thus for twisting modulus \(Q\) the conductor contributes \(N(Q)^{2k-1}\). Formula \textup{(SV3)} in \S\ref{sec:split-vacuum} gives the full squared norm of the class-sum lift.\formalnote{10.11}{11}
 
@@ -9276,7 +9288,7 @@ Here \(a^*z\) denotes the adjoint vector obtained by transposing the kernel agai
 \subsection{Peeling one block off the Gram form}
 Write \(X_{i,0}=1\), \(X_{i,h+1}=w_h a_{i,h}X_{i,h}\), and let
 \(j_{i+1}B_i x=d_{i,0}a_{i,0}j_i x\).
-To see this last definition is possible, pair the right side with an arbitrary base form transported by negation. The first-edge adjoint gives the Gram pairing of \(a_{i,0}\). The base level preserves that pairing by its action on the finite point datum, so the represented vector has the base level. Since \(2b_0<b_1\), the stable-range injectivity theorem for the sharp datum (\S\ref{sec:odd-lifts}) applies to the first-edge lift \(a_{i,0}\). It follows that \(B_i\) has zero kernel, since \(\langle B_i x,x\rangle=\|a_{i,0}j_i x\|^2\).\formalnote{11.13}{13}
+To see this last definition is possible, pair the right side with an arbitrary base form transported by negation. The first-edge adjoint gives the Gram pairing of \(a_{i,0}\). The base level preserves that pairing by its action on the finite point datum, so the represented vector has the base level. For the first-edge lift \(a_{i,0}\), the ranks satisfy \(2b_0<b_1\), the point datum is sharp for a level fixing \(j_i x\), and the real vector is the joint harmonic for the two prescribed types. Hence the injectivity argument of \S\ref{sec:one-exchange} applies in the signature of this edge. It follows that \(B_i\) has zero kernel, since \(\langle B_i x,x\rangle=\|a_{i,0}j_i x\|^2\).\formalnote{11.13}{13}
 
 Applying (CS1) successively gives, on the base,
 \[
@@ -10180,9 +10192,9 @@ The valuation group contributes the first \(M\). On a sufficiently deep group of
 
 For the class number the community proof invokes the effective bound \(h_K\le4^d|\Delta_K|\).
 Indeed Minkowski's theorem \cite[\href{https://www.jmilne.org/math/CourseNotes/ANT301.pdf}{Theorem 4.3}]{legacy-milne-ant}
-gives each class an integral ideal of norm at most \(B=(4/\pi)^{r_2}(d!/d^d)\sqrt{|\Delta_K|}\),
-where \(r_2\) counts complex places. Summing \((B/N\mathfrak a)^2\) over integral ideals gives
-\(h_K\le B^2\zeta_K(2)\le4^d|\Delta_K|\), since \(2r_2\le d\) and the Euler products give
+gives each class an integral ideal of norm at most \(B_K=(4/\pi)^{r_2}(d!/d^d)\sqrt{|\Delta_K|}\),
+where \(r_2\) counts complex places. Summing \((B_K/N\mathfrak a)^2\) over nonzero integral ideals gives
+\(h_K\le B_K^2\zeta_K(2)\le4^d|\Delta_K|\), since \(2r_2\le d\) and the Euler products give
 \(\zeta_K(2)\le\zeta(2)^d<2^d\). Thus \(h_K\le(2^d|\Delta_K|)^{d+1}\). To bound the discriminant, write \(X^M-1=\Phi_M(X)H(X)\) and let \(\zeta\) be a primitive \(M\)-th root. Differentiation gives \(\Phi_M'(\zeta)H(\zeta)=M\zeta^{-1}\). The absolute discriminant of the power basis is \(\lvert N_{K/\mathbb Q}\Phi'_M(\zeta)\rvert\), which divides \(M^d\), and the field discriminant divides that of the power basis. Using \(d,|\Sigma|\le M\) and \(M\le 2^M\) gives\formalnote{12.51}{51}
 \[
  2^s\le |B|\le (2^M(2^M)^M)^{M+1}\,(2^M)^{3M}
@@ -12806,7 +12818,7 @@ Suppose \(Ly=0\). For a finite set \(T\) off \(S\), pair \(Ly\) with the lift of
 Doubling now makes each restricted integral zero. Let \(T\) exhaust the places off \(S\). Absolute integrability in the range \(m>2n\) permits passage to the limit. On points integral off \(S\), (OL1) gives the finite factor \(d\); the archimedean pairing gives \(Z_\infty\langle y,y\rangle_V\). Thus \(d Z_\infty\langle y,y\rangle_V=0\), forcing \(y=0\). The lift of our nonzero form is therefore nonzero.\formalnote{15.60}{60}
 
 \subsection{The polynomial at a split place}
-Where \(f\) is spherical, the finite datum is a vacuum at \(w,\bar w\). The local maximal compact on the target fixes it: the change of variables preserves the lattice and the splitting is trivial on these units. Equivariance of the theta integral makes \(F\) spherical there as well. Suppose also that \(w\ne\bar w\), put \(q=q_w\), and define \(\alpha=\upsilon(\varpi_w)^{-n}q^{n/2}\) and \(\beta=b(\varpi_w/\bar\varpi_w)\upsilon(\varpi_w)^{-m}q^{m/2}\), with \(\varpi_w\) read as a local idele and \(\upsilon\) the Weil splitting character. Write \(p(Y)\) for the reciprocal eigenpolynomial of the original Hecke operators, with coefficients \((-1)^j q^{\binom j2}t_j\) and \(t_0=1\). Then the target reciprocal eigenpolynomial is
+Where \(f\) is spherical, the finite datum is a vacuum at \(w,\bar w\). The local maximal compact on the target fixes it: the change of variables preserves the lattice and the splitting is trivial on these units. Equivariance of the theta integral makes \(F\) spherical there as well. Suppose also that \(w\ne\bar w\), put \(q=q_w\), and define \(\alpha=\upsilon(\varpi_w)^{-n}q^{n/2}\) and \(\beta=b(\varpi_w/\bar\varpi_w)\upsilon(\varpi_w)^{-m}q^{m/2}\), where \(\varpi_w\) is the idele with a uniformizer at \(w\) and \(1\) elsewhere. Here \(\upsilon\) is evaluated on the full idele class group. Assume further that \(f\) is a simultaneous eigenvector for the spherical Hecke operators at \(w\), with eigenvalues \(t_j\). Its reciprocal eigenpolynomial \(p(Y)\) has coefficients \((-1)^j q^{\binom j2}t_j\), with \(t_0=1\). Then the target reciprocal eigenpolynomial is
 \[
    p'(Y)=\prod_{j=0}^{s-1}(1-q^j\alpha Y)\,
                     p(q^s\alpha\beta^{-1}Y).                      \tag{OL3}
@@ -12832,7 +12844,7 @@ Let \(d_E\) be the number of roots of unity in \(E\), and fix one infinite place
 \]
 These weights are \(\le e_v\). A norm-one global unit is a root of unity by Kronecker's theorem \cite[Corollary~5.6]{legacy-milne-ant}, so each weight character is trivial on those units. It defines a character on the product of the archimedean norm-one torus and the integral finite subgroup, modulo rational elements, by making it trivial on the latter subgroup. It extends to an automorphic character \(b_i\): the subgroup is open and the circle is divisible, so one can extend over each generator of the finite quotient by choosing a root of its prescribed power. For these choices all cross-list values \(\chi^{(0)}_{k,j}(\varpi_w)\), \(\chi^{(1)}_{k,j'}(\varpi_w)\) differ at every split \(w\). If two were equal, taking their complex phases cancels the common \(\upsilon^{-k}\) and the positive norm factors. Thus \(b_0/b_1\) would take value \(1\) on \(u=\varpi_w/\bar\varpi_w\). Finiteness of the norm-one class quotient gives \(h>0\) and a rational norm-one element \(\gamma\) such that \(u^h\gamma\) is integral and a unit at all finite places. Evaluating the weight character on it gives \(\Phi_{v_0}(\gamma)^{d_E}=1\), since the other weight differences vanish. Consequently \(\gamma\) is a root of unity. Its valuation cannot cancel the nonzero valuation of \(u^h\) at \(w\). This proves the separation at the individual place that is used for local polynomial cancellation.\formalnote{15.63}{63}
 
-Apply (OL4) to each \(b_i\) with \(s=n+1\), so \(m=2n+1\). The odd-rank theorem attaches a representation \(\sigma_i\) to \(F_i\). Twist it by the \(\ell\)-adic avatar of \(\chi^{(i)}_{s,s}\) to obtain \(\rho_i\). The character's value at unramified geometric Frobenius scales each root by \(a_w\), just as in (OL4). At a spherical place the constructed characters are unramified as Hecke characters, hence their avatars have the local unramified or crystalline property at the appropriate residue characteristic. Their infinity types are \(j+c_v-k\) on the chosen embedding and \(j-c_v\) on its conjugate for \(\chi_{k,j}\), and their jumps are the negatives of these exponents.
+Apply (OL4) to the given eigenform with each twisting character \(b_i\) and \(s=n+1\), so \(m=2n+1\). The odd-rank theorem attaches a representation \(\sigma_i\) to \(F_i\). Twist it by the \(\ell\)-adic avatar of \(\chi^{(i)}_{s,s}\) to obtain \(\rho_i\). The character's value at unramified geometric Frobenius scales each root by \(a_w\), just as in (OL4). At a spherical place the constructed characters are unramified as Hecke characters, hence their avatars have the local unramified or crystalline property at the appropriate residue characteristic. Their infinity types are \(j+c_v-k\) on the chosen embedding and \(j-c_v\) on its conjugate for \(\chi_{k,j}\), and their jumps are the negatives of these exponents.
 
 To identify every jump of the twisted representation, observe that the twist shifts the jumps of the rank-\(m\) weight by \(-c_v\) at the chosen embedding and by \(c_v-s\) at its conjugate. At index \(p<n\) the two resulting jumps are \(p-\lambda_p\) and \(\lambda_p+n-1-p\), exactly the original ones. At \(p=n+a\) for \(0\le a<s\) they are \(n+a-c_v\) and \(c_v-1-a\). These are the jumps of \(\theta_a\) on the chosen embedding and of \(\theta_{s-1-a}\) on its conjugate. The added characters thus account for every additional jump with multiplicity. The two cross-disjoint strings give the trace subtractions and the relatively prime polynomial factors used in \S\ref{sec:galois}.\formalnote{15.64}{64}
 
@@ -16312,7 +16324,7 @@ from the authors' compact edition.
 \noteline{6.58}{58}{\src{New/Spanning/Unfolding/Moments.lean\#L1026-L1210}{Trace of the discarded types and the two-factor loss}.}
 \noteline{6.59}{59}{\src{New/Spanning/MainTerm/FillingLevel.lean\#L532-L558}{The finite lattice datum and its rank constraints}.}
 \noteline{6.60}{60}{\comsrc{New/Spanning/Frames/StandardLevel.lean}{Common integral vectors and their content moments}.}
-\noteline{6.61}{61}{\comsrc{Lib/SiegelWeil/OneVector/StandardQuadrics.lean\#L236-L290}{Translation by the content of a hyperbolic block}. \comsrc{Lib/SiegelWeil/OneVector/StandardQuadrics.lean\#L428-L456}{The standard quadric in rank at least \(2m+4\)}. \comsrc{New/Spanning/Frames/StandardLevel.lean\#L553-L581}{The bound used at the pivot}.}
+\noteline{6.61}{61}{\comsrc{Lib/SiegelWeil/OneVector/StandardQuadrics.lean\#L347-L377}{The integral hyperbolic basis}. \comsrc{Lib/SiegelWeil/OneVector/StandardQuadrics.lean\#L236-L290}{Translation by the content of a hyperbolic block}. \comsrc{Lib/SiegelWeil/OneVector/StandardQuadrics.lean\#L428-L456}{The standard quadric in rank at least \(2m+4\)}. \comsrc{New/Spanning/Frames/StandardLevel.lean\#L553-L581}{The bound used at the pivot}.}
 \noteline{6.62}{62}{\src{New/Spanning/Frames/FiniteDepth.lean\#L80-L162}{Stable-pair lattices and the coordinate ideal}. \src{New/Spanning/Frames/FiniteDepth.lean\#L445-L543}{A common multiple and propagation through the frame}.}
 \noteline{6.63}{63}{\src{New/Spanning/Frames/Shells.lean\#L88-L247}{Per-box losses and the choice of gain on each shell}. \src{New/Spanning/Frames/FiniteShells.lean\#L198-L318}{The ideal-shell cover and its sum}. \src{New/Spanning/Frames/FiniteShells.lean\#L591-L724}{Both pivot gains off the congruence group and the finite mass}.}
 \noteline{6.64}{64}{\src{New/Spanning/Frames/FiniteDepth.lean\#L262-L405}{Head products, weights and scale}. \src{New/Spanning/Frames/FiniteShells.lean\#L345-L552}{Replacing a frequency and retaining the denominator saving}.}
@@ -16445,9 +16457,9 @@ from the authors' compact edition.
 \noteline{10.5}{5}{\src{New/OneLift/ComparisonOperator/ThreeExchanges.lean}{The three critical pairs and their product}.}
 \noteline{10.6}{6}{\src{New/Determinant/Exchange/MatchingPartners.lean}{Complementary minors and the induced sections of the local group}. \src{New/OneLift/ComparisonOperator/OneExchange.lean}{Product kernels, convergence and class sums at the row stabilizer}.}
 \noteline{10.7}{7}{\src{New/Determinant/Exchange/LargeTriple.lean}{The Fourier terms, their support in Gram matrices and the period identity}. \src{New/Determinant/Exchange/RemovingPlanes.lean}{Descent on either side by the constant term}. \src{Lib/SiegelWeil/Tower/LargeSideConstantTerm.lean}{Unfolding the isotropic line and the ramified normalization}. \src{Lib/SiegelWeil/Tower/FiniteTateIntegral.lean}{The finite integral, its domain of convergence and the Euler factors}.}
-\noteline{10.8}{8}{\comsrc{New/Determinant/Exchange/TheoremForPartners.lean\#L391-L423}{The two exchanges and nonvanishing}. \comsrc{New/Determinant/Exchange/TheoremForPartners.lean\#L722-L823}{The constant square and passage to the required signature}. \comsrc{New/Determinant/Exchange/TheoremForPartners.lean}{Extension to matched functions}.}
+\noteline{10.8}{8}{\comsrc{New/Determinant/Exchange/VanishingDescends.lean\#L45-L52}{The finite determinant function}. \comsrc{New/Determinant/Exchange/TheoremForPartners.lean\#L391-L423}{The two exchanges and nonvanishing}. \comsrc{New/Determinant/Exchange/TheoremForPartners.lean\#L722-L823}{The constant square and passage to the required signature}. \comsrc{New/Determinant/Exchange/TheoremForPartners.lean}{Extension to matched functions}.}
 \noteline{10.9}{9}{\src{New/Determinant/Exchange/ExplicitMatching.lean}{Circle projection, unitary polarization, definite class sum, and normalization}. \src{New/OneLift/ComparisonOperator/ThreeExchanges.lean}{The rank-zero integral and nonzero carrier}.}
-\noteline{10.10}{10}{\src{Lib/SiegelWeil/RallisInner/Doubling.lean}{The doubled integral and Weil matrix coefficients}. \src{Lib/SiegelWeil/RallisInner/SharpData.lean}{Sharp mass, the real zeta integral and the unramified coset sum}.}
+\noteline{10.10}{10}{\src{Lib/SiegelWeil/RallisInner/Doubling.lean}{The doubled integral and Weil matrix coefficients}. \comsrc{Lib/SiegelWeil/RallisInner/SharpData.lean\#L436-L496}{Injectivity for the sharp datum, the archimedean pairing and the unramified coset sum}.}
 \noteline{10.11}{11}{\src{New/OneLift/HeckeValues/CharacterLiftNorm.lean}{Block means, level indices, and the norm on the chosen rank-one character lift}.}
 \noteline{10.12}{12}{\src{Lib/SiegelWeil/Formula/WeilRange.lean\#L216-L247}{Summing the dyadic fibres}. \src{Lib/SiegelWeil/Formula/WeilRange.lean\#L286-L390}{Frame reduction and the hermitian parameter count}. \src{Lib/SiegelWeil/Formula/LagrangianZeroTerms.lean\#L343-L399}{The normalized action and the integrable theta majorant}.}
 \noteline{10.13}{13}{\src{Lib/SiegelWeil/Formula/WeilRange.lean\#L435-L461}{The two theta integrals at the normalized translate}. \src{Lib/SiegelWeil/Formula/WeilRange.lean\#L467-L525}{The translation estimate on the finite and infinite components}.}
@@ -16808,7 +16820,7 @@ from the authors' compact edition.
 \noteline{15.58}{58}{\src{Lib/SiegelWeil/RallisInner/Doubling.lean\#L630-L652}{The finite isotropic frame}. \src{Lib/GaloisRep/Main/ThetaLift.lean\#L80-L277}{Integral support, stabilizer and sharp datum}.}
 \noteline{15.59}{59}{\comsrc{Lib/SiegelWeil/RallisInner/VacuumSummability.lean\#L55-L130}{Absolute summability from doubling}. \comsrc{Lib/SiegelWeil/RallisInner/SharpData.lean\#L436-L496}{The sharp norm identity and the real factor}.}
 \noteline{15.60}{60}{\comsrc{Lib/SiegelWeil/RallisInner/DualDatum.lean\#L204-L265}{The shear, the Heisenberg translation and the coefficient at integral points}. \comsrc{Lib/SiegelWeil/RallisInner/DualDatum.lean\#L266-L358}{Integrality from the additive character}. \comsrc{Lib/SiegelWeil/RallisInner/SharpData.lean\#L294-L407}{Exhaustion by finite sets of places and the sharp mass}.}
-\noteline{15.61}{61}{\src{Lib/Weil/Unramified/HeckeTransfer.lean\#L336-L451}{The two residue kernels and the product identity}. \src{Lib/Weil/Unramified/HeckeTransfer.lean\#L608-L653}{Transfer through the theta integral}.}
+\noteline{15.61}{61}{\comsrc{Lib/GaloisRep/Main/ThetaLift.lean\#L436-L454}{Sphericity and the eigenpolynomial hypothesis}. \src{Lib/Weil/Unramified/HeckeTransfer.lean\#L336-L451}{The two residue kernels and the product identity}. \src{Lib/Weil/Unramified/HeckeTransfer.lean\#L608-L653}{Transfer through the theta integral}.}
 \noteline{15.62}{62}{\src{Lib/GaloisRep/Main/ThetaLift.lean\#L276-L298}{Conversion from reciprocal to monic polynomials}. \src{Lib/GaloisRep/Main/ThetaLift.lean\#L323-L350}{The two character normalizations}.}
 \noteline{15.63}{63}{\src{Lib/GaloisRep/Main/AllRanks.lean\#L108-L161}{The two weights and the split-place contradiction}.}
 \noteline{15.64}{64}{\src{Lib/ClassField/Avatar/HeckeBaseChange.lean\#L190-L215}{Infinity types and unramified character values}. \src{Lib/GaloisRep/Main/AllRanks.lean\#L384-L454}{The automorphic lifts, twists and jump calculation}. \src{Lib/GaloisRep/Main/AllRanks.lean\#L466-L539}{The two strings and local cancellation}.}
